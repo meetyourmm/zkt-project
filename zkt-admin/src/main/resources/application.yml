@@ -45,6 +45,9 @@ mybatis:
   basepackage: com.zkt.project.admin.mapper
   xmlLocation: classpath:mapper/**/*.xml
   mapper-locations: "classpath*:mapper/*.xml"
+logging:
+  level:
+     com.zkt.project.admin.mapper : debug
 
 #配置接口相关
 audience:

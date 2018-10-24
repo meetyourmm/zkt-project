@@ -48,15 +48,16 @@ public class SysMenu implements Serializable {
 
     private String icon;//图标
 
-    private String type ;//类型menu or button
+    private String type = EnumUtil.MenuType.MENU.getType();//类型menu or button or link 默认menu
 
     @Column(name = "order_num")
     private Integer orderNum;//排序
 
     private String description;//描述
 
-    private String path;//请求uri路径
-
+    private String path;//菜单路由
+    private String view;//视图路径
+    private String uri;//请求地址主要用于按钮和连接
     private String status = EnumUtil.DataStatus.ENABLE.getStatus();//
 
     @Column(name = "create_time")
@@ -181,5 +182,21 @@ public class SysMenu implements Serializable {
 
     public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
+    }
+
+    public String getView() {
+        return view;
+    }
+
+    public void setView(String view) {
+        this.view = view;
     }
 }

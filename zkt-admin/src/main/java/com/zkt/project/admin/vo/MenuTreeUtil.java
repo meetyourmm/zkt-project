@@ -39,6 +39,7 @@ public class MenuTreeUtil {
             node = new MenuTree();
             BeanUtils.copyProperties(menu, node);
             node.setLabel(menu.getTitle());
+            node.setAuthority(menu.getCode());
             trees.add(node);
         }
         return TreeUtil.bulid(trees,root) ;

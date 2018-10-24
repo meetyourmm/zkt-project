@@ -59,8 +59,7 @@ public class SysUser implements Serializable {
     private String weiChat;//微信号码
     @Column(name="wei_bo")
     private String weiBo;//微博号码
-    @Column(name="head_img")
-    private String headImg;//头像图片
+    private String avatar;//头像图片
     @Column(name="id_num")
     private String idNum;//身份证号码
 
@@ -92,7 +91,8 @@ public class SysUser implements Serializable {
     private String uniId;//微信的uniid
     @Column(name="is_com")
     private String isCom;//是否企业用户
-
+    @Column(name="is_admin")
+    private String isAdmin ;//超级管理员1不是 2是
     @Column(name="create_time")
     private Date createTime;//创建时间
     @Column(name="create_user")
@@ -238,12 +238,12 @@ public class SysUser implements Serializable {
         this.weiBo = weiBo;
     }
 
-    public String getHeadImg() {
-        return headImg;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getIdNum() {
@@ -420,5 +420,13 @@ public class SysUser implements Serializable {
 
     public void setUpdateUser(Date updateUser) {
         this.updateUser = updateUser;
+    }
+
+    public String getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setIsAdmin(String isAdmin) {
+        this.isAdmin = isAdmin;
     }
 }

@@ -73,13 +73,19 @@ public class EnumUtil {
         MENU {
             @Override
             public String getType() {
-                return "1";
+                return "menu";
             }
         },
         BUTTON {
             @Override
             public String getType() {
-                return "2";
+                return "button";
+            }
+        },
+        LINK {
+            @Override
+            public String getType() {
+                return "link";
             }
         };
         public abstract String getType();

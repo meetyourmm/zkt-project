@@ -71,8 +71,13 @@ public class UserApiController {
     public ApiResponse getUserInfo(){
         String userId = UserContextHandler.getUserID();
         SysUser user = userService.getUserById(userId);
+        List<MenuTree> menus =  MenuTreeUtil.getMenuTree(menuService.getUserAuthorityMenuByUserId(userId),CommonConstant.ROOT_NODE);
         FrontUser frontUser = new FrontUser();
         BeanUtils.copyProperties(user, frontUser);
+        frontUser.setMenus(menus);
+        if(user.getIsAdmin().equals("2")){//超级管理员
+            frontUser.setRole("admin");
+        }
         return new ApiResponse(frontUser);
     }
 

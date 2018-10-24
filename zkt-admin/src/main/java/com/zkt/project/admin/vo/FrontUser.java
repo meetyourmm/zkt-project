@@ -21,6 +21,7 @@ import tk.mybatis.mapper.annotation.KeySql;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import java.util.Date;
+import java.util.List;
 
 /**
  * 前端返回用户字段
@@ -36,9 +37,9 @@ public class FrontUser {
     private String mobile;//用户手机号
     private String realName;//真实姓名
     private String nickName;//昵称
-    private String headImg;//头像图片
-    private String token;//用户token
-
+    private String avatar;//头像图片
+    private List<MenuTree> menus;//用户菜单
+    private String role;//系统角色
     public String getId() {
         return id;
     }
@@ -87,19 +88,27 @@ public class FrontUser {
         this.nickName = nickName;
     }
 
-    public String getHeadImg() {
-        return headImg;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setHeadImg(String headImg) {
-        this.headImg = headImg;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    public String getToken() {
-        return token;
+    public List<MenuTree> getMenus() {
+        return menus;
     }
 
-    public void setToken(String token) {
-        this.token = token;
+    public void setMenus(List<MenuTree> menus) {
+        this.menus = menus;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
     }
 }

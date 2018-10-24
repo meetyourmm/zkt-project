@@ -14,6 +14,7 @@
  */
 package com.zkt.project.admin.vo;
 
+import com.zkt.common.core.constant.EnumUtil;
 import com.zkt.common.core.entity.TreeNode;
 
 /**
@@ -24,20 +25,21 @@ import com.zkt.common.core.entity.TreeNode;
  */
 public class MenuTree extends TreeNode {
     String icon;
-    String title;
-    boolean spread = false;
-    String path;
-    String component;
-    String authority;
-    String redirect;
-    String code;
+    String label;
+    String path;//菜单路由
+    String view;//视图路径
+    String type;//节点类型button menu
+    String uri;//请求uri
+    String component;//布局组件
+    String authority;//权限
+    String code;//菜单树编码
 
-    public String getCode() {
-        return code;
+    public String getLabel() {
+        return label;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setLabel(String label) {
+        this.label = label;
     }
 
     public String getPath() {
@@ -46,6 +48,14 @@ public class MenuTree extends TreeNode {
 
     public void setPath(String path) {
         this.path = path;
+    }
+
+    public String getUri() {
+        return uri;
+    }
+
+    public void setUri(String uri) {
+        this.uri = uri;
     }
 
     public String getComponent() {
@@ -64,39 +74,14 @@ public class MenuTree extends TreeNode {
         this.authority = authority;
     }
 
-    public String getRedirect() {
-        return redirect;
+    public String getCode() {
+        return code;
     }
 
-    public void setRedirect(String redirect) {
-        this.redirect = redirect;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getLabel() {
-        return label;
-    }
-
-    public void setLabel(String label) {
-        this.label = label;
-    }
-
-    String label;
-
-    public MenuTree() {
-    }
-
-    public MenuTree(String id, String name, String parentId) {
-        this.id = id;
-        this.parentId = parentId;
-        this.title = name;
-        this.label = name;
-    }
-    public MenuTree(String id, String name, MenuTree parent) {
-        this.id = id;
-        this.parentId = parent.getId();
-        this.title = name;
-        this.label = name;
-    }
     public String getIcon() {
         return icon;
     }
@@ -105,20 +90,34 @@ public class MenuTree extends TreeNode {
         this.icon = icon;
     }
 
-    public String getTitle() {
-        return title;
+    public String getView() {
+        return view;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setView(String view) {
+        this.view = view;
     }
 
-
-    public boolean isSpread() {
-        return spread;
+    public String getType() {
+        return type;
     }
 
-    public void setSpread(boolean spread) {
-        this.spread = spread;
+    public void setType(String type) {
+        this.type = type;
     }
+
+    public MenuTree() {
+    }
+
+    public MenuTree(String id, String name, String parentId) {
+        this.id = id;
+        this.parentId = parentId;
+        this.label = name;
+    }
+    public MenuTree(String id, String name, MenuTree parent) {
+        this.id = id;
+        this.parentId = parent.getId();
+        this.label = name;
+    }
+
 }

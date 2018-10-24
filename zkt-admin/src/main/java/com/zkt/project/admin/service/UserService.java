@@ -42,6 +42,9 @@ public class UserService {
         info.setUserName(username);
         SysUser user = userMapper.selectOne(info);
 
+        if(user == null){
+            throw new UserInvalidException(ResponseConstant.EX_USER_PASS_INVALID_MSG);
+        }
         if (encoder.matches(password, user.getPassword())) {
             info.setId(user.getId());
             return user;

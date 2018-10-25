@@ -22,10 +22,10 @@ spring:
       driverClassName: com.mysql.cj.jdbc.Driver
       driver-class-name: com.mysql.cj.jdbc.Driver
       platform: mysql
-      url: jdbc:mysql://db.ibf.cn:3306/zkt_biology_sample?useUnicode=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF8
+      url: jdbc:mysql://db.ibf.cn:3306/zkt_biology_sample?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF8
       username: beifeng
       password: beifeng
-      #url: jdbc:mysql://mysql.ibeifeng.cn:3306/ag_admin_v1?useUnicode=true&serverTimezone=Asia/Shanghai&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF8
+      #url: jdbc:mysql://mysql.ibeifeng.cn:3306/ag_admin_v1?useUnicode=true&zeroDateTimeBehavior=convertToNull&characterEncoding=UTF8
       #username: ace
       #password: Ibf@2018
       initialSize: 5

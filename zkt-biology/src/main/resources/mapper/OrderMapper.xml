@@ -1,0 +1,1544 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Order" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="SENDER_ID" property="senderid" jdbcType="VARCHAR" />
+    <result column="TRANSPORT_ID" property="transportid" jdbcType="VARCHAR" />
+    <result column="RECIVER_ID" property="reciverid" jdbcType="VARCHAR" />
+    <result column="ORDER_STATUS" property="orderStatus" jdbcType="VARCHAR" />
+    <result column="IS_PROBLEM" property="isProblem" jdbcType="VARCHAR" />
+    <result column="PROBLEM_CAUSE" property="problemCause" jdbcType="VARCHAR" />
+    <result column="IS_FINISH" property="isFinish" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_AT" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_AT" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="PACK_OPERATOR" property="packOperator" jdbcType="VARCHAR" />
+    <result column="TRANSPORT_OPERATOR" property="transportOperator" jdbcType="VARCHAR" />
+    <result column="RECEIVE_OPERATOR" property="receiveOperator" jdbcType="VARCHAR" />
+    <result column="SEND_TIME" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="RECEIVE_TIME" property="receivetime" jdbcType="TIMESTAMP" />
+    <result column="CAGE_NO" property="cageno" jdbcType="VARCHAR" />
+    <result column="CAR_NO" property="carNo" jdbcType="VARCHAR" />
+    <result column="CLASSIFY" property="classify" jdbcType="VARCHAR" />
+    <result column="TLIMIT_UP" property="tlimitup" jdbcType="VARCHAR" />
+    <result column="TLIMIT_DOWN" property="tlimitdown" jdbcType="VARCHAR" />
+    <result column="HLIMIT_UP" property="hlimitup" jdbcType="VARCHAR" />
+    <result column="HLIMIT_DOWN" property="hlimitdown" jdbcType="VARCHAR" />
+    <result column="ARRIVETIME" property="arrivetime" jdbcType="TIMESTAMP" />
+    <result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+    <result column="NUM" property="num" jdbcType="VARCHAR" />
+    <result column="SAMPLECLASSIFY" property="sampleclassify" jdbcType="VARCHAR" />
+    <result column="SENDER" property="sender" jdbcType="VARCHAR" />
+    <result column="TRANSPORT" property="transport" jdbcType="VARCHAR" />
+    <result column="RECIVER" property="reciver" jdbcType="VARCHAR" />
+    <result column="CITY" property="city" jdbcType="VARCHAR" />
+	<result column="AREA" property="area" jdbcType="VARCHAR" />
+	<result column="SIGN" property="sign" jdbcType="VARCHAR" />
+	<result column="SIGN1" property="sign1" jdbcType="VARCHAR" />
+	<result column="SIGN2" property="sign2" jdbcType="VARCHAR" />
+	<result column="SIGN3" property="sign3" jdbcType="VARCHAR" />
+	<result column="SIGN4" property="sign4" jdbcType="VARCHAR" />
+	<result column="SIGN5" property="sign5" jdbcType="VARCHAR" />
+	<result column="SIGN6" property="sign6" jdbcType="VARCHAR" />
+	<result column="ALARMTIME" property="alarmtime" jdbcType="TIMESTAMP" />
+	<result column="ALARMTIME1" property="alarmtime1" jdbcType="TIMESTAMP" />
+	<result column="ALARMTIME2" property="alarmtime2" jdbcType="TIMESTAMP" />
+	<result column="ALARMTIME3" property="alarmtime3" jdbcType="TIMESTAMP" />	
+	<result column="ALARMTIME4" property="alarmtime4" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, SENDER_ID, TRANSPORT_ID, RECIVER_ID, ORDER_STATUS, IS_PROBLEM, PROBLEM_CAUSE, 
+    IS_FINISH, CREATED_BY, CREATED_AT, UPDATED_BY, UPDATED_AT, PACK_OPERATOR, TRANSPORT_OPERATOR, 
+    RECEIVE_OPERATOR, SEND_TIME, RECEIVE_TIME, CAGE_NO, CAR_NO,
+    CLASSIFY, TLIMIT_UP, TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, ARRIVETIME, REMARKS, NUM, SAMPLECLASSIFY,
+    SENDER, TRANSPORT, RECIVER, CITY, AREA, SIGN, SIGN1, SIGN2, SIGN3, SIGN4, SIGN5, SIGN6, ALARMTIME, ALARMTIME1, ALARMTIME2, ALARMTIME3, ALARMTIME4
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_order
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bio_order
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkt.project.biology.entity.Order" >
+    insert into bio_order (ID, ORDER_NO, SENDER_ID, 
+      TRANSPORT_ID, RECIVER_ID, ORDER_STATUS, 
+      IS_PROBLEM, PROBLEM_CAUSE, IS_FINISH, 
+      CREATED_BY, CREATED_AT, UPDATED_BY, 
+      UPDATED_AT, PACK_OPERATOR, TRANSPORT_OPERATOR, 
+      RECEIVE_OPERATOR, SEND_TIME, RECEIVE_TIME, 
+      CAGE_NO, CAR_NO,
+      TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, 
+      ARRIVETIME, REMARKS, NUM, SAMPLECLASSIFY,
+      SENDER, TRANSPORT, RECIVER, CITY, AREA, SIGN, SIGN1, SIGN2, SIGN3, SIGN4, SIGN5, SIGN6, ALARMTIME, ALARMTIME1, ALARMTIME2, ALARMTIME3, ALARMTIME4)
+    values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{senderid,jdbcType=VARCHAR}, 
+      #{transportid,jdbcType=VARCHAR}, #{reciverid,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{isProblem,jdbcType=VARCHAR}, #{problemCause,jdbcType=VARCHAR}, #{isFinish,jdbcType=VARCHAR}, 
+      #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{packOperator,jdbcType=VARCHAR}, #{transportOperator,jdbcType=VARCHAR}, 
+      #{receiveOperator,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
+      #{cageno,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, 
+	  #{classify,jdbcType=VARCHAR}, #{tlimitup,jdbcType=VARCHAR}, 
+      #{tlimitdown,jdbcType=VARCHAR}, #{hlimitup,jdbcType=VARCHAR}, #{hlimitdown,jdbcType=VARCHAR}, 
+      #{arrivetime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{sampleclassify,jdbcType=VARCHAR},
+      #{sender,jdbcType=VARCHAR}, #{transport,jdbcType=VARCHAR}, #{reciver,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR},
+      #{sign1,jdbcType=VARCHAR}, #{sign2,jdbcType=VARCHAR}, #{sign3,jdbcType=VARCHAR}, #{sign4,jdbcType=VARCHAR}, #{sign5,jdbcType=VARCHAR}, #{sign6,jdbcType=VARCHAR}, 
+      #{alarmtime,jdbcType=TIMESTAMP},#{alarmtime1,jdbcType=TIMESTAMP},#{alarmtime2,jdbcType=TIMESTAMP},#{alarmtime3,jdbcType=TIMESTAMP},#{alarmtime4,jdbcType=TIMESTAMP}
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Order" >
+    insert into bio_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="senderid != null" >
+        SENDER_ID,
+      </if>
+      <if test="transportid != null" >
+        TRANSPORT_ID,
+      </if>
+      <if test="reciverid != null" >
+        RECIVER_ID,
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS,
+      </if>
+      <if test="isProblem != null" >
+        IS_PROBLEM,
+      </if>
+      <if test="problemCause != null" >
+        PROBLEM_CAUSE,
+      </if>
+      <if test="isFinish != null" >
+        IS_FINISH,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdAt != null" >
+        CREATED_AT,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedAt != null" >
+        UPDATED_AT,
+      </if>
+      <if test="packOperator != null" >
+        PACK_OPERATOR,
+      </if>
+      <if test="transportOperator != null" >
+        TRANSPORT_OPERATOR,
+      </if>
+      <if test="receiveOperator != null" >
+        RECEIVE_OPERATOR,
+      </if>
+      <if test="sendtime != null" >
+        SEND_TIME,
+      </if>
+      <if test="receivetime != null" >
+        RECEIVE_TIME,
+      </if>
+      <if test="cageno != null" >
+        CAGE_NO,
+      </if>
+      <if test="carNo != null" >
+        CAR_NO,
+      </if>
+      <if test="classify != null" >
+        CLASSIFY,
+      </if>
+      <if test="tlimitup != null" >
+        TLIMIT_UP,
+      </if>
+      <if test="tlimitdown != null" >
+        TLIMIT_DOWN,
+      </if>
+      <if test="hlimitup != null" >
+        HLIMIT_UP,
+      </if>
+      <if test="hlimitdown != null" >
+        HLIMIT_DOWN,
+      </if>
+      <if test="arrivetime != null" >
+        ARRIVETIME,
+      </if>
+      <if test="remarks != null" >
+        REMARKS,
+      </if>
+      <if test="num != null" >
+        NUM,
+      </if>
+      <if test="sampleclassify != null" >
+        SAMPLECLASSIFY,
+      </if>
+      <if test="sender != null" >
+        SENDER,
+      </if>
+      <if test="transport != null" >
+        TRANSPORT,
+      </if>
+      <if test="reciver != null" >
+        RECIVER,
+      </if>    
+      <if test="city != null" >
+        CITY,
+      </if>
+      <if test="area != null" >
+        AREA,
+      </if>
+      <if test="sign != null" >
+        SIGN,
+      </if>
+      <if test="sign1 != null" >
+        SIGN1,
+      </if>
+      <if test="sign2 != null" >
+        SIGN2,
+      </if>
+      <if test="sign3 != null" >
+        SIGN3,
+      </if>
+      <if test="sign4 != null" >
+        SIGN4,
+      </if>
+      <if test="sign5 != null" >
+        SIGN5,
+      </if>
+      <if test="sign6 != null" >
+        SIGN6,
+      </if>     
+      <if test="alarmtime != null" >
+        ALARMTIME,
+      </if>
+      <if test="alarmtime1 != null" >
+        ALARMTIME1,
+      </if>
+      <if test="alarmtime2 != null" >
+        ALARMTIME2,
+      </if>
+      <if test="alarmtime3 != null" >
+        ALARMTIME3,
+      </if>
+      <if test="alarmtime4 != null" >
+        ALARMTIME4,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="senderid != null" >
+        #{senderid,jdbcType=VARCHAR},
+      </if>
+      <if test="transportid != null" >
+        #{transportid,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverid != null" >
+        #{reciverid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isProblem != null" >
+        #{isProblem,jdbcType=VARCHAR},
+      </if>
+      <if test="problemCause != null" >
+        #{problemCause,jdbcType=VARCHAR},
+      </if>
+      <if test="isFinish != null" >
+        #{isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="packOperator != null" >
+        #{packOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="transportOperator != null" >
+        #{transportOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveOperator != null" >
+        #{receiveOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivetime != null" >
+        #{receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cageno != null" >
+        #{cageno,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        #{carNo,jdbcType=VARCHAR},
+      </if>     
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitup != null" >
+        #{tlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitdown != null" >
+        #{tlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitup != null" >
+        #{hlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitdown != null" >
+        #{hlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        #{arrivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=VARCHAR},
+      </if>     
+      <if test="sampleclassify != null" >
+        #{sampleclassify,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="transport != null" >
+        #{transport,jdbcType=VARCHAR},
+      </if>
+      <if test="reciver != null" >
+        #{reciver,jdbcType=VARCHAR},
+      </if>      
+      <if test="city != null" >
+        #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+        #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="sign1 != null" >
+        #{sign1,jdbcType=VARCHAR},
+      </if>
+      <if test="sign2 != null" >
+        #{sign2,jdbcType=VARCHAR},
+      </if>
+      <if test="sign3 != null" >
+        #{sign3,jdbcType=VARCHAR},
+      </if>
+      <if test="sign4 != null" >
+        #{sign4,jdbcType=VARCHAR},
+      </if>
+      <if test="sign5 != null" >
+        #{sign5,jdbcType=VARCHAR},
+      </if>
+      <if test="sign6 != null" >
+        #{sign6,jdbcType=VARCHAR},
+      </if>     
+      <if test="alarmtime != null" >
+        #{alarmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime1 != null" >
+        #{alarmtime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime2 != null" >
+        #{alarmtime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime3 != null" >
+        #{alarmtime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime4 != null" >
+        #{alarmtime4,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Order" >
+    update bio_order
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="senderid != null" >
+        SENDER_ID = #{senderid,jdbcType=VARCHAR},
+      </if>
+      <if test="transportid != null" >
+        TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverid != null" >
+        RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
+      </if>
+      <if test="orderStatus != null" >
+        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="isProblem != null" >
+        IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},
+      </if>
+      <if test="problemCause != null" >
+        PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},
+      </if>
+      <if test="isFinish != null" >
+        IS_FINISH = #{isFinish,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="packOperator != null" >
+        PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="transportOperator != null" >
+        TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveOperator != null" >
+        RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},
+      </if>
+      <if test="sendtime != null" >
+        SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receivetime != null" >
+        RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="cageno != null" >
+        CAGE_NO = #{cageno,jdbcType=VARCHAR},
+      </if>
+      <if test="carNo != null" >
+        CAR_NO = #{carNo,jdbcType=VARCHAR},
+      </if>      
+      <if test="classify != null" >
+        CLASSIFY = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitup != null" >
+        TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitdown != null" >
+        TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitup != null" >
+        HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitdown != null" >
+        HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="arrivetime != null" >
+        ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="remarks != null" >
+        REMARKS = #{remarks,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        NUM = #{num,jdbcType=VARCHAR},
+      </if>      
+      <if test="sampleclassify != null" >
+        SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null" >
+        SENDER = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="transport != null" >
+        TRANSPORT = #{transport,jdbcType=VARCHAR},
+      </if>
+      <if test="reciver != null" >
+        RECIVER = #{reciver,jdbcType=VARCHAR},
+      </if>     
+      <if test="city != null" >
+        CITY = #{city,jdbcType=VARCHAR},
+      </if>
+      <if test="area != null" >
+        AREA = #{area,jdbcType=VARCHAR},
+      </if>
+      <if test="sign != null" >
+       SIGN  = #{sign,jdbcType=VARCHAR},
+      </if>
+      <if test="sign1 != null" >
+       SIGN1  = #{sign1,jdbcType=VARCHAR},
+      </if>
+      <if test="sign2 != null" >
+       SIGN2  = #{sign2,jdbcType=VARCHAR},
+      </if>
+      <if test="sign3 != null" >
+       SIGN3  = #{sign3,jdbcType=VARCHAR},
+      </if>
+      <if test="sign4 != null" >
+       SIGN4  = #{sign4,jdbcType=VARCHAR},
+      </if>
+      <if test="sign5 != null" >
+       SIGN5  = #{sign5,jdbcType=VARCHAR},
+      </if>
+      <if test="sign6 != null" >
+       SIGN6  = #{sign6,jdbcType=VARCHAR},
+      </if>     
+      <if test="alarmtime != null" >
+       ALARMTIME  = #{alarmtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime1 != null" >
+       ALARMTIME1  = #{alarmtime1,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime2 != null" >
+       ALARMTIME2  = #{alarmtime2,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime3 != null" >
+       ALARMTIME3  = #{alarmtime3,jdbcType=TIMESTAMP},
+      </if>
+      <if test="alarmtime4 != null" >
+       ALARMTIME4  = #{alarmtime4,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zkt.project.biology.entity.Order" >
+    update bio_order
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      SENDER_ID = #{senderid,jdbcType=VARCHAR},
+      TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},
+      PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},
+      IS_FINISH = #{isFinish,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},
+      TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},
+      RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},
+      SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},
+      RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},
+      CAGE_NO = #{cageno,jdbcType=VARCHAR},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      CLASSIFY = #{classify,jdbcType=VARCHAR},
+      TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
+      TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
+      HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
+      HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
+      ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=VARCHAR},
+      SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},
+      SENDER = #{sender,jdbcType=VARCHAR},
+      TRANSPORT = #{transport,jdbcType=VARCHAR},
+      RECIVER = #{reciver,jdbcType=VARCHAR},     
+      CITY = #{city,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      SIGN = #{sign,jdbcType=VARCHAR},
+      SIGN1 = #{sign1,jdbcType=VARCHAR},
+      SIGN2 = #{sign2,jdbcType=VARCHAR},
+      SIGN3 = #{sign3,jdbcType=VARCHAR},
+      SIGN4 = #{sign4,jdbcType=VARCHAR},
+      SIGN5 = #{sign5,jdbcType=VARCHAR},
+      SIGN6 = #{sign6,jdbcType=VARCHAR},
+      ALARMTIME = #{alarmtime,jdbcType=TIMESTAMP}, 
+      ALARMTIME1 = #{alarmtime1,jdbcType=TIMESTAMP},
+      ALARMTIME2 = #{alarmtime2,jdbcType=TIMESTAMP},
+      ALARMTIME3 = #{alarmtime3,jdbcType=TIMESTAMP},
+      ALARMTIME4 = #{alarmtime4,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Order" >
+    update bio_order
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      SENDER_ID = #{senderid,jdbcType=VARCHAR},
+      TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
+      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
+      IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},
+      PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},
+      IS_FINISH = #{isFinish,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},
+      TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},
+      RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},
+      SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},
+      RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},
+      CAGE_NO = #{cageno,jdbcType=VARCHAR},
+      CAR_NO = #{carNo,jdbcType=VARCHAR},
+      CLASSIFY = #{classify,jdbcType=VARCHAR},
+      TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
+      TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
+      HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
+      HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
+      ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},
+      REMARKS = #{remarks,jdbcType=VARCHAR},
+      NUM = #{num,jdbcType=VARCHAR},
+      SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},
+      SENDER = #{sender,jdbcType=VARCHAR},
+      TRANSPORT = #{transport,jdbcType=VARCHAR},
+      RECIVER = #{reciver,jdbcType=VARCHAR},     
+      CITY = #{city,jdbcType=VARCHAR},
+      AREA = #{area,jdbcType=VARCHAR},
+      SIGN = #{sign,jdbcType=VARCHAR},
+      SIGN1 = #{sign1,jdbcType=VARCHAR},
+      SIGN2 = #{sign2,jdbcType=VARCHAR},
+      SIGN3 = #{sign3,jdbcType=VARCHAR},
+      SIGN4 = #{sign4,jdbcType=VARCHAR},
+      SIGN5 = #{sign5,jdbcType=VARCHAR},
+      SIGN6 = #{sign6,jdbcType=VARCHAR},      
+      ALARMTIME = #{alarmtime,jdbcType=TIMESTAMP},
+      ALARMTIME1 = #{alarmtime1,jdbcType=TIMESTAMP},
+      ALARMTIME2 = #{alarmtime2,jdbcType=TIMESTAMP},
+      ALARMTIME3 = #{alarmtime3,jdbcType=TIMESTAMP},
+      ALARMTIME4 = #{alarmtime4,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <!-- 手写SQL -->
+  <!-- 根据箱体编号查找 -->
+  <select id="selectByCageno" resultMap="BaseResultMap" parameterType="string">
+  		SELECT
+			*
+		FROM
+			bio_order oer
+		WHERE
+			1 = 1
+		AND oer.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		AND oer.ORDER_STATUS IN ('1', '2', '3')
+  </select>
+  
+  <!-- 查询可修改订单 -->
+   <select id="selectModifyOrder" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order
+	<where>
+		1=1 		
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid} AND IS_PROBLEM = 1 AND ORDER_STATUS IN ('1', '2', '3')
+		</if>
+	</where>
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countModifyOrder" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid} AND IS_PROBLEM = 1 AND ORDER_STATUS IN ('1', '2', '3')
+		</if>
+	</where>
+  </select>
+  
+  <!-- 发送 运输 查看新建和装箱订单 -->
+   <select id="selectByKeys" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order
+	<where>
+		1=1 		
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 1 or ORDER_STATUS = 2
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 2 or ORDER_STATUS = 3
+		</if>
+	</where>
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByKeys" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 1 or ORDER_STATUS = 2
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 2 or ORDER_STATUS = 3
+		</if>
+	</where>
+  </select>
+  
+  <!-- 收货方查询待签收订单-->
+  <select id="selectOrder" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order
+	<where>
+		1=1 		
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="reciverid != null and reciverid != ''">
+			AND RECIVER_ID = #{reciverid}
+		</if>
+		AND IS_PROBLEM = 1 AND ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+	</where>
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByOrder" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="reciverid != null and reciverid != ''">
+			AND RECIVER_ID = #{reciverid}
+		</if>
+		AND IS_PROBLEM = 1 AND ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+	</where>
+  </select>
+  
+  <!-- 查看问题件订单(发送运输) -->
+   <select id="selectProblemOrder" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order
+	<where>
+		1=1
+		AND ORDER_STATUS = 5 AND IS_PROBLEM = 0 AND IS_FINISH = 0
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid}
+		</if>				
+	</where>
+	ORDER BY ID DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByProblemOrder" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 		
+		AND ORDER_STATUS = 5 AND IS_PROBLEM = 0 AND IS_FINISH = 0				
+		<if test="classify != null and classify != ''">
+			AND CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid}
+		</if>			
+	</where>
+	ORDER BY ID DESC
+  </select>
+  
+  <!-- 查看问题件订单(区级) -->
+  <select id="selectProblemOrderQu" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<!-- <if test="userType == 3">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 3 AND ml.ROLE_ID = #{roleId} ))
+		</if> -->
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		AND mo.IS_PROBLEM = 0 AND mo.IS_FINISH = 1		
+	</where>
+	ORDER BY mo.ID DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByProblemOrderQu" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<!-- <if test="userType == 3">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 3 AND ml.ROLE_ID = #{roleId} ))
+		</if> -->
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		AND mo.IS_PROBLEM = 0 AND mo.IS_FINISH = 1	
+	</where>
+	ORDER BY mo.ID DESC
+  </select>
+  
+  <!-- 查看问题件订单(市级) -->
+  <select id="selectProblemOrderShi" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>		
+		<!-- <if test="userType == 2">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 2 AND ml.ROLE_ID = #{roleId} )))
+		</if> -->		
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		AND mo.IS_PROBLEM = 0 AND mo.IS_FINISH = 1 AND mo.PROBLEM_CAUSE IS NOT NULL
+	</where>
+	ORDER BY mo.ID DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByProblemOrderShi" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>		
+		<!-- <if test="userType == 2">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 2 AND ml.ROLE_ID = #{roleId} )))
+		</if> -->				
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		AND mo.IS_PROBLEM = 0 AND mo.IS_FINISH = 1 AND mo.PROBLEM_CAUSE IS NOT NULL
+	</where>
+	ORDER BY mo.ID DESC
+  </select>
+  
+  <!-- 查看已审核问题件订单 -->
+  <select id="selectProblemOrderOver" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND mo.SENDER_ID = #{senderid}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid}
+		</if>	
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		AND mo.IS_PROBLEM = 0 AND mo.IS_FINISH = 2		
+	</where>
+	ORDER BY mo.ID DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByProblemOrderOver" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>	
+		<if test="senderid != null and senderid != ''">
+			AND mo.SENDER_ID = #{senderid}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid}
+		</if>	
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		AND mo.IS_PROBLEM = 0 AND mo.IS_FINISH = 2	
+	</where>
+	ORDER BY mo.ID DESC
+  </select>
+  
+  <!-- 根据订单编号查找 -->
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="string">
+  		select
+  			*
+  		from bio_order u  		
+  		where u.ORDER_NO = #{0}
+  </select>
+  
+  <!-- 查看各种状态 订单 -->
+  <select id="selectOver" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+	*
+	FROM
+		bio_order mo
+	<where>
+		1=1 
+		<!-- <if test="userType == 2">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 2 AND ml.ROLE_ID = #{roleId} )))
+		</if>
+		
+		<if test="userType == 3">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 3 AND ml.ROLE_ID = #{roleId} ))
+		</if> -->
+		
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>		
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="isFinish != null and isFinish != ''">
+			AND mo.IS_FINISH = #{isFinish,jdbcType=VARCHAR}
+		</if>
+		<if test="isProblem != null and isProblem != ''">
+			AND mo.IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		<if test="orderStatus != null and orderStatus != ''">
+			AND mo.ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+		</if>		
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+       		<![CDATA[AND mo.CREATED_AT BETWEEN date_format(#{startDate},'%Y-%m-%d') AND date_format(#{endDate},'%Y-%m-%d')]]>
+	    </if>
+	    <if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != '' and reciverid != null and reciverid != ''">
+			AND mo.SENDER_ID = #{senderid,jdbcType=VARCHAR} OR mo.RECIVER_ID = #{reciverid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+	</where> 
+	ORDER BY mo.ID DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByOver" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order mo
+	<where>
+		1=1 
+		<!-- <if test="userType == 2">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 2 AND ml.ROLE_ID = #{roleId} )))
+		</if>
+		
+		<if test="userType == 3">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 3 AND ml.ROLE_ID = #{roleId} ))
+		</if> -->				
+		
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="isFinish != null and isFinish != ''">
+			AND mo.IS_FINISH = #{isFinish,jdbcType=VARCHAR}
+		</if>
+		<if test="isProblem != null and isProblem != ''">
+			AND mo.IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		<if test="orderStatus != null and orderStatus != ''">
+			AND mo.ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+		</if>		
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+       		<![CDATA[AND mo.CREATED_AT BETWEEN date_format(#{startDate},'%Y-%m-%d') AND date_format(#{endDate},'%Y-%m-%d')]]>
+	    </if>
+	    <if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != '' and reciverid != null and reciverid != ''">
+			AND mo.SENDER_ID = #{senderid,jdbcType=VARCHAR} OR mo.RECIVER_ID = #{reciverid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+	</where>
+	ORDER BY mo.ID DESC
+  </select>
+  
+  <!-- 查看各种状态 订单(针对在途订单修改版) -->
+  <select id="selectOver1" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+	*
+	FROM
+		bio_order mo
+	<where>
+		1=1 
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>		
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="isFinish != null and isFinish != ''">
+			AND mo.IS_FINISH = #{isFinish,jdbcType=VARCHAR}
+		</if>
+		<if test="isProblem != null and isProblem != ''">
+			AND mo.IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="orderStatus == 3">
+			AND mo.ORDER_STATUS IN (1,2,3)
+		</if>
+					
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+       		<![CDATA[AND mo.CREATED_AT BETWEEN date_format(#{startDate},'%Y-%m-%d') AND date_format(#{endDate},'%Y-%m-%d')]]>
+	    </if>
+	    <if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != '' and reciverid != null and reciverid != ''">
+			AND mo.SENDER_ID = #{senderid,jdbcType=VARCHAR} OR mo.RECIVER_ID = #{reciverid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+	</where> 
+	ORDER BY mo.ID DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countByOver1" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order mo
+	<where>
+		1=1 
+		<if test="classify != null and classify != ''">
+			AND mo.CLASSIFY = #{classify}
+		</if>
+		<if test="orderNo != null and orderNo != ''">
+			AND mo.ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+		</if>	
+		<if test="cageno != null and cageno != ''">
+			AND mo.CAGE_NO = #{cageno,jdbcType=VARCHAR}
+		</if>
+		<if test="isFinish != null and isFinish != ''">
+			AND mo.IS_FINISH = #{isFinish,jdbcType=VARCHAR}
+		</if>
+		<if test="isProblem != null and isProblem != ''">
+			AND mo.IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="orderStatus == 3">
+			AND mo.ORDER_STATUS IN (1,2,3)
+		</if>		
+		
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+       		<![CDATA[AND mo.CREATED_AT BETWEEN date_format(#{startDate},'%Y-%m-%d') AND date_format(#{endDate},'%Y-%m-%d')]]>
+	    </if>
+	    <if test="city != null and city != ''">
+			AND mo.CITY = #{city,jdbcType=VARCHAR}
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA = #{area,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != '' and reciverid != null and reciverid != ''">
+			AND mo.SENDER_ID = #{senderid,jdbcType=VARCHAR} OR mo.RECIVER_ID = #{reciverid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+	</where>
+	ORDER BY mo.ID DESC
+  </select>
+  
+  <!-- 微信查看各种状态订单 -->
+  <select id="selectWeChatAll" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order 
+	<where>
+		1=1 
+		<if test="orderNo != null and orderNo != ''">
+			AND ORDER_NO LIKE CONCAT('%',#{orderNo,jdbcType=VARCHAR},'%' )
+		</if>
+		
+		<if test="orderStatus == 1">
+			AND ORDER_STATUS = 1
+		</if>		
+		<if test="orderStatus == 2">
+			AND (ORDER_STATUS = 2 or ORDER_STATUS = 3)
+		</if>
+		<if test="orderStatus == 4">
+			AND ORDER_STATUS = 4
+		</if>
+		<if test="orderStatus == 5">
+			AND ORDER_STATUS = 5
+		</if>
+		
+		<if test="senderid != null and senderid != '' and reciverid != null and reciverid != ''">
+			AND (SENDER_ID = #{senderid,jdbcType=VARCHAR} or RECIVER_ID = #{reciverid,jdbcType=VARCHAR})
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+		
+		<if test="createdBy != null and createdBy != '' and receiveOperator != null and receiveOperator != ''">
+			AND (CREATED_BY = #{createdBy,jdbcType=VARCHAR} or RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR})
+		</if>
+		<if test="transportOperator != null and transportOperator != ''">
+			AND TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR}
+		</if>
+		
+		<!-- <if test="senderid != null and senderid != '' and transportid != null and transportid != '' and reciverid != null and reciverid != ''">
+			AND SENDERID = #{senderid,jdbcType=VARCHAR} or TRANSPORTID = #{transportid,jdbcType=VARCHAR} or RECIVERID = #{reciverid,jdbcType=VARCHAR}
+		</if>		
+		<if test="createdBy != null and createdBy != '' and packOperator != null and packOperator != '' and transportOperator != null and transportOperator != '' and receiveOperator != null and receiveOperator != ''">
+			AND CREATED_BY = #{createdBy,jdbcType=VARCHAR} or PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR} or TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR} or RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR}
+		</if> -->
+	</where>
+	ORDER BY ID DESC
+  </select>
+  
+  <!-- 查找发 接 双方关联订单 -->
+  <select id="selectByID" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_order
+    where SENDER_ID = #{senderid,jdbcType=VARCHAR} or RECIVER_ID = #{reciverid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 微信开箱查询SQL -->
+  <select id="selectByCageNo" resultMap="BaseResultMap" parameterType="String" >
+    SELECT * 
+    FROM bio_order mo 
+    WHERE mo.CAGE_NO = #{cageno,jdbcType=VARCHAR} AND (mo.ORDER_STATUS = 1 OR mo.ORDER_STATUS = 2 OR mo.ORDER_STATUS = 3)
+  </select>
+  
+  <!--  -->
+  <select id="selectByCageNo1" resultMap="BaseResultMap" parameterType="String" >
+    SELECT * 
+    FROM bio_order mo 
+    WHERE mo.CAGE_NO = #{cageno,jdbcType=VARCHAR} AND (mo.ORDER_STATUS = 2 OR mo.ORDER_STATUS = 3)
+  </select>
+  
+  <!-- 查看各种订单报表 -->
+  <select id="selectReportForm" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_order mo
+	<where>
+		1=1 
+		<!-- <if test="userType == 2">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 2 AND ml.ROLE_ID = #{roleId} )))
+		</if>
+		
+		<if test="userType == 3">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 3 AND ml.ROLE_ID = #{roleId} ))
+		</if> -->
+		
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+       		<![CDATA[AND mo.CREATED_AT BETWEEN date_format(#{startDate},'%Y-%m-%d') AND date_format(#{endDate},'%Y-%m-%d')]]>
+	    </if>
+		<if test="isProblem != null and isProblem != ''">
+			AND mo.IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		<if test="orderStatus != null and orderStatus != ''">
+			AND mo.ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="city != null and city != ''">
+			AND mo.CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND mo.SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+		<if test="sender != null and sender != ''">
+			AND mo.SENDER LIKE CONCAT('%',#{sender,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="transport != null and transport != ''">
+			AND mo.TRANSPORT LIKE CONCAT('%',#{transport,jdbcType=VARCHAR},'%' )
+		</if>
+	</where>
+	ORDER BY mo.ORDER_STATUS DESC
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countReportForm" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order mo
+	<where>
+		1=1 
+		<!-- <if test="userType == 2">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 2 AND ml.ROLE_ID = #{roleId} )))
+		</if>
+		
+		<if test="userType == 3">
+			AND mo.SENDERID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.ROLE_ID IN ( SELECT ml.ID FROM bio_login ml WHERE ml.USER_TYPE = 3 AND ml.ROLE_ID = #{roleId} ))
+		</if> -->		
+		
+		<if test="startDate != null and startDate != '' and endDate != null and endDate != ''">
+       		<![CDATA[AND mo.CREATED_AT BETWEEN date_format(#{startDate},'%Y-%m-%d') AND date_format(#{endDate},'%Y-%m-%d')]]>
+	    </if>
+		<if test="isProblem != null and isProblem != ''">
+			AND mo.IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		<if test="orderStatus != null and orderStatus != ''">
+			AND mo.ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="city != null and city != ''">
+			AND mo.CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="area != null and area != ''">
+			AND mo.AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND mo.SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND mo.TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+		<if test="sender != null and sender != ''">
+			AND mo.SENDER LIKE CONCAT('%',#{sender,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="transport != null and transport != ''">
+			AND mo.TRANSPORT LIKE CONCAT('%',#{transport,jdbcType=VARCHAR},'%' )
+		</if>
+	</where>
+	ORDER BY mo.ORDER_STATUS DESC
+  </select>
+  
+  <!-- 昨日各种状态订单数 -->
+  <select id="getYesterdayNum" resultType="String" parameterType="map">
+  	  SELECT
+		count(*)
+	  FROM bio_order
+	  <where>
+		1=1 AND DATEDIFF(CREATED_AT,NOW())=-1		
+	    <if test="orderStatus != null and orderStatus != ''">
+			AND ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="isProblem != null and isProblem != ''">
+			AND IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		<if test="city != null and city != ''">
+			AND CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="area != null and area != ''">
+			AND AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  <!-- 今日各种状态订单数 -->
+  <select id="getTodayNum" resultType="String" parameterType="map">
+  	  SELECT
+		count(*)
+	  FROM bio_order
+	  <where>
+		1=1 AND DATEDIFF(CREATED_AT,NOW())=0		
+	    <if test="orderStatus != null and orderStatus != ''">
+			AND ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR}
+		</if>
+		<if test="isProblem != null and isProblem != ''">
+			AND IS_PROBLEM = #{isProblem,jdbcType=VARCHAR}
+		</if>
+		<if test="city != null and city != ''">
+			AND CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="area != null and area != ''">
+			AND AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 昨日总部 市 监 各对应的医院订单数量 -->
+  <select id="getYesterdayHospitalNums" resultType="map" parameterType="map">
+  	  SELECT
+  	  	SENDER,
+		count(*) as NUMS
+	  FROM bio_order
+	  <where>
+		1=1 AND DATEDIFF(CREATED_AT,NOW())=-1		
+	    <if test="city != null and city != ''">
+			AND CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="area != null and area != ''">
+			AND AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+		</if>		
+	</where>
+  </select> 
+  <!-- 今日总部 市 监 各对应的医院订单数量 -->
+  <select id="getTodayHospitalNums" resultType="map" parameterType="map">
+  	  SELECT
+  	  	SENDER,
+		count(*) as NUMS
+	  FROM bio_order
+	  <where>
+		1=1 AND DATEDIFF(CREATED_AT,NOW())=0 		
+	    <if test="city != null and city != ''">
+			AND CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+		</if>
+		<if test="area != null and area != ''">
+			AND AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+		</if>		
+	</where>
+  </select>
+  
+  <!-- 7日订单总数 -->  
+  <select id="topSevenAll" resultType="int" parameterType="map">
+  	SELECT
+		COUNT(e.id)
+	FROM  (
+		SELECT NOW() AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 1 DAY) AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 2 DAY) AS DATES UNION ALL	SELECT DATE_SUB(CURDATE(), INTERVAL 3 DAY) AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 4 DAY) AS DATES UNION ALL	SELECT DATE_SUB(CURDATE(), INTERVAL 5 DAY) AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 6 DAY) AS DATES 
+	)a
+	LEFT JOIN  bio_order e ON DATE_FORMAT(CREATED_AT,'%Y-%m-%d') = DATE_FORMAT(a.DATES,'%Y-%m-%d')
+	<if test="city != null and city != ''">
+		AND CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+	</if>
+	<if test="area != null and area != ''">
+		AND AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+	</if>
+	<if test="senderid != null and senderid != ''">
+		AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+	</if>
+	<if test="transportid != null and transportid != ''">
+		AND TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+	</if>
+	GROUP BY DATE_FORMAT(a.DATES,'%Y-%m-%d')
+	ORDER BY a.DATES 
+  </select>
+  
+  <!-- 7日订单完成数 -->
+  <select id="topSevenOver" resultType="int" parameterType="map">
+  	SELECT
+		COUNT(e.id)
+	FROM  (
+		SELECT NOW() AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 1 DAY) AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 2 DAY) AS DATES UNION ALL	SELECT DATE_SUB(CURDATE(), INTERVAL 3 DAY) AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 4 DAY) AS DATES UNION ALL	SELECT DATE_SUB(CURDATE(), INTERVAL 5 DAY) AS DATES UNION ALL
+		SELECT DATE_SUB(CURDATE(), INTERVAL 6 DAY) AS DATES 
+	)a
+	LEFT JOIN  bio_order e ON DATE_FORMAT(CREATED_AT,'%Y-%m-%d') = DATE_FORMAT(a.DATES,'%Y-%m-%d')
+	AND IS_PROBLEM = 1 AND ORDER_STATUS = 4
+	<if test="city != null and city != ''">
+		AND CITY LIKE CONCAT('%',#{city,jdbcType=VARCHAR},'%' )
+	</if>
+	<if test="area != null and area != ''">
+		AND AREA LIKE CONCAT('%',#{area,jdbcType=VARCHAR},'%' )
+	</if>
+	<if test="senderid != null and senderid != ''">
+		AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+	</if>
+	<if test="transportid != null and transportid != ''">
+		AND TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+	</if>
+	GROUP BY DATE_FORMAT(a.DATES,'%Y-%m-%d')
+	ORDER BY a.DATES 
+  </select>
+  
+  <!-- 首页待办任务 -->
+  <select id="countZhuangxiang" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 		
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 1
+		</if>		
+	</where>
+  </select>
+  <select id="countStatus" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 		
+		<if test="transportid != null and transportid != ''">
+			AND TRANSPORT_ID = #{transportid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 2
+		</if>		
+	</where>
+  </select>
+  <select id="countQianshou" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_order
+	<where>
+		1=1 		
+		<if test="reciverid != null and reciverid != ''">
+			AND RECIVER_ID = #{reciverid} AND IS_PROBLEM = 1 AND ORDER_STATUS = 3
+		</if>		
+	</where>
+  </select>
+  
+</mapper>

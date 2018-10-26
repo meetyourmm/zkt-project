@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.SystemParameterMapper" >
+  <resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.SystemParameter" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ALARM_INTERVAL" property="alarmInterval" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_ID" property="hospitalid" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ALARM_INTERVAL, HOSPITAL_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.VARCHAR" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_system_parameter
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.VARCHAR" >
+    delete from bio_system_parameter
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkt.project.biology.entity.SystemParameter" >
+    insert into bio_system_parameter (ID, ALARM_INTERVAL, HOSPITAL_ID)
+    values (#{id,jdbcType=VARCHAR}, #{alarmInterval,jdbcType=VARCHAR}, #{hospitalid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.SystemParameter" >
+    insert into bio_system_parameter
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="alarmInterval != null" >
+        ALARM_INTERVAL,
+      </if>
+      <if test="hospitalid != null" >
+        HOSPITAL_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="alarmInterval != null" >
+        #{alarmInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.SystemParameter" >
+    update bio_system_parameter
+    <set >
+      <if test="alarmInterval != null" >
+        ALARM_INTERVAL = #{alarmInterval,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        HOSPITAL_ID = #{hospitalid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.SystemParameter" >
+    update bio_system_parameter
+    set ALARM_INTERVAL = #{alarmInterval,jdbcType=VARCHAR}
+    	HOSPITAL_ID = #{hospitalid,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+  <!--  -->
+  <select id="selectAll" resultType="String" parameterType="String">
+    select 
+    	ALARM_INTERVAL
+    from bio_system_parameter
+    where 1 = 1
+      and HOSPITAL_ID = #{hospitalid}
+  </select>
+  
+  <update id="updateByHospitalid" parameterType="map" >
+    update bio_system_parameter
+    set ALARM_INTERVAL = #{alarmInterval}    	
+    where HOSPITAL_ID = #{hospitalid}
+  </update>
+  
+</mapper>

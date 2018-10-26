@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.ModelMapper" >
+  <resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Model" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="SENDER_ID" property="senderid" jdbcType="VARCHAR" />
+    <result column="TRANSPORT_ID" property="transportid" jdbcType="VARCHAR" />
+    <result column="RECIVER_ID" property="reciverid" jdbcType="VARCHAR" />
+    <result column="TLIMIT_UP" property="tlimitup" jdbcType="VARCHAR" />
+    <result column="TLIMIT_DOWN" property="tlimitdown" jdbcType="VARCHAR" />
+    <result column="HLIMIT_UP" property="hlimitup" jdbcType="VARCHAR" />
+    <result column="HLIMIT_DOWN" property="hlimitdown" jdbcType="VARCHAR" />
+    <result column="SENDER" property="sender" jdbcType="VARCHAR" />
+    <result column="TRANSPORT" property="transport" jdbcType="VARCHAR" />
+    <result column="RECIVER" property="reciver" jdbcType="VARCHAR" />
+    <result column="MODEL_NO" property="modelNo" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, SENDER_ID, TRANSPORT_ID, RECIVER_ID, TLIMIT_UP, TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, 
+    SENDER, TRANSPORT, RECIVER, MODEL_NO
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bio_model
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkt.project.biology.entity.Model" >
+    insert into bio_model (ID, SENDER_ID, TRANSPORT_ID, 
+      RECIVER_ID, TLIMIT_UP, TLIMIT_DOWN, 
+      HLIMIT_UP, HLIMIT_DOWN, SENDER, 
+      TRANSPORT, RECIVER, MODEL_NO)
+    values (#{id,jdbcType=VARCHAR}, #{senderid,jdbcType=VARCHAR}, #{transportid,jdbcType=VARCHAR}, 
+      #{reciverid,jdbcType=VARCHAR}, #{tlimitup,jdbcType=VARCHAR}, #{tlimitdown,jdbcType=VARCHAR}, 
+      #{hlimitup,jdbcType=VARCHAR}, #{hlimitdown,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, 
+      #{transport,jdbcType=VARCHAR}, #{reciver,jdbcType=VARCHAR}, #{modelNo,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Model" >
+    insert into bio_model
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="senderid != null" >
+        SENDER_ID,
+      </if>
+      <if test="transportid != null" >
+        TRANSPORT_ID,
+      </if>
+      <if test="reciverid != null" >
+        RECIVER_ID,
+      </if>
+      <if test="tlimitup != null" >
+        TLIMIT_UP,
+      </if>
+      <if test="tlimitdown != null" >
+        TLIMIT_DOWN,
+      </if>
+      <if test="hlimitup != null" >
+        HLIMIT_UP,
+      </if>
+      <if test="hlimitdown != null" >
+        HLIMIT_DOWN,
+      </if>
+      <if test="sender != null" >
+        SENDER,
+      </if>
+      <if test="transport != null" >
+        TRANSPORT,
+      </if>
+      <if test="reciver != null" >
+        RECIVER,
+      </if>
+      <if test="modelNo != null" >
+        MODEL_NO,
+      </if>      
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="senderid != null" >
+        #{senderid,jdbcType=VARCHAR},
+      </if>
+      <if test="transportid != null" >
+        #{transportid,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverid != null" >
+        #{reciverid,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitup != null" >
+        #{tlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitdown != null" >
+        #{tlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitup != null" >
+        #{hlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitdown != null" >
+        #{hlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null" >
+        #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="transport != null" >
+        #{transport,jdbcType=VARCHAR},
+      </if>
+      <if test="reciver != null" >
+        #{reciver,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNo != null" >
+        #{modelNo,jdbcType=VARCHAR},
+      </if>            
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Model" >
+    update bio_model
+    <set >
+      <if test="senderid != null" >
+        SENDER_ID = #{senderid,jdbcType=VARCHAR},
+      </if>
+      <if test="transportid != null" >
+        TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      </if>
+      <if test="reciverid != null" >
+        RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitup != null" >
+        TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="tlimitdown != null" >
+        TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitup != null" >
+        HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
+      </if>
+      <if test="hlimitdown != null" >
+        HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
+      </if>
+      <if test="sender != null" >
+        SENDER = #{sender,jdbcType=VARCHAR},
+      </if>
+      <if test="transport != null" >
+        TRANSPORT = #{transport,jdbcType=VARCHAR},
+      </if>
+      <if test="reciver != null" >
+        RECIVER = #{reciver,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNo != null" >
+        MODEL_NO = #{modelNo,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Model" >
+    update bio_model
+    set SENDER_ID = #{senderid,jdbcType=VARCHAR},
+      TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
+      TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
+      TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
+      HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
+      HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
+      SENDER = #{sender,jdbcType=VARCHAR},
+      TRANSPORT = #{transport,jdbcType=VARCHAR},
+      RECIVER = #{reciver,jdbcType=VARCHAR},
+      MODEL_NO = #{modelNo,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 手写SQL -->
+  <!-- 根据医院ID获取modelNo列表(全表参数) -->
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_model 
+	<where>
+		1=1
+		<if test="modelNo != null and modelNo != ''">
+			AND MODEL_NO = #{modelNo,jdbcType=VARCHAR}
+		</if>		
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+	</where>
+	limit #{from},#{pageSize}
+  </select>
+  <select id="countAll" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_model 
+	<where>
+		1=1
+		<if test="modelNo != null and modelNo != ''">
+			AND MODEL_NO = #{modelNo,jdbcType=VARCHAR}
+		</if>		
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 根据医院ID获取modelNo列表 -->
+  <select id="getModelNo" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		MODEL_NO,ID
+	FROM bio_model 
+	<where>
+		1=1 		
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 获取Model数据自动填充页面 -->
+  <select id="selectModel" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_model 
+	<where>
+		1=1
+		<if test="id != null and id != ''">
+			AND ID = #{id,jdbcType=VARCHAR}
+		</if>
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+		<if test="modelNo != null and modelNo != ''">
+			AND MODEL_NO = #{modelNo,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+  <!-- 根据模板名称查找 -->
+  <select id="selectByModelNo" resultMap="BaseResultMap" parameterType="String">
+	SELECT
+		*
+	FROM bio_model 
+	<where>
+		1=1 AND MODEL_NO = #{modelNo}
+	</where>
+  </select>
+  
+  <!-- 微信根据医院ID获取Model数据 -->
+  <select id="selectWeChatModel" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_model 
+	<where>
+		1=1
+		<if test="senderid != null and senderid != ''">
+			AND SENDER_ID = #{senderid,jdbcType=VARCHAR}
+		</if>
+	</where>
+  </select>
+  
+</mapper>

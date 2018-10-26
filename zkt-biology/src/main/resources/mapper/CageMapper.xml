@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.CageMapper">
+	<resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Cage">
+		<id column="ID" property="id" jdbcType="BIGINT" />
+		<result column="CAGE_NO" property="cageno" jdbcType="VARCHAR" />
+		<result column="HOSPITAL_ID" property="hospitalid" jdbcType="VARCHAR" />
+		<result column="BATTERY" property="battery" jdbcType="VARCHAR" />
+		<result column="STATE" property="state" jdbcType="VARCHAR" />
+		<result column="REMARKS" property="remarks" jdbcType="VARCHAR" />
+		<result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+		<result column="CREATED_AT" property="createdAt" jdbcType="TIMESTAMP" />
+		<result column="CITY" property="city" jdbcType="VARCHAR" />
+		<result column="AREA" property="area" jdbcType="VARCHAR" />
+		<result column="USER_HOSPITAL" property="userHospital" jdbcType="VARCHAR" />
+		<result column="TIME_INTERVAL" property="timeInterval" jdbcType="VARCHAR" />
+		<result column="SPARE5" property="spare5" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, CAGE_NO, HOSPITAL_ID, BATTERY, STATE, REMARKS, CREATED_BY, CREATED_AT,
+		CITY,
+		AREA, USER_HOSPITAL, TIME_INTERVAL, SPARE5
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from bio_cage
+		where ID = #{id,jdbcType=BIGINT}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from bio_cage
+		where ID = #{id,jdbcType=BIGINT}
+	</delete>
+	<insert id="insert" parameterType="com.zkt.project.biology.entity.Cage">
+		insert into bio_cage (ID, CAGE_NO, HOSPITAL_ID,
+		BATTERY, STATE, REMARKS,
+		CREATED_BY, CREATED_AT, CITY,
+		AREA, USER_HOSPITAL, TIME_INTERVAL,
+		SPARE5)
+		values (#{id,jdbcType=BIGINT}, #{cageno,jdbcType=VARCHAR},
+		#{hospitalid,jdbcType=VARCHAR},
+		#{battery,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
+		#{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
+		#{city,jdbcType=VARCHAR},
+		#{area,jdbcType=VARCHAR}, #{userHospital,jdbcType=VARCHAR}, #{timeInterval,jdbcType=VARCHAR},
+		#{spare5,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Cage">
+		insert into bio_cage
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="cageno != null">
+				CAGE_NO,
+			</if>
+			<if test="hospitalid != null">
+				HOSPITAL_ID,
+			</if>
+			<if test="battery != null">
+				BATTERY,
+			</if>
+			<if test="state != null">
+				STATE,
+			</if>
+			<if test="remarks != null">
+				REMARKS,
+			</if>
+			<if test="createdBy != null">
+				CREATED_BY,
+			</if>
+			<if test="createdAt != null">
+				CREATED_AT,
+			</if>
+			<if test="city != null">
+				CITY,
+			</if>
+			<if test="area != null">
+				AREA,
+			</if>
+			<if test="userHospital != null">
+				USER_HOSPITAL,
+			</if>
+			<if test="timeInterval != null">
+				TIME_INTERVAL,
+			</if>
+			<if test="spare5 != null">
+				SPARE5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=BIGINT},
+			</if>
+			<if test="cageno != null">
+				#{cageno,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				#{hospitalid,jdbcType=VARCHAR},
+			</if>
+			<if test="battery != null">
+				#{battery,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				#{state,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				#{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="createdBy != null">
+				#{createdBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createdAt != null">
+				#{createdAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="city != null">
+				#{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				#{area,jdbcType=VARCHAR},
+			</if>
+			<if test="userHospital != null">
+				#{userHospital,jdbcType=VARCHAR},
+			</if>
+			<if test="timeInterval != null">
+				#{timeInterval,jdbcType=VARCHAR},
+			</if>
+			<if test="spare5 != null">
+				#{spare5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Cage">
+		update bio_cage
+		<set>
+			<if test="cageno != null">
+				CAGE_NO = #{cageno,jdbcType=VARCHAR},
+			</if>
+			<if test="hospitalid != null">
+				HOSPITAL_ID = #{hospitalid,jdbcType=VARCHAR},
+			</if>
+			<if test="battery != null">
+				BATTERY = #{battery,jdbcType=VARCHAR},
+			</if>
+			<if test="state != null">
+				STATE = #{state,jdbcType=VARCHAR},
+			</if>
+			<if test="remarks != null">
+				REMARKS = #{remarks,jdbcType=VARCHAR},
+			</if>
+			<if test="createdBy != null">
+				CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+			</if>
+			<if test="createdAt != null">
+				CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+			</if>
+			<if test="city != null">
+				CITY = #{city,jdbcType=VARCHAR},
+			</if>
+			<if test="area != null">
+				AREA = #{area,jdbcType=VARCHAR},
+			</if>
+			<if test="userHospital != null">
+				USER_HOSPITAL = #{userHospital,jdbcType=VARCHAR},
+			</if>
+			<if test="timeInterval != null">
+				TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+			</if>
+			<if test="spare5 != null">
+				SPARE5 = #{spare5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Cage">
+		update bio_cage
+		set CAGE_NO = #{cageno,jdbcType=VARCHAR},
+		HOSPITAL_ID = #{hospitalid,jdbcType=VARCHAR},
+		BATTERY = #{battery,jdbcType=VARCHAR},
+		STATE = #{state,jdbcType=VARCHAR},
+		REMARKS = #{remarks,jdbcType=VARCHAR},
+		CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+		CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+		CITY = #{city,jdbcType=VARCHAR},
+		AREA = #{area,jdbcType=VARCHAR},
+		USER_HOSPITAL = #{userHospital,jdbcType=VARCHAR},
+		TIME_INTERVAL = #{timeInterval,jdbcType=VARCHAR},
+		SPARE5 = #{spare5,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=BIGINT}
+	</update>
+
+	<!-- 手写SQL -->
+	<!-- 查询箱体 编码是否重复 -->
+	<select id="login" resultMap="BaseResultMap" parameterType="map">
+  	SELECT
+		*
+	FROM bio_cage u
+		<where>
+			1=1
+			<if test="cageno != null and cageno != ''">
+				AND u.CAGE_NO = #{cageno}
+			</if>
+		</where>
+  	</select>
+  	
+  	<!-- 查询箱体编号 -->
+  	<select id="selectByCageno" resultMap="BaseResultMap" parameterType="String">
+  	SELECT
+		*
+	FROM bio_cage
+	where CAGE_NO = #{cageno,jdbcType=VARCHAR}
+  	</select>
+  	
+  	<!-- 根据箱体编号和状态及对应医院ID查询 -->
+	<select id="selectByKeys" resultMap="BaseResultMap" parameterType="map">
+	SELECT
+		*
+	FROM bio_cage 
+		<where>
+			1=1   
+			<if test="cageno != null and cageno != ''">
+				AND CAGE_NO LIKE CONCAT('%',#{cageno,jdbcType=VARCHAR},'%' )
+			</if>
+			<if test="state != null and state != ''">
+				AND STATE LIKE CONCAT('%',#{state,jdbcType=VARCHAR},'%' )
+			</if>
+			<if test="hospitalid != null and hospitalid != ''">
+				AND HOSPITAL_ID =#{hospitalid,jdbcType=VARCHAR}
+			</if>
+		</where>
+	limit #{from},#{pageSize}
+  	</select>
+	<select id="countByKeys" resultType="int" parameterType="map">
+	SELECT
+		count(*)
+	FROM bio_cage 
+		<where>
+			1=1 
+			<if test="cageno != null and cageno != ''">
+				AND cage_no LIKE CONCAT('%',#{cageno,jdbcType=VARCHAR},'%' )
+			</if>
+			<if test="state != null and state != ''">
+				AND state LIKE CONCAT('%',#{state,jdbcType=VARCHAR},'%' )
+			</if>
+			<if test="hospitalid != null and hospitalid != ''">
+				AND hospital_id =#{hospitalid,jdbcType=VARCHAR}
+			</if>	
+		</where>
+  	</select>
+	
+	<!-- 查询空闲状态箱子 -->
+	<select id="selectCage" resultType="map">
+	SELECT
+		cage_no, battery
+	FROM bio_cage 
+		where state = 0
+  	</select>
+  	
+  	<!-- 微信根据医院ID查找箱子 -->
+  	<select id="selectCageByHospitalid" resultMap="BaseResultMap" parameterType="String">
+	SELECT
+		cage_no,battery,state,time_interval
+	FROM bio_cage 
+		WHERE hospital_id = #{hospitalid,jdbcType=VARCHAR} AND STATE = 0
+  	</select>
+  	
+  	
+</mapper>

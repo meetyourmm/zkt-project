@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.HumidityMapper">
+	<resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Humidity">
+		<id column="ID" property="id" jdbcType="VARCHAR" />
+		<result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+		<result column="CAGE_NO" property="cageno" jdbcType="VARCHAR" />
+		<result column="HUMIDITY" property="humidity" jdbcType="VARCHAR" />
+		<result column="UPLOAD_TIME" property="uploadtime" jdbcType="TIMESTAMP" />		
+		<result column="SPARE3" property="spare3" jdbcType="VARCHAR" />
+		<result column="SPARE4" property="spare4" jdbcType="VARCHAR" />
+		<result column="SPARE5" property="spare5" jdbcType="VARCHAR" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, ORDER_ID, CAGE_NO, HUMIDITY, UPLOAD_TIME, SPARE3,
+		SPARE4, SPARE5
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.Long">
+		select
+		<include refid="Base_Column_List" />
+		from bio_humidity
+		where ID = #{id,jdbcType=VARCHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+		delete from bio_humidity
+		where ID = #{id,jdbcType=VARCHAR}
+	</delete>
+	<insert id="insert" parameterType="com.zkt.project.biology.entity.Humidity">
+		insert into bio_humidity (ID, ORDER_ID, CAGE_NO,
+		HUMIDITY, UPLOAD_TIME, SPARE3, SPARE4,
+		SPARE5)
+		values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR},
+		#{cageno,jdbcType=VARCHAR},
+		#{humidity,jdbcType=VARCHAR}, #{uploadtime,jdbcType=TIMESTAMP}, #{spare3,jdbcType=VARCHAR},
+		#{spare4,jdbcType=VARCHAR},
+		#{spare5,jdbcType=VARCHAR})
+	</insert>
+	<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Humidity">
+		insert into bio_humidity
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="orderId != null">
+				ORDER_ID,
+			</if>
+			<if test="cageno != null">
+				CAGE_NO,
+			</if>
+			<if test="humidity != null">
+				HUMIDITY,
+			</if>
+			<if test="uploadtime != null">
+				UPLOAD_TIME,
+			</if>			
+			<if test="spare3 != null">
+				SPARE3,
+			</if>
+			<if test="spare4 != null">
+				SPARE4,
+			</if>
+			<if test="spare5 != null">
+				SPARE5,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=VARCHAR},
+			</if>
+			<if test="orderId != null">
+				#{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="cageno != null">
+				#{cageno,jdbcType=VARCHAR},
+			</if>
+			<if test="humidity != null">
+				#{humidity,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadtime != null">
+				#{uploadtime,jdbcType=TIMESTAMP},
+			</if>			
+			<if test="spare3 != null">
+				#{spare3,jdbcType=VARCHAR},
+			</if>
+			<if test="spare4 != null">
+				#{spare4,jdbcType=VARCHAR},
+			</if>
+			<if test="spare5 != null">
+				#{spare5,jdbcType=VARCHAR},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Humidity">
+		update bio_humidity
+		<set>
+			<if test="orderId != null">
+				ORDER_ID = #{orderId,jdbcType=VARCHAR},
+			</if>
+			<if test="cageno != null">
+				CAGE_NO = #{cageno,jdbcType=VARCHAR},
+			</if>
+			<if test="humidity != null">
+				HUMIDITY = #{humidity,jdbcType=VARCHAR},
+			</if>
+			<if test="uploadtime != null">
+				UPLOAD_TIME = #{uploadtime,jdbcType=TIMESTAMP},
+			</if>			
+			<if test="spare3 != null">
+				SPARE3 = #{spare3,jdbcType=VARCHAR},
+			</if>
+			<if test="spare4 != null">
+				SPARE4 = #{spare4,jdbcType=VARCHAR},
+			</if>
+			<if test="spare5 != null">
+				SPARE5 = #{spare5,jdbcType=VARCHAR},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Humidity">
+		update bio_humidity
+		set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+		CAGE_NO = #{cageno,jdbcType=VARCHAR},
+		HUMIDITY = #{humidity,jdbcType=VARCHAR},
+		UPLOAD_TIME = #{uploadtime,jdbcType=TIMESTAMP},		
+		SPARE3 = #{spare3,jdbcType=VARCHAR},
+		SPARE4 = #{spare4,jdbcType=VARCHAR},
+		SPARE5 = #{spare5,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=VARCHAR}
+	</update>
+
+	<!-- 手写SQL -->
+	<select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="String">
+		select
+		<include refid="Base_Column_List" />
+		from bio_humidity
+		where ORDER_ID = #{orderId,jdbcType=VARCHAR}
+	</select>
+	
+</mapper>

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.RelateMapper" >
+  <resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Relate" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="HOSPITAL_ID" property="hospitalid" jdbcType="VARCHAR" />
+    <result column="TRANSPORT_ID" property="transportid" jdbcType="VARCHAR" />
+    <result column="SPARE1" property="spare1" jdbcType="VARCHAR" />
+    <result column="SPARE2" property="spare2" jdbcType="VARCHAR" />
+    <result column="SPARE3" property="spare3" jdbcType="VARCHAR" />
+    <result column="SPARE4" property="spare4" jdbcType="VARCHAR" />
+    <result column="SPARE5" property="spare5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, HOSPITAL_ID, TRANSPORT_ID, SPARE1, SPARE2, SPARE3, SPARE4, SPARE5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_relate
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bio_relate
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkt.project.biology.entity.Relate" >
+    insert into bio_relate (ID, HOSPITAL_ID, TRANSPORT_ID, 
+      SPARE1, SPARE2, SPARE3, 
+      SPARE4, SPARE5)
+    values (#{id,jdbcType=VARCHAR}, #{hospitalid,jdbcType=VARCHAR}, #{transportid,jdbcType=VARCHAR}, 
+      #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR}, 
+      #{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Relate" >
+    insert into bio_relate
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="hospitalid != null" >
+        HOSPITAL_ID,
+      </if>
+      <if test="transportid != null" >
+        TRANSPORT_ID,
+      </if>
+      <if test="spare1 != null" >
+        SPARE1,
+      </if>
+      <if test="spare2 != null" >
+        SPARE2,
+      </if>
+      <if test="spare3 != null" >
+        SPARE3,
+      </if>
+      <if test="spare4 != null" >
+        SPARE4,
+      </if>
+      <if test="spare5 != null" >
+        SPARE5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="hospitalid != null" >
+        #{hospitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="transportid != null" >
+        #{transportid,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null" >
+        #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null" >
+        #{spare3,jdbcType=VARCHAR},
+      </if>
+      <if test="spare4 != null" >
+        #{spare4,jdbcType=VARCHAR},
+      </if>
+      <if test="spare5 != null" >
+        #{spare5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Relate" >
+    update bio_relate
+    <set >
+      <if test="hospitalid != null" >
+        HOSPITAL_ID = #{hospitalid,jdbcType=VARCHAR},
+      </if>
+      <if test="transportid != null" >
+        TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      </if>
+      <if test="spare1 != null" >
+        SPARE1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        SPARE2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null" >
+        SPARE3 = #{spare3,jdbcType=VARCHAR},
+      </if>
+      <if test="spare4 != null" >
+        SPARE4 = #{spare4,jdbcType=VARCHAR},
+      </if>
+      <if test="spare5 != null" >
+        SPARE5 = #{spare5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Relate" >
+    update bio_relate
+    set HOSPITAL_ID = #{hospitalid,jdbcType=VARCHAR},
+      TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
+      SPARE1 = #{spare1,jdbcType=VARCHAR},
+      SPARE2 = #{spare2,jdbcType=VARCHAR},
+      SPARE3 = #{spare3,jdbcType=VARCHAR},
+      SPARE4 = #{spare4,jdbcType=VARCHAR},
+      SPARE5 = #{spare5,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 手写SQL -->
+  <!-- 查找运输公司关联的医院 -->
+  <select id="selectByUserName" resultType="map" parameterType="String" >
+    SELECT ml.ID as id,ml.USER_HOSPITAL <!-- as userHospital -->
+    FROM bio_login ml 
+    LEFT JOIN bio_relate mr on mr.HOSPITAL_ID = ml.ID 
+    WHERE mr.TRANSPORT-ID = #{transportid,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- 删除运输公司关联记录 -->
+  <delete id="deleteByHospitalid" parameterType="String" >
+    delete from bio_relate
+    where TRANSPORT_ID = #{transportid,jdbcType=VARCHAR}
+  </delete>
+  
+</mapper>

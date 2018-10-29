@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.ProblemrecordMapper" >
+  <resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Problemrecord" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_NO" property="orderNo" jdbcType="VARCHAR" />
+    <result column="SENDER_DISCRIBTION" property="senderDiscribtion" jdbcType="VARCHAR" />
+    <result column="TRANSPORT_DISCRIBTION" property="transportDiscribtion" jdbcType="VARCHAR" />
+    <result column="SENDER_BY" property="senderBy" jdbcType="VARCHAR" />
+    <result column="SENDERAT_AT" property="senderAt" jdbcType="TIMESTAMP" />
+    <result column="TRANSPORT_BY" property="transportBy" jdbcType="VARCHAR" />
+    <result column="TRANSPORT_AT" property="transportAt" jdbcType="TIMESTAMP" />
+    <result column="UPDATED_BY" property="updatedBy" jdbcType="VARCHAR" />
+    <result column="UPDATED_AT" property="updatedAt" jdbcType="TIMESTAMP" />
+    <result column="COMMENTS" property="comments" jdbcType="VARCHAR" />
+    <result column="UPDATED_BYSHI" property="updatedByShi" jdbcType="VARCHAR" />
+    <result column="UPDATED_ATSHI" property="updatedAtShi" jdbcType="TIMESTAMP" />
+    <result column="COMMENTS_SHI" property="commentsShi" jdbcType="VARCHAR" />
+    <result column="SPARE5" property="spare5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_NO, SENDER_DISCRIBTION, TRANSPORT_DISCRIBTION, SENDER_BY, SENDERAT_AT, TRANSPORT_BY, TRANSPORT_AT, UPDATED_BY, UPDATED_AT, COMMENTS, 
+    UPDATED_BYSHI, UPDATED_ATSHI, COMMENTS_SHI, SPARE5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_problemrecord
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bio_problemrecord
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkt.project.biology.entity.Problemrecord" >
+    insert into bio_problemrecord (ID, ORDER_NO, SENDER_DISCRIBTION, TRANSPORT_DISCRIBTION,
+      SENDER_BY, SENDERAT_AT, TRANSPORT_BY, TRANSPORT_AT, UPDATED_BY, 
+      UPDATED_AT, COMMENTS, UPDATED_BYSHI, 
+      UPDATED_ATSHI, COMMENTS_SHI, SPARE5
+      )
+    values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{senderDiscribtion,jdbcType=VARCHAR}, 
+      #{transportDiscribtion,jdbcType=VARCHAR}, #{senderBy,jdbcType=VARCHAR}, #{senderAt,jdbcType=TIMESTAMP},#{transportBy,jdbcType=VARCHAR}, 
+      #{transportAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
+      #{updatedAt,jdbcType=TIMESTAMP}, #{comments,jdbcType=VARCHAR}, #{updatedByShi,jdbcType=VARCHAR}, 
+      #{updatedAtShi,jdbcType=TIMESTAMP}, #{commentsShi,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Problemrecord" >
+    insert into bio_problemrecord
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderNo != null" >
+        ORDER_NO,
+      </if>
+      <if test="senderDiscribtion != null" >
+        SENDER_DISCRIBTION,
+      </if>           
+      <if test="transportDiscribtion != null" >
+        TRANSPORT_DISCRIBTION,
+      </if>
+      <if test="senderBy != null" >
+        SENDER_BY,
+      </if>
+      <if test="senderAt != null" >
+        SENDERAT_AT,
+      </if>
+      <if test="transportBy != null" >
+        TRANSPORT_BY,
+      </if>
+      <if test="transportAt != null" >
+        TRANSPORT_AT,
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY,
+      </if>
+      <if test="updatedAt != null" >
+        UPDATED_AT,
+      </if>
+      <if test="comments != null" >
+        COMMENTS,
+      </if>
+      <if test="updatedByShi != null" >
+        UPDATED_BYSHI,
+      </if>
+      <if test="updatedAtShi != null" >
+        UPDATED_ATSHI,
+      </if>
+      <if test="commentsShi != null" >
+        COMMENTS_SHI,
+      </if>
+      <if test="spare5 != null" >
+        SPARE5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="senderDiscribtion != null" >
+        #{senderDiscribtion,jdbcType=VARCHAR},
+      </if>      
+      <if test="transportDiscribtion != null" >
+        #{transportDiscribtion,jdbcType=VARCHAR},
+      </if>
+      <if test="senderBy != null" >
+        #{senderBy,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAt != null" >
+        #{senderAt,jdbcType=TIMESTAMP},
+      </if>     
+      <if test="transportBy != null" >
+        #{transportBy,jdbcType=VARCHAR},
+      </if>
+      <if test="transportAt != null" >
+        #{transportAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null" >
+        #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedByShi != null" >
+        #{updatedByShi,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAtShi != null" >
+        #{updatedAtShi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentsShi != null" >
+        #{commentsShi,jdbcType=VARCHAR},
+      </if>
+      <if test="spare5 != null" >
+        #{spare5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Problemrecord" >
+    update bio_problemrecord
+    <set >
+      <if test="orderNo != null" >
+        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="senderDiscribtion != null" >
+        SENDER_DISCRIBTION = #{senderDiscribtion,jdbcType=VARCHAR},
+      </if>      
+      <if test="transportDiscribtion != null" >
+        TRANSPORT_DISCRIBTION = #{transportDiscribtion,jdbcType=VARCHAR},
+      </if>
+      <if test="senderBy != null" >
+        SENDER_BY = #{senderBy,jdbcType=VARCHAR},
+      </if>
+      <if test="senderAt != null" >
+        SENDERAT_AT = #{senderAt,jdbcType=TIMESTAMP},
+      </if>     
+      <if test="transportBy != null" >
+        TRANSPORT_BY = #{transportBy,jdbcType=VARCHAR},
+      </if>
+      <if test="transportAt != null" >
+        TRANSPORT_AT = #{transportAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedBy != null" >
+        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAt != null" >
+        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comments != null" >
+        COMMENTS = #{comments,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedByShi != null" >
+        UPDATED_BYSHI = #{updatedByShi,jdbcType=VARCHAR},
+      </if>
+      <if test="updatedAtShi != null" >
+        UPDATED_ATSHI = #{updatedAtShi,jdbcType=TIMESTAMP},
+      </if>
+      <if test="commentsShi != null" >
+        COMMENTS_SHI = #{commentsShi,jdbcType=VARCHAR},
+      </if>
+      <if test="spare5 != null" >
+        SPARE5 = #{spare5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Problemrecord" >
+    update bio_problemrecord
+    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
+      SENDER_DISCRIBTION = #{senderDiscribtion,jdbcType=VARCHAR},      
+      TRANSPORT_DISCRIBTION = #{transportDiscribtion,jdbcType=VARCHAR},
+      SENDER_BY = #{senderBy,jdbcType=VARCHAR},
+      SENDERAT_AT = #{senderAt,jdbcType=TIMESTAMP},
+      TRANSPORT_BY = #{transportBy,jdbcType=VARCHAR},
+      TRANSPORT_AT = #{transportAt,jdbcType=TIMESTAMP}, 
+      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
+      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
+      COMMENTS = #{comments,jdbcType=VARCHAR},
+      UPDATED_BYSHI = #{updatedByShi,jdbcType=VARCHAR},
+      UPDATED_ATSHI = #{updatedAtShi,jdbcType=TIMESTAMP},
+      COMMENTS_SHI = #{commentsShi,jdbcType=VARCHAR},
+      SPARE5 = #{spare5,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 手写SQL -->
+  <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="String" >
+    select 
+    *
+    from bio_problemrecord
+    where ORDER_NO = #{orderNo,jdbcType=VARCHAR}
+  </select>
+  
+  
+</mapper>

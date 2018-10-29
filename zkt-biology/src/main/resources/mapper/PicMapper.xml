@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zkt.project.biology.mapper.PicMapper" >
+  <resultMap id="BaseResultMap" type="com.zkt.project.biology.entity.Pic" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="ORDER_ID" property="orderId" jdbcType="VARCHAR" />
+    <result column="PICTURE_LINK" property="picturelink" jdbcType="VARCHAR" />
+    <result column="CLASSIFY" property="classify" jdbcType="VARCHAR" />
+    <result column="CREATED_BY" property="createdBy" jdbcType="VARCHAR" />
+    <result column="CREATED_AT" property="createdAt" jdbcType="TIMESTAMP" />
+    <result column="SPARE1" property="spare1" jdbcType="VARCHAR" />
+    <result column="SPARE2" property="spare2" jdbcType="VARCHAR" />
+    <result column="SPARE3" property="spare3" jdbcType="VARCHAR" />
+    <result column="SPARE4" property="spare4" jdbcType="VARCHAR" />
+    <result column="SPARE5" property="spare5" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, ORDER_ID, PICTURE_LINK, CLASSIFY, CREATED_BY, CREATED_AT, SPARE1, SPARE2, SPARE3, 
+    SPARE4, SPARE5
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from bio_pic
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from bio_pic
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.zkt.project.biology.entity.Pic" >
+    insert into bio_pic (ID, ORDER_ID, PICTURE_LINK, 
+      CLASSIFY, CREATED_BY, CREATED_AT, 
+      SPARE1, SPARE2, SPARE3, 
+      SPARE4, SPARE5)
+    values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{picturelink,jdbcType=VARCHAR}, 
+      #{classify,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR}, 
+      #{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Pic" >
+    insert into bio_pic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="orderId != null" >
+        ORDER_ID,
+      </if>
+      <if test="picturelink != null" >
+        PICTURE_LINK,
+      </if>
+      <if test="classify != null" >
+        CLASSIFY,
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY,
+      </if>
+      <if test="createdAt != null" >
+        CREATED_AT,
+      </if>
+      <if test="spare1 != null" >
+        SPARE1,
+      </if>
+      <if test="spare2 != null" >
+        SPARE2,
+      </if>
+      <if test="spare3 != null" >
+        SPARE3,
+      </if>
+      <if test="spare4 != null" >
+        SPARE4,
+      </if>
+      <if test="spare5 != null" >
+        SPARE5,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="picturelink != null" >
+        #{picturelink,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spare1 != null" >
+        #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null" >
+        #{spare3,jdbcType=VARCHAR},
+      </if>
+      <if test="spare4 != null" >
+        #{spare4,jdbcType=VARCHAR},
+      </if>
+      <if test="spare5 != null" >
+        #{spare5,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Pic" >
+    update bio_pic
+    <set >
+      <if test="orderId != null" >
+        ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="picturelink != null" >
+        PICTURE_LINK = #{picturelink,jdbcType=VARCHAR},
+      </if>
+      <if test="classify != null" >
+        CLASSIFY = #{classify,jdbcType=VARCHAR},
+      </if>
+      <if test="createdBy != null" >
+        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null" >
+        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="spare1 != null" >
+        SPARE1 = #{spare1,jdbcType=VARCHAR},
+      </if>
+      <if test="spare2 != null" >
+        SPARE2 = #{spare2,jdbcType=VARCHAR},
+      </if>
+      <if test="spare3 != null" >
+        SPARE3 = #{spare3,jdbcType=VARCHAR},
+      </if>
+      <if test="spare4 != null" >
+        SPARE4 = #{spare4,jdbcType=VARCHAR},
+      </if>
+      <if test="spare5 != null" >
+        SPARE5 = #{spare5,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Pic" >
+    update bio_pic
+    set ORDER_ID = #{orderId,jdbcType=VARCHAR},
+      PICTURE_LINK = #{picturelink,jdbcType=VARCHAR},
+      CLASSIFY = #{classify,jdbcType=VARCHAR},
+      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
+      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
+      SPARE1 = #{spare1,jdbcType=VARCHAR},
+      SPARE2 = #{spare2,jdbcType=VARCHAR},
+      SPARE3 = #{spare3,jdbcType=VARCHAR},
+      SPARE4 = #{spare4,jdbcType=VARCHAR},
+      SPARE5 = #{spare5,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 手写SQL -->
+  <!-- 根据图片类型找资源 -->
+  <select id="selectByClassify" resultMap="BaseResultMap" parameterType="map" >
+    SELECT 
+    kp.PICTURE_LINK from bio_pic kp 
+    LEFT JOIN bio_order ko
+	on ko.ORDER_NO = kp.ORDER_ID where kp.ORDER_ID = #{orderId,jdbcType=VARCHAR} and kp.CLASSIFY = #{classify,jdbcType=VARCHAR}
+  </select>
+  
+  
+</mapper>

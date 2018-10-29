@@ -9,7 +9,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface RelateMapper extends Mapper<Relate>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
     
     int deleteByHospitalid(String hospitalid);
     
@@ -17,7 +17,7 @@ public interface RelateMapper extends Mapper<Relate>{
 
     int insertSelective(Relate record);
 
-    Relate selectByPrimaryKey(Long id);
+    Relate selectByPrimaryKey(String id);
     
     List<Login> selectByUserName(String userName);
     

@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface ProblemmonitorMapper extends Mapper<Problemmonitor>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Problemmonitor record);
 
     int insertSelective(Problemmonitor record);
 
-    Problemmonitor selectByPrimaryKey(Long id);
+    Problemmonitor selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Problemmonitor record);
 

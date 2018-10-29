@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface PicMapper extends Mapper<Pic>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Pic record);
 
     int insertSelective(Pic record);
 
-    Pic selectByPrimaryKey(Long id);
+    Pic selectByPrimaryKey(String id);
     
     List<Pic> selectByClassify(Map<String, Object> map);
     

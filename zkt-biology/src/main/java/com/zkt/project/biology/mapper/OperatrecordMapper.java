@@ -6,13 +6,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface OperatrecordMapper extends Mapper<Operatrecord>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Operatrecord record);
 
     int insertSelective(Operatrecord record);
 
-    Operatrecord selectByPrimaryKey(Long id);
+    Operatrecord selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Operatrecord record);
 

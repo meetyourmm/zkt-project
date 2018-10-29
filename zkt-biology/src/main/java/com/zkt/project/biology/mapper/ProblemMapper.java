@@ -6,13 +6,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface ProblemMapper extends Mapper<Problem>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Problem record);
 
     int insertSelective(Problem record);
 
-    Problem selectByPrimaryKey(Long id);
+    Problem selectByPrimaryKey(String id);
     
     Problem selectByOrderNo(String orderNo);
     

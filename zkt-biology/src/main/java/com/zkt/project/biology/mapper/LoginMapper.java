@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface LoginMapper extends Mapper<Login>{
 
-	int deleteByPrimaryKey(Long id);
+	int deleteByPrimaryKey(String id);
 
 	int insert(Login record);
 
 	int insertSelective(Login record);
 
-	Login selectByPrimaryKey(Long id);
+	Login selectByPrimaryKey(String id);
 
 	int updateByPrimaryKeySelective(Login record);
 
@@ -27,7 +27,7 @@ public interface LoginMapper extends Mapper<Login>{
 
 	List<Map<String, Object>> getHospitals(String userHospital);
 
-	List<Login> getOffices(Long id);
+	List<Login> getOffices(String id);
 
 	List<String> getCitys();
 
@@ -39,11 +39,11 @@ public interface LoginMapper extends Mapper<Login>{
 
 	List<String> getUserOffices();
 
-	String getOperator(Long id);
+	String getOperator(String id);
 
-	String getHospital(Long id);
+	String getHospital(String id);
 
-	String getOffice(Long id);
+	String getOffice(String id);
 
 	/**
 	 * 登陆
@@ -61,9 +61,9 @@ public interface LoginMapper extends Mapper<Login>{
 
 	String getTransportNum();
 
-	long getRoleID(long userId);
+	String getRoleID(String userId);
 
-	String getUserName(long userId);
+	String getUserName(String userId);
 
 	String getOfficeID(String transport1);
 

@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface OrderMapper extends Mapper<Order>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Order record);
 
     int insertSelective(Order record);
 
-    Order selectByPrimaryKey(Long id);
+    Order selectByPrimaryKey(String id);
     
     Order selectByID(String id);
     

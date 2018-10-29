@@ -8,13 +8,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface LocationMapper extends Mapper<Location>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Location record);
 
     int insertSelective(Location record);
 
-    Location selectByPrimaryKey(Long id);
+    Location selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Location record);
 

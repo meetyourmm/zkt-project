@@ -6,7 +6,7 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface WechatusersMapper extends Mapper<Wechatusers>{
 	
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
     
     void deleteByUserid(String userid);
     
@@ -14,7 +14,7 @@ public interface WechatusersMapper extends Mapper<Wechatusers>{
 
     int insertSelective(Wechatusers record);
 
-    Wechatusers selectByPrimaryKey(Integer id);
+    Wechatusers selectByPrimaryKey(String id);
     
     Wechatusers selectByUsername(String username);
     

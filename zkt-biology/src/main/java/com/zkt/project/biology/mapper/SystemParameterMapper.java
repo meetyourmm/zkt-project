@@ -8,13 +8,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface SystemParameterMapper extends Mapper<SystemParameter>{
 	
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(SystemParameter record);
 
     int insertSelective(SystemParameter record);
 
-    SystemParameter selectByPrimaryKey(Integer id);
+    SystemParameter selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(SystemParameter record);
 

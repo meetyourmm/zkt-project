@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface CageMapper  extends Mapper<Cage> {
 
-	int deleteByPrimaryKey(Long id);
+	int deleteByPrimaryKey(String id);
 
 	int insert(Cage record);
 
 	int insertSelective(Cage record);
 
-	Cage selectByPrimaryKey(Long id);
+	Cage selectByPrimaryKey(String id);
 	
 	Cage selectByCageno(String cageno);
 

@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface ModelMapper extends Mapper<Model>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Model record);
 
     int insertSelective(Model record);
 
-    Model selectByPrimaryKey(Long id);
+    Model selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Model record);
 

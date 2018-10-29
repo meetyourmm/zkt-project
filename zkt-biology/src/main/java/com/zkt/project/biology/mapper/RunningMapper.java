@@ -9,13 +9,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface RunningMapper extends Mapper<Running>{
 	
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Running record);
 
     int insertSelective(Running record);
 
-    Running selectByPrimaryKey(Integer id);
+    Running selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Running record);
 

@@ -8,13 +8,13 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface HumidityMapper extends Mapper<Humidity>{
 	
-    int deleteByPrimaryKey(Long id);
+    int deleteByPrimaryKey(String id);
 
     int insert(Humidity record);
 
     int insertSelective(Humidity record);
 
-    Humidity selectByPrimaryKey(Long id);
+    Humidity selectByPrimaryKey(String id);
 
     int updateByPrimaryKeySelective(Humidity record);
 

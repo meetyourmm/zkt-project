@@ -15,7 +15,12 @@
 package com.zkt.project.admin.mapper;
 
 import com.zkt.project.admin.entity.SysUser;
+import org.apache.ibatis.annotations.Param;
+import org.springframework.web.bind.annotation.RequestParam;
 import tk.mybatis.mapper.common.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户mapper
@@ -25,4 +30,7 @@ import tk.mybatis.mapper.common.Mapper;
  */
 public interface UserMapper extends Mapper<SysUser> {
 
+     List<Map> getUserPage(@Param("name")String name);
+
+     int checkByUserName(@Param("userName")String userName);
 }

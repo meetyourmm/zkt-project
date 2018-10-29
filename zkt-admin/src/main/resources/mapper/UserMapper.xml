@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkt.project.admin.mapper.UserMapper">
+
+    <resultMap id="BaseUserInfoMap" type="java.util.HashMap">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="user_name" jdbcType="VARCHAR" property="userName" />
+        <result column="email" jdbcType="VARCHAR" property="email" />
+        <result column="mobile" jdbcType="VARCHAR" property="mobile" />
+        <result column="telphone" jdbcType="VARCHAR" property="telphone" />
+        <result column="user_type" jdbcType="CHAR" property="userType" />
+        <result column="real_name" jdbcType="VARCHAR" property="realName" />
+        <result column="age" jdbcType="INTEGER" property="age" />
+        <result column="birthday" jdbcType="DATE" property="birthday" />
+        <result column="gender" jdbcType="VARCHAR" property="gender" />
+        <result column="nick_name" jdbcType="VARCHAR" property="nickName" />
+        <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+        <result column="is_com" jdbcType="CHAR" property="isCom" />
+        <result column="is_admin" jdbcType="CHAR" property="isAdmin" />
+        <result column="create_time" jdbcType="DATE" property="createTime" />
+        <result column="create_user_name" jdbcType="VARCHAR" property="createUserName" />
+        <result column="update_time" jdbcType="DATE" property="updateTime" />
+        <result column="update_user_name" jdbcType="VARCHAR" property="updateUserName" />
+    </resultMap>
+
+
+    <select id="getUserPage" resultMap="BaseUserInfoMap">
+        select v.id,v.user_name,v.email,v.mobile,v.telphone,v.user_type,v.real_name,v.age,v.birthday,v.gender,
+        v.nick_name,v.avatar,v.is_com,v.is_admin,v.create_time,
+        a.user_name as create_user_name,v.update_time,b.user_name as update_user_name
+        from sys_user v left join sys_user a on v.create_user = a.id
+        left join sys_user b on v.update_user = b.id
+        where 1=1 and v.status!='3' and v.is_admin = '1'
+        <if test="name != null and name != ''">
+            and v.user_name like '%${name}%' or v.nick_name like'%${name}%' or v.real_name like '%${name}%'
+        </if>
+        order by update_time desc,create_time desc
+    </select>
+
+    <select id="checkByUserName" resultType="INTEGER">
+        select count(1) from sys_user where user_name = #{userName}
+    </select>
+</mapper>

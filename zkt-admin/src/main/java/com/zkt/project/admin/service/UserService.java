@@ -14,6 +14,11 @@
  */
 package com.zkt.project.admin.service;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.zkt.common.core.constant.EnumUtil;
+import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.common.web.constant.ResponseConstant;
 import com.zkt.common.web.exception.auth.UserInvalidException;
 import com.zkt.project.admin.entity.SysUser;
@@ -21,6 +26,11 @@ import com.zkt.project.admin.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 /**
  * 用户服务
@@ -60,5 +70,42 @@ public class UserService {
             throw new UserInvalidException(ResponseConstant.EX_USER_NON_MSG);
         }
         return user;
+    }
+
+    public PageInfo<Map> getUserPage(int pageStart, int pageSize, String name){
+        PageHelper.startPage(pageStart,pageSize);
+
+        List<Map> list = userMapper.getUserPage(name);
+        return new PageInfo<>(list);
+    }
+
+    public void addUser(SysUser user){
+        String operatorUserId = UserContextHandler.getUserID();
+        user.setCreateTime(new Date());
+        user.setCreateUser(operatorUserId);
+        user.setUpdateTime(new Date());
+        user.setUpdateUser(operatorUserId);
+        if(StringUtils.isEmpty(user.getPassword())){
+            user.setPassword(encoder.encode("123456"));//默认密码
+        }
+        userMapper.insertSelective(user);
+    }
+
+    public void updateUser(SysUser user){
+        String operatorUserId = UserContextHandler.getUserID();
+        user.setUpdateTime(new Date());
+        user.setUpdateUser(operatorUserId);
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    public void deleteUser(String userId){
+        SysUser user = userMapper.selectByPrimaryKey(userId);
+        user.setStatus(EnumUtil.DataStatus.DELETE.getStatus());
+        userMapper.updateByPrimaryKeySelective(user);
+    }
+
+    public Boolean checkByUserName(String userName){
+        return userMapper.checkByUserName(userName)==0?false:true;
+
     }
 }

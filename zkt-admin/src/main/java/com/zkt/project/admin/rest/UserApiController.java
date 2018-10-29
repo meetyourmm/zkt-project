@@ -14,6 +14,8 @@
  */
 package com.zkt.project.admin.rest;
 
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageInfo;
 import com.zkt.common.core.constant.CommonConstant;
 import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.common.core.util.JwtHelper;
@@ -29,10 +31,7 @@ import com.zkt.project.admin.vo.MenuTree;
 import com.zkt.project.admin.vo.MenuTreeUtil;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -42,6 +41,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author liwei
@@ -67,7 +67,7 @@ public class UserApiController {
     }
 
     @GetMapping(value = "/info")
-    @ApiOperation(value="获取用户信息",tags = "获取用户信息")
+    @ApiOperation(value="获取当前用户信息",tags = "获取当前用户信息")
     public ApiResponse getUserInfo(){
         String userId = UserContextHandler.getUserID();
         SysUser user = userService.getUserById(userId);
@@ -79,6 +79,48 @@ public class UserApiController {
             frontUser.setRole("admin");
         }
         return new ApiResponse(frontUser);
+    }
+
+    @PostMapping(value = "/page")
+    @ApiOperation(value="获取用户列表",tags = "获取用户列表")
+
+    public ApiResponse getUserPage(@ApiParam(name="page",value="起始位置",required=true) Integer page,
+                                   @ApiParam(name="limit",value="分页大小",required=true) Integer limit,
+                                   @ApiParam(name="name",value="账号、昵称、姓名") String name){
+        PageInfo<Map> list = userService.getUserPage(page,limit,name);
+        return new ApiResponse(list);
+    }
+
+    @PostMapping(value = "/addObj")
+    @ApiOperation(value="添加用户",tags = "添加用户")
+    public ApiResponse addUser(@RequestBody @ApiParam(name="用户对象",value="传入json格式",required=true) SysUser user){
+        userService.addUser(user);
+        return new ApiResponse();
+    }
+
+    @PostMapping(value = "/getObj")
+    @ApiOperation(value="获取用户",tags = "获取用户")
+    public ApiResponse getUserById(@ApiParam(name="id",value="用户id",required=true) String id){
+        return new ApiResponse(userService.getUserById(id));
+    }
+
+    @PostMapping(value = "/putObj")
+    @ApiOperation(value="修改用户",tags = "修改用户")
+    public ApiResponse updateUser(@RequestBody @ApiParam(name="用户对象",value="传入json格式",required=true) SysUser user){
+        userService.updateUser(user);
+        return new ApiResponse();
+    }
+
+    @PostMapping(value = "/delObj")
+    @ApiOperation(value="删除用户",tags = "删除用户")
+    public ApiResponse deleteUser(@ApiParam(name="id",value="用户id",required=true) String id){
+        userService.deleteUser(id);
+        return new ApiResponse();
+    }
+    @PostMapping(value = "/validateUser")
+    @ApiOperation(value="验证账号是否存在",tags = "验证账号是否存在")
+    public ApiResponse validateUser(@ApiParam(name="userName",value="用户账号",required=true) String userName){
+        return new ApiResponse(userService.checkByUserName(userName));
     }
 
 }

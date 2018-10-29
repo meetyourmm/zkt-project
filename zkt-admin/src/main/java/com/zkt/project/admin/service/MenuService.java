@@ -14,13 +14,21 @@
  */
 package com.zkt.project.admin.service;
 
+import com.zkt.common.core.constant.EnumUtil;
+import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.project.admin.entity.SysMenu;
+import com.zkt.project.admin.entity.SysUser;
 import com.zkt.project.admin.mapper.MenuMapper;
+import com.zkt.project.admin.vo.MenuTree;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.StringUtils;
+import tk.mybatis.mapper.entity.Example;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -38,7 +46,7 @@ public class MenuService {
      * 获取所有菜单
      * @return
      */
-    @Cacheable(value="permission",key="'menu'")
+    @Cacheable(value="permission",key="'menus'")
     public List<SysMenu> selectListAll() {
         return menuMapper.selectAll();
     }
@@ -49,8 +57,46 @@ public class MenuService {
      * @param userId
      * @return
      */
-    @Cacheable(value="permission",key="'menu::'+#userId")
+    @Cacheable(value="permission",key="#userId")
     public List<SysMenu> getUserAuthorityMenuByUserId(String userId) {
         return menuMapper.selectAuthorityMenuByUserId(userId);
+    }
+
+    public List<SysMenu> getAllMenusByTitle(String title){
+        Example example = new Example(SysMenu.class);
+        if (!StringUtils.isEmpty(title)) {
+            example.createCriteria().andLike("title", "%" + title + "%");
+        }
+        return menuMapper.selectByExample(example);
+    }
+
+    public SysMenu getMenuById(String menuId){
+        return menuMapper.selectByPrimaryKey(menuId);
+    }
+
+    @CacheEvict(value="permission",allEntries=true)
+    public void addMenu(SysMenu menu){
+        String operatorUserId = UserContextHandler.getUserID();
+        menu.setCreateTime(new Date());
+        menu.setCreateUser(operatorUserId);
+        menu.setUpdateTime(new Date());
+        menu.setUpdateUser(operatorUserId);
+
+        menuMapper.insertSelective(menu);
+    }
+
+    @CacheEvict(value="permission",allEntries=true)
+    public void updateMenu(SysMenu menu){
+        String operatorUserId = UserContextHandler.getUserID();
+        menu.setUpdateTime(new Date());
+        menu.setUpdateUser(operatorUserId);
+        menuMapper.updateByPrimaryKeySelective(menu);
+    }
+
+    @CacheEvict(value="permission",allEntries=true)
+    public void deleteMenu(String menuId){
+        SysMenu menu = menuMapper.selectByPrimaryKey(menuId);
+        menu.setStatus(EnumUtil.DataStatus.DELETE.getStatus());
+        menuMapper.updateByPrimaryKeySelective(menu);
     }
 }

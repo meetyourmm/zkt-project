@@ -14,21 +14,29 @@
  */
 package com.zkt.project.admin.rest;
 
+import com.github.pagehelper.PageInfo;
+import com.zkt.common.core.constant.CommonConstant;
 import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.common.core.util.TreeUtil;
 import com.zkt.common.web.response.ApiResponse;
+import com.zkt.project.admin.entity.SysUser;
+import com.zkt.project.admin.vo.FrontUser;
 import com.zkt.project.admin.vo.MenuTree;
 import com.zkt.project.admin.entity.SysMenu;
 import com.zkt.project.admin.service.MenuService;
 import com.zkt.project.admin.vo.MenuTreeUtil;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import tk.mybatis.mapper.entity.Example;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 菜单权限controller
@@ -45,12 +53,49 @@ public class MenuApiController {
     private MenuService menuService;
 
     /**
-     * 获取用户菜单树
+     * 获取所有菜单树
      * @return
      */
     @GetMapping(value = "/all")
     @ApiOperation(value="获取所有菜单",tags = "获取所有菜单")
     public ApiResponse getAllMenus(){
         return new ApiResponse(menuService.selectListAll());
+    }
+
+    /**
+     * 根据查询获取根节点树
+     * @return
+     */
+    @GetMapping(value = "/tree")
+    @ApiOperation(value="获取所有菜单",tags = "获取所有菜单")
+    public ApiResponse getAllMenusByTitle(@ApiParam(name="title",value="节点名称") String title){
+        return new ApiResponse( MenuTreeUtil.getMenuTree(menuService.getAllMenusByTitle(title),CommonConstant.ROOT_NODE));
+    }
+
+    @PostMapping(value = "/addObj")
+    @ApiOperation(value="添加菜单",tags = "添加菜单")
+    public ApiResponse addMenu(@RequestBody @ApiParam(name="菜单对象",value="传入json格式",required=true) SysMenu menu){
+        menuService.addMenu(menu);
+        return new ApiResponse();
+    }
+
+    @PostMapping(value = "/getObj")
+    @ApiOperation(value="获取菜单信息",tags = "获取菜单信息")
+    public ApiResponse getMenuById(@ApiParam(name="id",value="菜单id",required=true) String id){
+        return new ApiResponse(menuService.getMenuById(id));
+    }
+
+    @PostMapping(value = "/putObj")
+    @ApiOperation(value="修改菜单",tags = "修改菜单")
+    public ApiResponse updateMenu(@RequestBody @ApiParam(name="菜单对象",value="传入json格式",required=true) SysMenu menu){
+        menuService.updateMenu(menu);
+        return new ApiResponse();
+    }
+
+    @PostMapping(value = "/delObj")
+    @ApiOperation(value="删除菜单",tags = "删除菜单")
+    public ApiResponse deleteMenu(@ApiParam(name="id",value="菜单id",required=true) String id){
+        menuService.deleteMenu(id);
+        return new ApiResponse();
     }
 }

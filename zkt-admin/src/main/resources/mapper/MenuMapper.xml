@@ -18,21 +18,13 @@
         <result column="update_time" jdbcType="DATE" property="updateTime"/>
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
-    <select id="selectMenuByAuthorityId" resultMap="BaseResultMap">
-    select t.* from base_resource_authority ra
-    inner join base_menu t
-    on ra.resource_id = t.id
-    and ra.authority_id = #{authorityId}
-    and ra.authority_type = #{authorityType}
-    and ra.resource_type = 'menu'
-  </select>
     <select id="selectAuthorityMenuByUserId" resultMap="BaseResultMap">
      select b.* from (
      select DISTINCT menu_id from sys_group_authority
      where group_id in (
      select group_id from sys_group_user where user_id = #{userId}
      )) a LEFT JOIN sys_menu b on a.menu_id = b.id
-     where b.status = '1' and type='menu' ORDER BY b.order_num
+     where b.status = '1' ORDER BY b.order_num
   </select>
 
 </mapper>

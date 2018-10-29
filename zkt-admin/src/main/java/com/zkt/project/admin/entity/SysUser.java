@@ -16,6 +16,8 @@ package com.zkt.project.admin.entity;
 
 import com.zkt.common.core.constant.EnumUtil;
 import com.zkt.common.core.constant.UUIdGenId;
+import io.swagger.annotations.ApiModel;
+import io.swagger.annotations.ApiModelProperty;
 import tk.mybatis.mapper.annotation.KeySql;
 
 import javax.persistence.Column;
@@ -31,6 +33,7 @@ import java.util.Date;
  * @create 2018/10/11 0011
  */
 @Table(name="sys_user")
+@ApiModel(value="user对象",description="用户对象user")
 public class SysUser implements Serializable {
 
     @Id
@@ -96,11 +99,11 @@ public class SysUser implements Serializable {
     @Column(name="create_time")
     private Date createTime;//创建时间
     @Column(name="create_user")
-    private Date createUser;//创建人
+    private String createUser;//创建人
     @Column(name="update_time")
     private Date updateTime;//最后一次时间
     @Column(name="update_user")
-    private Date updateUser;//最后一次更新人
+    private String updateUser;//最后一次更新人
 
     public String getId() {
         return id;
@@ -398,11 +401,11 @@ public class SysUser implements Serializable {
         this.createTime = createTime;
     }
 
-    public Date getCreateUser() {
+    public String getCreateUser() {
         return createUser;
     }
 
-    public void setCreateUser(Date createUser) {
+    public void setCreateUser(String createUser) {
         this.createUser = createUser;
     }
 
@@ -414,11 +417,11 @@ public class SysUser implements Serializable {
         this.updateTime = updateTime;
     }
 
-    public Date getUpdateUser() {
+    public String getUpdateUser() {
         return updateUser;
     }
 
-    public void setUpdateUser(Date updateUser) {
+    public void setUpdateUser(String updateUser) {
         this.updateUser = updateUser;
     }
 

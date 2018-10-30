@@ -31,7 +31,7 @@ public class AuthUserTransportService {
 	private AuthResMapper authResMapper;
 
 	// 查询运输方员工账号
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -111,7 +111,7 @@ public class AuthUserTransportService {
 	}
 
 	// 保存运输方员工账号
-	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json){
 		
 		// 读取请求头参数
 		/*String menusArr = json.getString("menusIdStr");
@@ -159,7 +159,7 @@ public class AuthUserTransportService {
 	}
 
 	// 修改运输方员工账号
-	public ReturnSimpleHandle updateServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer(JSONObject json){
 		
 		/*String menusArr = json.getString("menusIdStr");
 		json.remove("menusIdStr");*/
@@ -214,7 +214,7 @@ public class AuthUserTransportService {
 	}
 
 	// 查询左侧菜单权限
-	public ReturnSimpleHandle searchEmployMenus(JSONObject json) throws Exception {
+	public ReturnSimpleHandle searchEmployMenus(JSONObject json){
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);

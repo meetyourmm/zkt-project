@@ -55,7 +55,7 @@ public class QueryInTransportOrderService {
 	
 	//查询在途订单
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userID = String.valueOf(userInfo.getUserId());// 锁定权限	
@@ -115,7 +115,7 @@ public class QueryInTransportOrderService {
 
 	//在途订单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);

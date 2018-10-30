@@ -53,7 +53,7 @@ public class OrderUpdateService {
 	
 	//查询可修改订单
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -171,7 +171,7 @@ public class OrderUpdateService {
 	
 	//修改订单
 	
-	public ReturnSimpleHandle editOrder(JSONObject json) throws Exception {
+	public ReturnSimpleHandle editOrder(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();

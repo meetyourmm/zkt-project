@@ -10,7 +10,7 @@ import com.zkt.project.biology.service.CommonService;
 @Service
 public class CommonService {
 	
-	public String createSerialNumber(String sequePrefix) throws Exception {
+	public String createSerialNumber(String sequePrefix){
 		// 置空
 		String sNo = "";
 

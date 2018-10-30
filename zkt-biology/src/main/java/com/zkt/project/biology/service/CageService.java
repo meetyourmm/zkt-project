@@ -32,7 +32,7 @@ public class CageService {
 
 	// 查询箱体
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		String cageno = json.getString("cageno");
 		String state = json.getString("state");
@@ -72,7 +72,7 @@ public class CageService {
 
 	// 保存箱体
 	
-	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json){
 		
 		String cageno = json.getString("cageno");
 		

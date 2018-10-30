@@ -74,7 +74,7 @@ public class OrderTransportService {
 	private WechatusersMapper wechatusersMapper;
 	
 	// 发送 运输查询新建和已装箱订单
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null; //RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -115,7 +115,7 @@ public class OrderTransportService {
 	}
 	
 	// 装箱订单详情
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -204,7 +204,7 @@ public class OrderTransportService {
 	}
 		
 	//发车
-	public void updateStart(JSONObject json) throws Exception {
+	public void updateStart(JSONObject json) {
 		
 		UserInfo userInfo = null; //RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -257,7 +257,7 @@ public class OrderTransportService {
 	}
 	
 	//装箱
-	public void updateZhuangXiang(JSONObject json) throws Exception {
+	public void updateZhuangXiang(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -352,7 +352,7 @@ public class OrderTransportService {
 	}
 	
 	//保存图片到PIC
-	public ReturnSimpleHandle savePic(JSONObject json) throws Exception {
+	public ReturnSimpleHandle savePic(JSONObject json){
 		UserInfo userInfo = null; //RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
 		String orderNo = json.getString("orderNo");
@@ -398,7 +398,7 @@ public class OrderTransportService {
 	}
 	
 	//显示图片
-	public File showImage(String id) throws Exception {
+	public File showImage(String id){
 		File file = null;		
 		String c_filePath = id;
 		file = new File(c_filePath);

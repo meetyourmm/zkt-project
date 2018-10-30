@@ -63,7 +63,7 @@ public class QueryExceptionOrderService {
 	
 	//查询接收异常订单
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -105,7 +105,7 @@ public class QueryExceptionOrderService {
 	
 	//查询运输异常订单
 	
-	public ReturnObjectHandle searchProblemmonitor(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchProblemmonitor(JSONObject json){
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
 		String userID = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -144,7 +144,7 @@ public class QueryExceptionOrderService {
 	
 	//接收异常订单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -322,7 +322,7 @@ public class QueryExceptionOrderService {
 	
 	//运输异常订单详情
 	
-	public ReturnSimpleHandle detailProblemmonitor(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detailProblemmonitor(JSONObject json){
 		String id = json.getString("id");
 		
 		Problemmonitor problemmonitor = problemmonitorMapper.selectByPrimaryKey(Long.parseLong(id));
@@ -471,7 +471,7 @@ public class QueryExceptionOrderService {
 		
 	//提交接收异常订单回复
 	
-	public ReturnSimpleHandle saveDiscribtion(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveDiscribtion(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -538,7 +538,7 @@ public class QueryExceptionOrderService {
 	}
 		
 	//提交运输异常订单回复
-	public ReturnSimpleHandle saveDiscribtion1(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveDiscribtion1(JSONObject json){
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
 		String userType = userInfo.getUserType();

@@ -22,7 +22,7 @@ public class SystemParameterService {
 	
 	//显示报警间隔
 	
-	public ReturnSimpleHandle searchAlarmInterval() throws Exception {
+	public ReturnSimpleHandle searchAlarmInterval(){
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String hospitalid = String.valueOf(userInfo.getUserId());
@@ -35,7 +35,7 @@ public class SystemParameterService {
 	
 	//设置报警间隔
 	
-	public ReturnSimpleHandle saveAlarmInterval(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveAlarmInterval(JSONObject json){
 		
 		String alarmInterval = json.getString("alarmInterval");//警报时间间隔
 		

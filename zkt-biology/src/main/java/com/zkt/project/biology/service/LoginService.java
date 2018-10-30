@@ -122,7 +122,7 @@ public class LoginService {
 	}
 
 	// 首页修改个人信息
-	public ReturnSimpleHandle updateServer1(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer1(JSONObject json) {
 
 		long id = json.getLong("id");// ID唯一
 		String userName = json.getString("userName");

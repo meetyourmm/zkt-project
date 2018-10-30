@@ -38,7 +38,7 @@ public class AuthRoleTransferService {
 	private RelateMapper relateMapper;
 
 	// 查询运输方账号
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -119,7 +119,7 @@ public class AuthRoleTransferService {
 
 	// 保存运输方账号
 	
-	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json){
 		
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -166,7 +166,7 @@ public class AuthRoleTransferService {
 
 	// 修改运输方账号
 	
-	public ReturnSimpleHandle updateServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer(JSONObject json){
 		
 		long id = json.getLong("id");//ID唯一
 		String userName = json.getString("userName");
@@ -204,7 +204,7 @@ public class AuthRoleTransferService {
 
 	// 查询左侧菜单权限
 	
-	public String searchEmployMenus(JSONObject json) throws Exception {
+	public String searchEmployMenus(JSONObject json){
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
@@ -213,7 +213,7 @@ public class AuthRoleTransferService {
 
 	// 查询接受医院名称ID集合
 	
-	public List<Login> getHospitals() throws Exception {
+	public List<Login> getHospitals(){
 		return loginMapper.getUserHospitals1();
 	}
 
@@ -261,13 +261,13 @@ public class AuthRoleTransferService {
 
 	// 获取运输队列表
 	
-	public List<String> getUserOffices() throws Exception {
+	public List<String> getUserOffices(){
 		return loginMapper.getUserOffices();
 	}
 
 	// 查询Relate运输方和医院绑定集合
 	
-	public List<Login> getRelates(JSONObject json) throws Exception {
+	public List<Login> getRelates(JSONObject json){
 		String id = json.getString("id");
 		return relateMapper.selectByUserName(id);
 	}

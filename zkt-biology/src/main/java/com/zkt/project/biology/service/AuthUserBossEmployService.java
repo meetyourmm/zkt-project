@@ -32,7 +32,7 @@ public class AuthUserBossEmployService {
 	private AuthResMapper authResMapper;
 
 	// 查询总部员工账号
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -101,7 +101,7 @@ public class AuthUserBossEmployService {
 	}
 
 	// 保存总部员工账号
-	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json){
 		
 		// 读取请求头参数
 		String menusArr = json.getString("menusIdStr");
@@ -149,7 +149,7 @@ public class AuthUserBossEmployService {
 	}
 
 	// 修改总部员工账号
-	public ReturnSimpleHandle updateServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer(JSONObject json){
 		
 		String menusArr = json.getString("menusIdStr");
 		json.remove("menusIdStr");
@@ -204,7 +204,7 @@ public class AuthUserBossEmployService {
 	}
 
 	// 查询左侧菜单权限
-	public ReturnSimpleHandle searchEmployMenus(JSONObject json) throws Exception {
+	public ReturnSimpleHandle searchEmployMenus(JSONObject json){
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);

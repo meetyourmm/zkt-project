@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.io.StringWriter;
 
 import org.apache.commons.logging.Log;
+import org.slf4j.Logger;
 
 import net.sf.json.JSONObject;
 
@@ -72,7 +73,7 @@ public class ReturnSimpleHandle implements Serializable {
 	 * 
 	 * @return
 	 */
-	public static ReturnSimpleHandle createServerError(Log log,Exception e) {
+	public static ReturnSimpleHandle createServerError(Logger log,Exception e) {
 		if (log != null && e != null) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw, true));

@@ -62,7 +62,7 @@ public class QueryExceptionSolvedOrderService {
 	
 	//查询已处理接收异常订单
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -109,7 +109,7 @@ public class QueryExceptionSolvedOrderService {
 		
 	//查询已处理运输异常订单
 	
-	public ReturnObjectHandle searchProblemmonitor(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchProblemmonitor(JSONObject json) {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -154,7 +154,7 @@ public class QueryExceptionSolvedOrderService {
 		
 	//查询已处理异常订单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);

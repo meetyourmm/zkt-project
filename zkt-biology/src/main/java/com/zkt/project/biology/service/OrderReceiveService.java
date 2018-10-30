@@ -72,7 +72,7 @@ public class OrderReceiveService {
 	private WechatusersMapper wechatusersMapper;
 	
 	// 查询签收订单
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -109,7 +109,7 @@ public class OrderReceiveService {
 	}
 
 	// 订单签收详情
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		
@@ -224,7 +224,7 @@ public class OrderReceiveService {
 	}
 
 	//样本正常，确认签收
-	public void updateNormal(JSONObject json) throws Exception {
+	public void updateNormal(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -266,7 +266,7 @@ public class OrderReceiveService {
 	}
 	
 	//样本异常，提交异常
-	public void updateAbnormal(JSONObject json) throws Exception {
+	public void updateAbnormal(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();

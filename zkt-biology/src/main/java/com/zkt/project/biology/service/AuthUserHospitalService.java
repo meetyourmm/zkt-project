@@ -32,14 +32,14 @@ public class AuthUserHospitalService {
 	
 	//获取当前人员用户类型
 	
-	public String getUserType() throws Exception {
+	public String getUserType(){
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
 		return userType;
 	}
 	
 	// 查询医院员工账号
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -120,7 +120,7 @@ public class AuthUserHospitalService {
 	}
 
 	// 保存医院员工账号
-	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json){
 		
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -162,7 +162,7 @@ public class AuthUserHospitalService {
 	}
 
 	// 修改医院员工账号
-	public ReturnSimpleHandle updateServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer(JSONObject json){
 		
 		/*String menusArr = json.getString("menusIdStr");
 		json.remove("menusIdStr");*/
@@ -217,7 +217,7 @@ public class AuthUserHospitalService {
 	}
 
 	// 查询左侧菜单权限
-	public ReturnSimpleHandle searchEmployMenus(JSONObject json) throws Exception {
+	public ReturnSimpleHandle searchEmployMenus(JSONObject json){
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);

@@ -55,7 +55,7 @@ public class QueryFinishedOrderService {
 	
 	//查询已完成订单(不含已完成异常件)
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userID = String.valueOf(userInfo.getUserId());// 锁定权限	
@@ -114,7 +114,7 @@ public class QueryFinishedOrderService {
 
 	//已完成订单详情(不含已完成异常件)
 	
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);

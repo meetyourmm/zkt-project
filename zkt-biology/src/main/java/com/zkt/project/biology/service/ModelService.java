@@ -28,7 +28,7 @@ public class ModelService {
 	private ModelMapper modelMapper;
 
 	// 获取modelNo列表(全表参数)
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = userInfo.getUserId();
@@ -61,7 +61,7 @@ public class ModelService {
 	}
 
 	// 获取modelNo列表
-	public List<Model> getModelNo() throws Exception {
+	public List<Model> getModelNo(){
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = userInfo.getUserId();
@@ -73,7 +73,7 @@ public class ModelService {
 	}
 
 	// 获取Model数据自动填充页面
-	public List<Model> searchModel(JSONObject json) throws Exception {
+	public List<Model> searchModel(JSONObject json){
 
 		// 根据模板ID查询
 		String id = json.getString("id");
@@ -83,7 +83,7 @@ public class ModelService {
 	}
 
 	// 保存订单模板
-	public ReturnSimpleHandle saveModel(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveModel(JSONObject json){
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());
@@ -124,7 +124,7 @@ public class ModelService {
 	}
 
 	// 修改订单模板
-	public ReturnSimpleHandle updateModel(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateModel(JSONObject json){
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());

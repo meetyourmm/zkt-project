@@ -80,7 +80,7 @@ public class OrderSendService {
 	private PropConfiguration proper;
 
 	// 下载样本Excel模板
-	public ReturnObjectHandle searchSample(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchSample(JSONObject json){
 
 		Integer draw = Integer.parseInt("10");
 		Integer from = Integer.parseInt("0");
@@ -104,7 +104,7 @@ public class OrderSendService {
 	}
 
 	// 查询不含下单医院的医院名称ID集合
-	public List<Map<String, Object>> getHospitals() throws Exception {
+	public List<Map<String, Object>> getHospitals(){
 		
 		UserInfo userInfo = null; //RedisContent.getUserInfo();		
 		// 操作员所属单位ID
@@ -264,7 +264,7 @@ public class OrderSendService {
 	}
 
 	// 批量保存样本信息
-	public String saveSamples(JSONObject json) throws Exception {
+	public String saveSamples(JSONObject json){
 		
 		JSONObject sample = json.getJSONObject("sample");
 		int counter = json.getInt("counter");//样本总数

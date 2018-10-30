@@ -143,7 +143,7 @@ public class AuditAreaService {
 	
 	// 查询区级待审核单
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		JSONObject userJson = JSONObject.fromObject(userInfo.getUser());// 锁定权限
@@ -187,7 +187,7 @@ public class AuditAreaService {
 	
 	// 查询区级已审核
 	
-	public ReturnObjectHandle searchAudited(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchAudited(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -234,7 +234,7 @@ public class AuditAreaService {
 		
 	// 区级待审核单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -424,7 +424,7 @@ public class AuditAreaService {
 	
 	// 区级已审核单详情
 	
-	public ReturnSimpleHandle audited(JSONObject json) throws Exception {
+	public ReturnSimpleHandle audited(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -573,7 +573,7 @@ public class AuditAreaService {
 	
 	// 审核结束
 	
-	public void updateOver(JSONObject json) throws Exception {
+	public void updateOver(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -605,7 +605,7 @@ public class AuditAreaService {
 
 	// 待审提交上级
 	
-	public void updateSubmit(JSONObject json) throws Exception {
+	public void updateSubmit(JSONObject json){
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();

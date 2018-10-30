@@ -41,7 +41,7 @@ public class ReportSenderCityAreaService {
 	private LoginMapper loginMapper;
 
 	// 查询各市区医院报表
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 
 		String sender = json.getString("sender");//医院名称
 		String city = json.getString("city");//市
@@ -81,7 +81,7 @@ public class ReportSenderCityAreaService {
 	}
 
 	// 全部订单详情
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);

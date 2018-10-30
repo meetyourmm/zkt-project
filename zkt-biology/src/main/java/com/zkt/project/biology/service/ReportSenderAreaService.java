@@ -42,7 +42,7 @@ public class ReportSenderAreaService {
 	private LoginMapper loginMapper;
 
 	// 查询各区医院发货报表
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -89,7 +89,7 @@ public class ReportSenderAreaService {
 	}
 
 	// 全部订单详情
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);

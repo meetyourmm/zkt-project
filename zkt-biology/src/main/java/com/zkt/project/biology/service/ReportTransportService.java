@@ -42,7 +42,7 @@ public class ReportTransportService {
 
 	// 查询各运输方发货报表
 	
-	public ReturnObjectHandle search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json){
 
 		String transport = json.getString("transport");//运输公司名称
 		String startDate = json.getString("startDate");
@@ -79,7 +79,7 @@ public class ReportTransportService {
 
 	// 全部订单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json){
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);

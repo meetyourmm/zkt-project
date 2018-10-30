@@ -42,7 +42,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="QueryAllOrderController| 查询全部订单")
-@RequestMapping(value = "/api/queryAllOrder")
+@RequestMapping(value = "/api/bio/queryAllOrder")
 public class QueryAllOrderController {
 
 	private Logger log = LoggerFactory.getLogger(QueryAllOrderController.class);

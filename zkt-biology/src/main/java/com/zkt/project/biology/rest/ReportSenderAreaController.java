@@ -41,7 +41,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="ReportSenderAreaController|各区医院发货报表")
-@RequestMapping(value = "/api/reportSenderArea")
+@RequestMapping(value = "/api/bio/reportSenderArea")
 public class ReportSenderAreaController {
 
 	private Logger log = LoggerFactory.getLogger(ReportSenderAreaController.class);

@@ -26,7 +26,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="AuthRoleHospitalController|查询医院账号")
-@RequestMapping(value = "/api/authRoleHospital")
+@RequestMapping(value = "/api/bio/authRoleHospital")
 public class AuthRoleHospitalController {
 
 	private Logger log = LoggerFactory.getLogger(AuthRoleHospitalController.class);

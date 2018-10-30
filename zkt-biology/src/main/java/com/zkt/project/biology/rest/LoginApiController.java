@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="LoginApiController|获取市区医院运输公司数量及订单各参数数量")
-@RequestMapping(value = "/api/login")
+@RequestMapping(value = "/api/bio/login")
 public class LoginApiController {
 
 	private Logger log = LoggerFactory.getLogger(LoginApiController.class);
@@ -104,4 +104,14 @@ public class LoginApiController {
 		return new ApiResponse(jsonString);
 	}
 
+	/**
+	 * 修改个人信息
+	 * @return
+	 */
+	@PostMapping(value = "/updateServer")
+	@ApiOperation(value="修改个人信息",tags = "修改个人信息")
+	public ReturnSimpleHandle updateServer() {
+		JSONObject json = ContainerContent.clientWebReceive();
+		return loginService.updateServer1(json);
+	}
 }

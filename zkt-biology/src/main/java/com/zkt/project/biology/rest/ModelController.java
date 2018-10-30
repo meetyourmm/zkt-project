@@ -27,7 +27,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="ModelController| 模板管理")
-@RequestMapping(value = "/api/model")
+@RequestMapping(value = "/api/bio/model")
 public class ModelController {
 
 	private Logger log = LoggerFactory.getLogger(ModelController.class);

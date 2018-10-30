@@ -32,7 +32,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="OrderTransportController|装箱与发车")
-@RequestMapping(value = "/api/orderTransport")
+@RequestMapping(value = "/api/bio/orderTransport")
 public class OrderTransportController {
 
 	private Logger log = LoggerFactory.getLogger(OrderTransportController.class);

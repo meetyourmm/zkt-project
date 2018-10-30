@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="AuthRoleCityController|查询市监账号")
-@RequestMapping(value = "/api/AuthRoleCity")
+@RequestMapping(value = "/api/bio/authRoleCity")
 public class AuthRoleCityController {
 	
 	private Logger log = LoggerFactory.getLogger(AuthRoleCityController.class);

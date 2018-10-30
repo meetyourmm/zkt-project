@@ -36,7 +36,7 @@ import net.sf.json.JSONObject;
 
 @RestController
 @Api(value="WeChatController|wechat api")
-@RequestMapping(value = "/api/weChat")
+@RequestMapping(value = "/api/bio/weChat")
 public class WeChatController {
 
 	@Autowired

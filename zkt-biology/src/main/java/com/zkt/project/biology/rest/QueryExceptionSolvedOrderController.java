@@ -42,7 +42,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="QueryExceptionSolvedOrderController|已处理异常订单")
-@RequestMapping(value = "/api/queryInTransportOrder")
+@RequestMapping(value = "/api/bio/queryExceptionSolvedOrder")
 public class QueryExceptionSolvedOrderController {
 
 	private Logger log = LoggerFactory.getLogger(QueryExceptionSolvedOrderController.class);

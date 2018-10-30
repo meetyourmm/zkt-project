@@ -41,7 +41,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="QueryFinishedOrderController| 查询已完成订单")
-@RequestMapping(value = "/api/queryFinishedOrder")
+@RequestMapping(value = "/api/bio/queryFinishedOrder")
 public class QueryFinishedOrderController {
 
 	private Logger log = LoggerFactory.getLogger(QueryFinishedOrderController.class);

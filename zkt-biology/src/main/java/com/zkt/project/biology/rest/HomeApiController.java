@@ -17,7 +17,7 @@ import io.swagger.annotations.ApiOperation;
  */
 @RestController
 @Api(value="HomeApiController|获取市区医院运输公司数量及订单各参数数量")
-@RequestMapping("/api/home")
+@RequestMapping("/api/bio/home")
 public class HomeApiController {
 
 	//private static Logger logger = LoggerFactory.getLogger(HomeApiController.class);

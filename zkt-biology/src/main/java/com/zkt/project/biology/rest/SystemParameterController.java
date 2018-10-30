@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="SystemParameterController|系统的全局参数设置")
-@RequestMapping(value = "/api/systemParameter")
+@RequestMapping(value = "/api/bio/systemParameter")
 public class SystemParameterController {
 
 	private Logger log = LoggerFactory.getLogger(SystemParameterController.class);

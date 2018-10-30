@@ -41,7 +41,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="AuditCityController|市级仲裁")
-@RequestMapping(value = "/api/auditCity")
+@RequestMapping(value = "/api/bio/auditCity")
 public class AuditCityController {
 
 	private Logger log = LoggerFactory.getLogger(AuditCityController.class);

@@ -24,7 +24,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="AuthUserTransportController|运输方员工管理")
-@RequestMapping(value = "/api/authUserBossEmploy")
+@RequestMapping(value = "/api/bio/authUserTransport")
 public class AuthUserTransportController {
 
 	private Logger log = LoggerFactory.getLogger(AuthUserTransportController.class);

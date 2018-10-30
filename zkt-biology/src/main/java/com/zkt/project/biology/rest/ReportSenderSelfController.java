@@ -43,7 +43,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="ReportSenderSelfController| 各运输方发货报表")
-@RequestMapping(value = "/api/reportSenderSelf")
+@RequestMapping(value = "/api/bio/reportSenderSelf")
 public class ReportSenderSelfController {
 
 	private Logger log = LoggerFactory.getLogger(ReportSenderSelfController.class);

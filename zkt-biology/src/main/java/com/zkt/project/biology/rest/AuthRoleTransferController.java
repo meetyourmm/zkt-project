@@ -31,7 +31,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="AuthRoleTransferController|查询运输方账号")
-@RequestMapping(value = "/api/authRoleTransfer")
+@RequestMapping(value = "/api/bio/authRoleTransfer")
 public class AuthRoleTransferController {
 	
 	private Logger log = LoggerFactory.getLogger(AuthRoleTransferController.class);

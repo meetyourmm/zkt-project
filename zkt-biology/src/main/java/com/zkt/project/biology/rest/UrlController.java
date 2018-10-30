@@ -17,7 +17,7 @@ import io.swagger.annotations.Api;
  */
 @RestController
 @Api(value="UrlController|页面URL跳转控制层")
-@RequestMapping(value = "/api/url")
+@RequestMapping(value = "/api/bio/url")
 public class UrlController {
 
 

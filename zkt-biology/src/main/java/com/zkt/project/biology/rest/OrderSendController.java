@@ -44,7 +44,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="OrderSendController|新建订单")
-@RequestMapping(value = "/api/orderSend")
+@RequestMapping(value = "/api/bio/orderSend")
 public class OrderSendController {
 
 	private Logger log = LoggerFactory.getLogger(OrderSendController.class);

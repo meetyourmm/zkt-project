@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
  */
 @RestController
 @Api(value="CageController|箱体管理")
-@RequestMapping(value = "/api/cage")
+@RequestMapping(value = "/api/bio/cage")
 public class CageController {
 
 	private Logger log = LoggerFactory.getLogger(CageController.class);

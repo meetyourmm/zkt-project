@@ -1,7 +1,6 @@
 package com.zkt.project.biology;
 
 import com.zkt.common.web.EnableSoaClient;
-import com.zkt.common.web.annotation.IgnoreUserToken;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
@@ -15,7 +14,6 @@ import tk.mybatis.spring.annotation.MapperScan;
 @ComponentScan(basePackages = {"com.zkt.project.biology","com.zkt.common.web"})
 @EnableSoaClient
 @EnableCaching
-@IgnoreUserToken
 public class BiologyApplication {
 
 	public static void main(String[] args) {

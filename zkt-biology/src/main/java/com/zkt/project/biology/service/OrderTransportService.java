@@ -74,7 +74,7 @@ public class OrderTransportService {
 	private WechatusersMapper wechatusersMapper;
 	
 	// 发送 运输查询新建和已装箱订单
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null; //RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -111,11 +111,11 @@ public class OrderTransportService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	// 装箱订单详情
-	public String detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -200,7 +200,7 @@ public class OrderTransportService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 		
 	//发车
@@ -352,7 +352,7 @@ public class OrderTransportService {
 	}
 	
 	//保存图片到PIC
-	public String savePic(JSONObject json) throws Exception {
+	public ReturnSimpleHandle savePic(JSONObject json) throws Exception {
 		UserInfo userInfo = null; //RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
 		String orderNo = json.getString("orderNo");
@@ -394,7 +394,7 @@ public class OrderTransportService {
 		}
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	//显示图片

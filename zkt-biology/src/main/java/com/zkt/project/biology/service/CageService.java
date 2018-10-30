@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class CageService {
 
 	// 查询箱体
 	
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		String cageno = json.getString("cageno");
 		String state = json.getString("state");
@@ -66,12 +67,12 @@ public class CageService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();		
+		return returnHandle;
 	}
 
 	// 保存箱体
 	
-	public String saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
 		
 		String cageno = json.getString("cageno");
 		
@@ -103,7 +104,7 @@ public class CageService {
 		
 		// 先判断userName是否唯一
 		if (cage != null) {
-			return ReturnSimpleHandle.createServerError("箱体编码重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("箱体编码重复",  SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		// 保存箱体
@@ -118,16 +119,16 @@ public class CageService {
 		cageMapper.insertSelective(cages);
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	
-	public String delete(JSONObject json) {
+	public ReturnSimpleHandle delete(JSONObject json) {
 		Long id=json.getLong("id");
 		
 		cageMapper.deleteByPrimaryKey(id);
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 }

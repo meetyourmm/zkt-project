@@ -98,4 +98,16 @@ public class MenuApiController {
         menuService.deleteMenu(id);
         return new ApiResponse();
     }
+
+    @PostMapping(value = "/validateCode")
+    @ApiOperation(value="验证菜单编码是否存在",tags = "验证菜单编码是否存在")
+    public ApiResponse validateCode(@ApiParam(name="code",value="菜单编码",required=true) String code){
+        return new ApiResponse(menuService.validateCode(code));
+    }
+
+    @GetMapping(value = "/getElementList")
+    @ApiOperation(value="获取菜单下所有资源",tags = "获取菜单下所有资源")
+    public ApiResponse getMenuElementList(@ApiParam(name="parentId",value="菜单id",required=true) String parentId, @ApiParam(name="name",value="资源名称") String name){
+        return new ApiResponse(menuService.getMenuElementList(parentId,name));
+    }
 }

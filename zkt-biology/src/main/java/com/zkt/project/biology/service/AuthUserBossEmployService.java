@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,7 @@ public class AuthUserBossEmployService {
 	private AuthResMapper authResMapper;
 
 	// 查询总部员工账号
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -58,7 +59,7 @@ public class AuthUserBossEmployService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 冻结或者解冻:传入id,state(0为正常，1为锁定)
@@ -100,7 +101,7 @@ public class AuthUserBossEmployService {
 	}
 
 	// 保存总部员工账号
-	public String saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
 		
 		// 读取请求头参数
 		String menusArr = json.getString("menusIdStr");
@@ -113,7 +114,7 @@ public class AuthUserBossEmployService {
 		
 		// 先判断userName是否唯一
 		if (login != null) {
-			return ReturnSimpleHandle.createServerError("账号重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号重复",  SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		// 设置账号再保存
@@ -144,11 +145,11 @@ public class AuthUserBossEmployService {
 		}
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 修改总部员工账号
-	public String updateServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer(JSONObject json) throws Exception {
 		
 		String menusArr = json.getString("menusIdStr");
 		json.remove("menusIdStr");
@@ -180,7 +181,7 @@ public class AuthUserBossEmployService {
 				logins.setUpdatedAt(new Date());
 				loginMapper.updateByPrimaryKeySelective(logins);
 			}
-			return ReturnSimpleHandle.createServerError("账号已存在", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号已存在",  SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 			
 		// 保存权限信息,先删除
@@ -199,15 +200,15 @@ public class AuthUserBossEmployService {
 		}
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 查询左侧菜单权限
-	public String searchEmployMenus(JSONObject json) throws Exception {
+	public ReturnSimpleHandle searchEmployMenus(JSONObject json) throws Exception {
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 单个删除

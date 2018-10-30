@@ -62,7 +62,7 @@ public class AuditCityService {
 	
 	// 查询市级审核单
 	
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		JSONObject userJson = JSONObject.fromObject(userInfo.getUser());// 锁定权限
@@ -99,12 +99,12 @@ public class AuditCityService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 审核单详情
 	
-	public String detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -289,7 +289,7 @@ public class AuditCityService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	//审核终了

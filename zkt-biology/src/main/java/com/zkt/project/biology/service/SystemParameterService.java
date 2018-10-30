@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.zkt.common.core.util.UserInfo;
@@ -16,12 +17,12 @@ import net.sf.json.JSONObject;
 @Service
 public class SystemParameterService {
 
-	@Resource(name = "systemParameterMapper")
+	@Autowired
 	private SystemParameterMapper systemParameterMapper;
 	
 	//显示报警间隔
 	
-	public String searchAlarmInterval() throws Exception {
+	public ReturnSimpleHandle searchAlarmInterval() throws Exception {
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String hospitalid = String.valueOf(userInfo.getUserId());
@@ -29,12 +30,12 @@ public class SystemParameterService {
 		String alarmInterval = systemParameterMapper.selectAll(hospitalid);
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(alarmInterval);
-		return JSONObject.fromObject(returnHandle).toString();		
+		return returnHandle;
 	}
 	
 	//设置报警间隔
 	
-	public String saveAlarmInterval(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveAlarmInterval(JSONObject json) throws Exception {
 		
 		String alarmInterval = json.getString("alarmInterval");//警报时间间隔
 		
@@ -54,7 +55,7 @@ public class SystemParameterService {
 			systemParameterMapper.insertSelective(systemparameter);
 		}
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	

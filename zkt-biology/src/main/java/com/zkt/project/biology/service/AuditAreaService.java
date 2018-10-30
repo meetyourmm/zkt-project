@@ -79,7 +79,7 @@ public class AuditAreaService {
 	
 	//获取订单对应的温湿度
 	
-	public String getProcess(JSONObject json) {
+	public ReturnSimpleHandle getProcess(JSONObject json) {
 		
 		String orderNo = json.getString("orderNo");
 		
@@ -111,12 +111,12 @@ public class AuditAreaService {
 		jsonData.put("temperatureIDs", temperatureIDs);
 		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
 		handle.setData(jsonData);		
-		return JSONObject.fromObject(handle).toString();
+		return handle;
 	}
 	
 	//获取对应订单的运动轨迹
 	
-	public String getTrajectory(JSONObject json) {
+	public ReturnSimpleHandle getTrajectory(JSONObject json) {
 		
 		String orderNo = json.getString("orderNo");
 		
@@ -138,12 +138,12 @@ public class AuditAreaService {
 		jsonData.put("latYs", latYs);
 		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
 		handle.setData(jsonData);		
-		return JSONObject.fromObject(handle).toString();
+		return handle;
 	}
 	
 	// 查询区级待审核单
 	
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		JSONObject userJson = JSONObject.fromObject(userInfo.getUser());// 锁定权限
@@ -182,12 +182,12 @@ public class AuditAreaService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	// 查询区级已审核
 	
-	public String searchAudited(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchAudited(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -229,12 +229,12 @@ public class AuditAreaService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 		
 	// 区级待审核单详情
 	
-	public String detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -419,12 +419,12 @@ public class AuditAreaService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	// 区级已审核单详情
 	
-	public String audited(JSONObject json) throws Exception {
+	public ReturnSimpleHandle audited(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -568,7 +568,7 @@ public class AuditAreaService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	// 审核结束

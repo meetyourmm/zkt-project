@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class AuthRoleHospitalService {
 
 	// 查询医院账号
 	
-	public String search(JSONObject json) {
+	public ReturnObjectHandle search(JSONObject json) {
 
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -69,7 +70,7 @@ public class AuthRoleHospitalService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 冻结或者解冻:传入id,state(0为正常，1为锁定)
@@ -116,7 +117,7 @@ public class AuthRoleHospitalService {
 
 	// 保存医院账号
 	
-	public String saveServer(JSONObject json) {
+	public ReturnSimpleHandle saveServer(JSONObject json) {
 		
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -125,7 +126,7 @@ public class AuthRoleHospitalService {
 		
 		// 先判断userName是否唯一
 		if (login != null) {
-			return ReturnSimpleHandle.createServerError("账号重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号重复", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		// 设置账号再保存
@@ -156,12 +157,12 @@ public class AuthRoleHospitalService {
 		}
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 修改医院账号
 	
-	public String updateServer(JSONObject json) {
+	public ReturnSimpleHandle updateServer(JSONObject json) {
 		
 		String id = json.getString("id");//ID唯一
 		String userName = json.getString("userName");
@@ -202,11 +203,11 @@ public class AuthRoleHospitalService {
 				employLogin.setRoleId(id);
 				loginMapper.updateByRoleId(employLogin);
 			}
-			return ReturnSimpleHandle.createServerError("账号重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号重复", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 			
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 查询左侧菜单权限

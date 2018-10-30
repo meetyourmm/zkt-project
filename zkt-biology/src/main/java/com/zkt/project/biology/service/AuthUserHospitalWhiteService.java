@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +31,7 @@ public class AuthUserHospitalWhiteService {
 	private AuthResMapper authResMapper;
 
 	// 查询医院白卡账号
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -68,7 +69,7 @@ public class AuthUserHospitalWhiteService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 冻结或者解冻:传入id,state(0为正常，1为锁定)
@@ -110,7 +111,7 @@ public class AuthUserHospitalWhiteService {
 	}
 
 	// 保存医院白卡账号
-	public String saveServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveServer(JSONObject json) throws Exception {
 
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -119,7 +120,7 @@ public class AuthUserHospitalWhiteService {
 		
 		// 先判断userName是否唯一
 		if (login != null) {
-			return ReturnSimpleHandle.createServerError("账号重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号重复",  SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		// 设置账号再保存
@@ -142,11 +143,11 @@ public class AuthUserHospitalWhiteService {
 		loginMapper.insertSelective(logins);
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 修改医院白卡账号
-	public String updateServer(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer(JSONObject json) throws Exception {
 		
 		/*String menusArr = json.getString("menusIdStr");
 		json.remove("menusIdStr");*/
@@ -178,7 +179,7 @@ public class AuthUserHospitalWhiteService {
 				logins.setUpdatedAt(new Date());
 				loginMapper.updateByPrimaryKeySelective(logins);
 			}
-			return ReturnSimpleHandle.createServerError("账号已存在", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号已存在",  SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 
 		/*// 保存权限信息,先删除
@@ -197,16 +198,16 @@ public class AuthUserHospitalWhiteService {
 		}*/
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 查询左侧菜单权限
 	
-	public String searchEmployMenus(JSONObject json) throws Exception {
+	public ReturnSimpleHandle searchEmployMenus(JSONObject json) throws Exception {
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 单个删除

@@ -33,7 +33,7 @@ public class AuthRoleAreaService {
 	private AuthResMapper authResMapper;
 
 	// 查询区账号
-	public String search(JSONObject json) throws Exception {
+	public String search(JSONObject json) {
 
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -111,7 +111,7 @@ public class AuthRoleAreaService {
 	}
 
 	// 保存区账号
-	public String saveServer(JSONObject json) throws Exception {
+	public String saveServer(JSONObject json) {
 		
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -154,7 +154,7 @@ public class AuthRoleAreaService {
 	}
 
 	// 修改区账号
-	public String updateServer(JSONObject json) throws Exception {
+	public String updateServer(JSONObject json) {
 		
 		long id = json.getLong("id");//ID唯一
 		String userName = json.getString("userName");
@@ -191,7 +191,7 @@ public class AuthRoleAreaService {
 	}
 
 	// 查询左侧菜单权限
-	public String searchEmployMenus(JSONObject json) throws Exception {
+	public String searchEmployMenus(JSONObject json) {
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
@@ -199,7 +199,7 @@ public class AuthRoleAreaService {
 	}
 	
 	//获取区列表
-	public List<String> getAreas() throws Exception {
+	public List<String> getAreas() {
 		return loginMapper.getAreas();
 	}
 

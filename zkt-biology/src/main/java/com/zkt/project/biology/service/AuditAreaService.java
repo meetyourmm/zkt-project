@@ -79,7 +79,7 @@ public class AuditAreaService {
 	
 	//获取订单对应的温湿度
 	
-	public String getProcess(JSONObject json) {
+	public JSONObject getProcess(JSONObject json) {
 		
 		String orderNo = json.getString("orderNo");
 		
@@ -109,14 +109,12 @@ public class AuditAreaService {
 		jsonData.put("temperatures", temperatures);
 		jsonData.put("humidityIDs", humidityIDs);
 		jsonData.put("temperatureIDs", temperatureIDs);
-		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
-		handle.setData(jsonData);		
-		return JSONObject.fromObject(handle).toString();
+		return jsonData;
 	}
 	
 	//获取对应订单的运动轨迹
 	
-	public String getTrajectory(JSONObject json) {
+	public JSONObject getTrajectory(JSONObject json) {
 		
 		String orderNo = json.getString("orderNo");
 		
@@ -136,9 +134,7 @@ public class AuditAreaService {
 		
 		jsonData.put("lngXs", lngXs);
 		jsonData.put("latYs", latYs);
-		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
-		handle.setData(jsonData);		
-		return JSONObject.fromObject(handle).toString();
+		return jsonData;
 	}
 	
 	// 查询区级待审核单

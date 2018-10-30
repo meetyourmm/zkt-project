@@ -33,7 +33,7 @@ public class AuthRoleHospitalService {
 
 	// 查询医院账号
 	
-	public String search(JSONObject json) throws Exception {
+	public String search(JSONObject json) {
 
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -116,7 +116,7 @@ public class AuthRoleHospitalService {
 
 	// 保存医院账号
 	
-	public String saveServer(JSONObject json) throws Exception {
+	public String saveServer(JSONObject json) {
 		
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -161,7 +161,7 @@ public class AuthRoleHospitalService {
 
 	// 修改医院账号
 	
-	public String updateServer(JSONObject json) throws Exception {
+	public String updateServer(JSONObject json) {
 		
 		String id = json.getString("id");//ID唯一
 		String userName = json.getString("userName");
@@ -211,16 +211,13 @@ public class AuthRoleHospitalService {
 
 	// 查询左侧菜单权限
 	
-	public String searchEmployMenus(JSONObject json) throws Exception {
-		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
-		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		returnHandle.setData(menus);
-		return JSONObject.fromObject(returnHandle).toString();
+	public List<String> searchEmployMenus(JSONObject json) {
+		return authResMapper.selectByUserName(json.getString("userName"));
 	}
 	
 	//获取医院列表
 	
-	public List<String> getUserHospitals() throws Exception {
+	public List<String> getUserHospitals() {
 		return loginMapper.getUserHospitals();
 	}
 

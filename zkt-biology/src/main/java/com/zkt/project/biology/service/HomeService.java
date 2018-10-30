@@ -31,7 +31,7 @@ public class HomeService {
 	private OrderMapper orderMapper;
 	
 	//获取市区 医院 运输公司数量 及订单各参数数量
-	public String getNums() throws Exception {
+	public JSONObject getNums() {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -166,10 +166,10 @@ public class HomeService {
 		json.put("sevendays", sevendays);
 		
 		json.put("userType", userType);//分割饼状图类型数据
-		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
-		handle.setData(json);
+//		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
+//		handle.setData(json);
 		
-		return JSONObject.fromObject(handle).toString();
+		return json;
 	}
 	
 	

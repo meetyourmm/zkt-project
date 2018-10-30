@@ -38,7 +38,7 @@ public class LoginService {
 	private ProblemmonitorMapper problemmonitorMapper;
 	
 	// 登入查询
-	public String login(String userName, String password) throws Exception {
+	public String login(String userName, String password) {
 
 		String jsonString = "";
 
@@ -169,7 +169,7 @@ public class LoginService {
 	}
 
 	//显示待办任务数量
-	public String getNewMsgsNum() throws Exception {
+	public String getNewMsgsNum() {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();

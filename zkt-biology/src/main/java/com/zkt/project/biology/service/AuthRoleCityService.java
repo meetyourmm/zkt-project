@@ -25,7 +25,7 @@ import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 @Service
-public class AuthRoleMonitorService {
+public class AuthRoleCityService {
 
 	@Autowired
 	private LoginMapper loginMapper;
@@ -34,7 +34,7 @@ public class AuthRoleMonitorService {
 	private AuthResMapper authResMapper;
 
 	// 查询市监账号
-	public String search(JSONObject json) throws Exception {
+	public String search(JSONObject json) {
 		
 		Integer draw = Integer.parseInt(json.getString("draw"));// datatables返回时用
 		Integer from = Integer.parseInt(json.getString("start"));
@@ -104,7 +104,7 @@ public class AuthRoleMonitorService {
 	}
 
 	// 保存市监账号
-	public String saveServer(JSONObject json) throws Exception {
+	public String saveServer(JSONObject json) {
 		
 		String userName = json.getString("userName");
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -147,7 +147,7 @@ public class AuthRoleMonitorService {
 	}
 
 	// 修改市监账号
-	public String updateServer(JSONObject json) throws Exception {
+	public String updateServer(JSONObject json) {
 				
 		long id = json.getLong("id");//ID唯一
 		String userName = json.getString("userName");
@@ -184,7 +184,7 @@ public class AuthRoleMonitorService {
 	}
 
 	// 查询左侧菜单权限
-	public String searchEmployMenus(JSONObject json) throws Exception {
+	public String searchEmployMenus(JSONObject json) {
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
@@ -192,7 +192,7 @@ public class AuthRoleMonitorService {
 	}
 	
 	//获取城市列表
-	public List<String> getCitys() throws Exception {
+	public List<String> getCitys() {
 		return loginMapper.getCitys();
 	}
 

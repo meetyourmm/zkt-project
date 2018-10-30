@@ -78,7 +78,7 @@ public class OrderSendService {
 	private Map<?, ?> proper;
 
 	// 下载样本Excel模板
-	public String searchSample(JSONObject json) throws Exception {
+	public String searchSample(JSONObject json) {
 
 		Integer draw = Integer.parseInt("10");
 		Integer from = Integer.parseInt("0");
@@ -103,7 +103,7 @@ public class OrderSendService {
 	}
 
 	// 查询不含下单医院的医院名称ID集合
-	public List<Map<String, Object>> getHospitals() throws Exception {
+	public List<Map<String, Object>> getHospitals() {
 		
 		UserInfo userInfo = null; //RedisContent.getUserInfo();		
 		// 操作员所属单位ID
@@ -127,7 +127,7 @@ public class OrderSendService {
 	}
 
 	// 保存订单
-	public String saveOrder(JSONObject json) throws Exception {
+	public String saveOrder(JSONObject json) {
 		
 		UserInfo userInfo = null;// RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -263,7 +263,7 @@ public class OrderSendService {
 	}
 
 	// 批量保存样本信息
-	public String saveSamples(JSONObject json) throws Exception {
+	public String saveSamples(JSONObject json) {
 		
 		JSONObject sample = json.getJSONObject("sample");
 		int counter = json.getInt("counter");//样本总数
@@ -284,7 +284,7 @@ public class OrderSendService {
 	}
 
 	// 上传样本execl
-	public Sample insertExeclInfo() throws Exception {
+	public Sample insertExeclInfo()  throws Exception {
 		
 		String base = "execl";//execl文件夹
 		String path = (String) proper.get("file.upload.base");//系统默认C盘路径		

@@ -29,7 +29,7 @@ public interface ModelMapper extends Mapper<Model>{
 
 	List<Model> selectWeChatModel(Map<String, Object> map);
 
-	List<Model> selectAll(Map<String, Object> map);
+	List<Model> selectAllByMap(Map<String, Object> map);
 	
 	Integer countAll(Map<String, Object> map);
 

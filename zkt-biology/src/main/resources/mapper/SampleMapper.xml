@@ -13,107 +13,107 @@
   <sql id="Base_Column_List" >
     ID, ORDER_NO, SAMPLE_NUMBER, EXCEL, SIGN, SPARE4, SPARE5
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from bio_sample
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bio_sample
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.zkt.project.biology.entity.Sample" >
-    insert into bio_sample (ID, ORDER_NO, SAMPLE_NUMBER, 
-      EXCEL, SIGN, SPARE4, 
-      SPARE5)
-    values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{sampleNumber,jdbcType=VARCHAR}, 
-      #{excel,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR}, 
-      #{spare5,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Sample" >
-    insert into bio_sample
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="orderNo != null" >
-        ORDER_NO,
-      </if>
-      <if test="sampleNumber != null" >
-        SAMPLE_NUMBER,
-      </if>
-      <if test="excel != null" >
-        EXCEL,
-      </if>
-      <if test="sign != null" >
-        SIGN,
-      </if>
-      <if test="spare4 != null" >
-        SPARE4,
-      </if>
-      <if test="spare5 != null" >
-        SPARE5,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="orderNo != null" >
-        #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="sampleNumber != null" >
-        #{sampleNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="excel != null" >
-        #{excel,jdbcType=VARCHAR},
-      </if>
-      <if test="sign != null" >
-        #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="spare4 != null" >
-        #{spare4,jdbcType=VARCHAR},
-      </if>
-      <if test="spare5 != null" >
-        #{spare5,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Sample" >
-    update bio_sample
-    <set >
-      <if test="orderNo != null" >
-        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="sampleNumber != null" >
-        SAMPLE_NUMBER = #{sampleNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="excel != null" >
-        EXCEL = #{excel,jdbcType=VARCHAR},
-      </if>
-      <if test="sign != null" >
-        SIGN = #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="spare4 != null" >
-        SPARE4 = #{spare4,jdbcType=VARCHAR},
-      </if>
-      <if test="spare5 != null" >
-        SPARE5 = #{spare5,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Sample" >
-    update bio_sample
-    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      SAMPLE_NUMBER = #{sampleNumber,jdbcType=VARCHAR},
-      EXCEL = #{excel,jdbcType=VARCHAR},
-      SIGN = #{sign,jdbcType=VARCHAR},
-      SPARE4 = #{spare4,jdbcType=VARCHAR},
-      SPARE5 = #{spare5,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from bio_sample-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from bio_sample-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Sample" >-->
+    <!--insert into bio_sample (ID, ORDER_NO, SAMPLE_NUMBER, -->
+      <!--EXCEL, SIGN, SPARE4, -->
+      <!--SPARE5)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{sampleNumber,jdbcType=VARCHAR}, -->
+      <!--#{excel,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR}, -->
+      <!--#{spare5,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Sample" >-->
+    <!--insert into bio_sample-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--ID,-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO,-->
+      <!--</if>-->
+      <!--<if test="sampleNumber != null" >-->
+        <!--SAMPLE_NUMBER,-->
+      <!--</if>-->
+      <!--<if test="excel != null" >-->
+        <!--EXCEL,-->
+      <!--</if>-->
+      <!--<if test="sign != null" >-->
+        <!--SIGN,-->
+      <!--</if>-->
+      <!--<if test="spare4 != null" >-->
+        <!--SPARE4,-->
+      <!--</if>-->
+      <!--<if test="spare5 != null" >-->
+        <!--SPARE5,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--#{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sampleNumber != null" >-->
+        <!--#{sampleNumber,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="excel != null" >-->
+        <!--#{excel,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign != null" >-->
+        <!--#{sign,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare4 != null" >-->
+        <!--#{spare4,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare5 != null" >-->
+        <!--#{spare5,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Sample" >-->
+    <!--update bio_sample-->
+    <!--<set >-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sampleNumber != null" >-->
+        <!--SAMPLE_NUMBER = #{sampleNumber,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="excel != null" >-->
+        <!--EXCEL = #{excel,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign != null" >-->
+        <!--SIGN = #{sign,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare4 != null" >-->
+        <!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare5 != null" >-->
+        <!--SPARE5 = #{spare5,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Sample" >-->
+    <!--update bio_sample-->
+    <!--set ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--SAMPLE_NUMBER = #{sampleNumber,jdbcType=VARCHAR},-->
+      <!--EXCEL = #{excel,jdbcType=VARCHAR},-->
+      <!--SIGN = #{sign,jdbcType=VARCHAR},-->
+      <!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+      <!--SPARE5 = #{spare5,jdbcType=VARCHAR}-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
   
   <!-- 手写SQL -->
   <!-- 根据订单编码删除样本信息 -->

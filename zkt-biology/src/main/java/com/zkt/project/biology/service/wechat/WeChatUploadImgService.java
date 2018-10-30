@@ -9,6 +9,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.zkt.project.biology.config.PropConfiguration;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -71,8 +72,8 @@ public class WeChatUploadImgService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Resource(name = "proper")
-	private Map<?, ?> proper;
+	@Autowired
+	private PropConfiguration proper;
 
 	public String uploadImg() throws Exception {
 

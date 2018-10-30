@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.zkt.project.biology.config.PropConfiguration;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -69,9 +70,9 @@ public class WeChatLoginService {
 	
 	@Autowired
 	private ModelMapper modelMapper;
-	
-	@Resource(name = "proper")
-	private Map<?, ?> proper;
+
+	@Autowired
+	private PropConfiguration proper;
 
 	
 	public String login(HttpServletRequest request) throws Exception {

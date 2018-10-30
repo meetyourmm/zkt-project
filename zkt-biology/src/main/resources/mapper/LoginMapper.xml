@@ -31,239 +31,239 @@
 		USER_ISLOCK,
 		CITY, AREA, SPARE4, SPARE5
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from bio_login
-		where ID = #{id,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from bio_login
-		where ID = #{id,jdbcType=VARCHAR}
-	</delete>
-	<insert id="insert" parameterType="com.zkt.project.biology.entity.Login">
-		insert into bio_login (ID, USER_NAME, PASSWORD,
-		USER_TYPE, ROLE_ID, REMARKS,
-		CREATED_BY, CREATED_AT, UPDATED_BY,
-		UPDATED_AT, USER_OPERATOR, USER_TEL,
-		USER_OFFICE, USER_HOSPITAL, USER_ISLOCK,
-		CITY, AREA,
-		SPARE4, SPARE5)
-		values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},
-		#{password,jdbcType=VARCHAR},
-		#{userType,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},
-		#{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
-		#{updatedBy,jdbcType=VARCHAR},
-		#{updatedAt,jdbcType=TIMESTAMP}, #{userOperator,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR},
-		#{userOffice,jdbcType=VARCHAR}, #{userHospital,jdbcType=VARCHAR},
-		#{userIslock,jdbcType=VARCHAR},
-		#{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},
-		#{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})
-	</insert>
-	<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Login">
-		insert into bio_login
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				ID,
-			</if>
-			<if test="userName != null">
-				USER_NAME,
-			</if>
-			<if test="password != null">
-				PASSWORD,
-			</if>
-			<if test="userType != null">
-				USER_TYPE,
-			</if>
-			<if test="roleId != null">
-				ROLE_ID,
-			</if>
-			<if test="remarks != null">
-				REMARKS,
-			</if>
-			<if test="createdBy != null">
-				CREATED_BY,
-			</if>
-			<if test="createdAt != null">
-				CREATED_AT,
-			</if>
-			<if test="updatedBy != null">
-				UPDATED_BY,
-			</if>
-			<if test="updatedAt != null">
-				UPDATED_AT,
-			</if>
-			<if test="userOperator != null">
-				USER_OPERATOR,
-			</if>
-			<if test="userTel != null">
-				USER_TEL,
-			</if>
-			<if test="userOffice != null">
-				USER_OFFICE,
-			</if>
-			<if test="userHospital != null">
-				USER_HOSPITAL,
-			</if>
-			<if test="userIslock != null">
-				USER_ISLOCK,
-			</if>
-			<if test="city != null">
-				CITY,
-			</if>
-			<if test="area != null">
-				AREA,
-			</if>
-			<if test="spare4 != null">
-				SPARE4,
-			</if>
-			<if test="spare5 != null">
-				SPARE5,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=VARCHAR},
-			</if>
-			<if test="userName != null">
-				#{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				#{password,jdbcType=VARCHAR},
-			</if>
-			<if test="userType != null">
-				#{userType,jdbcType=VARCHAR},
-			</if>
-			<if test="roleId != null">
-				#{roleId,jdbcType=VARCHAR},
-			</if>
-			<if test="remarks != null">
-				#{remarks,jdbcType=VARCHAR},
-			</if>
-			<if test="createdBy != null">
-				#{createdBy,jdbcType=VARCHAR},
-			</if>
-			<if test="createdAt != null">
-				#{createdAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="updatedBy != null">
-				#{updatedBy,jdbcType=VARCHAR},
-			</if>
-			<if test="updatedAt != null">
-				#{updatedAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="userOperator != null">
-				#{userOperator,jdbcType=VARCHAR},
-			</if>
-			<if test="userTel != null">
-				#{userTel,jdbcType=VARCHAR},
-			</if>
-			<if test="userOffice != null">
-				#{userOffice,jdbcType=VARCHAR},
-			</if>
-			<if test="userHospital != null">
-				#{userHospital,jdbcType=VARCHAR},
-			</if>
-			<if test="userIslock != null">
-				#{userIslock,jdbcType=VARCHAR},
-			</if>
-			<if test="city != null">
-				#{city,jdbcType=VARCHAR},
-			</if>
-			<if test="area != null">
-				#{area,jdbcType=VARCHAR},
-			</if>
-			<if test="spare4 != null">
-				#{spare4,jdbcType=VARCHAR},
-			</if>
-			<if test="spare5 != null">
-				#{spare5,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Login">
-		update bio_login
-		<set>
-			<if test="userName != null">
-				USER_NAME = #{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="password != null">
-				PASSWORD = #{password,jdbcType=VARCHAR},
-			</if>
-			<if test="userType != null">
-				USER_TYPE = #{userType,jdbcType=VARCHAR},
-			</if>
-			<if test="roleId != null">
-				ROLE_ID = #{roleId,jdbcType=VARCHAR},
-			</if>
-			<if test="remarks != null">
-				REMARKS = #{remarks,jdbcType=VARCHAR},
-			</if>
-			<if test="createdBy != null">
-				CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-			</if>
-			<if test="createdAt != null">
-				CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="updatedBy != null">
-				UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-			</if>
-			<if test="updatedAt != null">
-				UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="userOperator != null">
-				USER_OPERATOR = #{userOperator,jdbcType=VARCHAR},
-			</if>
-			<if test="userTel != null">
-				USER_TEL = #{userTel,jdbcType=VARCHAR},
-			</if>
-			<if test="userOffice != null">
-				USER_OFFICE = #{userOffice,jdbcType=VARCHAR},
-			</if>
-			<if test="userHospital != null">
-				USER_HOSPITAL = #{userHospital,jdbcType=VARCHAR},
-			</if>
-			<if test="userIslock != null">
-				USER_ISLOCK = #{userIslock,jdbcType=VARCHAR},
-			</if>
-			<if test="city != null">
-				CITY = #{city,jdbcType=VARCHAR},
-			</if>
-			<if test="area != null">
-				AREA = #{area,jdbcType=VARCHAR},
-			</if>
-			<if test="spare4 != null">
-				SPARE4 = #{spare4,jdbcType=VARCHAR},
-			</if>
-			<if test="spare5 != null">
-				SPARE5 = #{spare5,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where ID = #{id,jdbcType=VARCHAR}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Login">
-		update bio_login
-		set USER_NAME = #{userName,jdbcType=VARCHAR},
-		PASSWORD = #{password,jdbcType=VARCHAR},
-		USER_TYPE = #{userType,jdbcType=VARCHAR},
-		ROLE_ID = #{roleId,jdbcType=VARCHAR},
-		REMARKS = #{remarks,jdbcType=VARCHAR},
-		CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-		CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-		UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-		UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-		USER_OPERATOR = #{userOperator,jdbcType=VARCHAR},
-		USER_TEL = #{userTel,jdbcType=VARCHAR},
-		USER_OFFICE = #{userOffice,jdbcType=VARCHAR},
-		USER_HOSPITAL = #{userHospital,jdbcType=VARCHAR},
-		USER_ISLOCK = #{userIslock,jdbcType=VARCHAR},
-		CITY = #{city,jdbcType=VARCHAR},
-		AREA = #{area,jdbcType=VARCHAR},
-		SPARE4 = #{spare4,jdbcType=VARCHAR},
-		SPARE5 = #{spare5,jdbcType=VARCHAR}
-		where ID = #{id,jdbcType=VARCHAR}
-	</update>
+	<!--<select id="selectByPrimaryKey" resultMap="BaseResultMap"-->
+		<!--parameterType="java.lang.Long">-->
+		<!--select-->
+		<!--<include refid="Base_Column_List" />-->
+		<!--from bio_login-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</select>-->
+	<!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">-->
+		<!--delete from bio_login-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</delete>-->
+	<!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Login">-->
+		<!--insert into bio_login (ID, USER_NAME, PASSWORD,-->
+		<!--USER_TYPE, ROLE_ID, REMARKS,-->
+		<!--CREATED_BY, CREATED_AT, UPDATED_BY,-->
+		<!--UPDATED_AT, USER_OPERATOR, USER_TEL,-->
+		<!--USER_OFFICE, USER_HOSPITAL, USER_ISLOCK,-->
+		<!--CITY, AREA,-->
+		<!--SPARE4, SPARE5)-->
+		<!--values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR},-->
+		<!--#{password,jdbcType=VARCHAR},-->
+		<!--#{userType,jdbcType=VARCHAR}, #{roleId,jdbcType=VARCHAR}, #{remarks,jdbcType=VARCHAR},-->
+		<!--#{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},-->
+		<!--#{updatedBy,jdbcType=VARCHAR},-->
+		<!--#{updatedAt,jdbcType=TIMESTAMP}, #{userOperator,jdbcType=VARCHAR}, #{userTel,jdbcType=VARCHAR},-->
+		<!--#{userOffice,jdbcType=VARCHAR}, #{userHospital,jdbcType=VARCHAR},-->
+		<!--#{userIslock,jdbcType=VARCHAR},-->
+		<!--#{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR},-->
+		<!--#{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})-->
+	<!--</insert>-->
+	<!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Login">-->
+		<!--insert into bio_login-->
+		<!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+			<!--<if test="id != null">-->
+				<!--ID,-->
+			<!--</if>-->
+			<!--<if test="userName != null">-->
+				<!--USER_NAME,-->
+			<!--</if>-->
+			<!--<if test="password != null">-->
+				<!--PASSWORD,-->
+			<!--</if>-->
+			<!--<if test="userType != null">-->
+				<!--USER_TYPE,-->
+			<!--</if>-->
+			<!--<if test="roleId != null">-->
+				<!--ROLE_ID,-->
+			<!--</if>-->
+			<!--<if test="remarks != null">-->
+				<!--REMARKS,-->
+			<!--</if>-->
+			<!--<if test="createdBy != null">-->
+				<!--CREATED_BY,-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--CREATED_AT,-->
+			<!--</if>-->
+			<!--<if test="updatedBy != null">-->
+				<!--UPDATED_BY,-->
+			<!--</if>-->
+			<!--<if test="updatedAt != null">-->
+				<!--UPDATED_AT,-->
+			<!--</if>-->
+			<!--<if test="userOperator != null">-->
+				<!--USER_OPERATOR,-->
+			<!--</if>-->
+			<!--<if test="userTel != null">-->
+				<!--USER_TEL,-->
+			<!--</if>-->
+			<!--<if test="userOffice != null">-->
+				<!--USER_OFFICE,-->
+			<!--</if>-->
+			<!--<if test="userHospital != null">-->
+				<!--USER_HOSPITAL,-->
+			<!--</if>-->
+			<!--<if test="userIslock != null">-->
+				<!--USER_ISLOCK,-->
+			<!--</if>-->
+			<!--<if test="city != null">-->
+				<!--CITY,-->
+			<!--</if>-->
+			<!--<if test="area != null">-->
+				<!--AREA,-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--SPARE4,-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--SPARE5,-->
+			<!--</if>-->
+		<!--</trim>-->
+		<!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+			<!--<if test="id != null">-->
+				<!--#{id,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userName != null">-->
+				<!--#{userName,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="password != null">-->
+				<!--#{password,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userType != null">-->
+				<!--#{userType,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="roleId != null">-->
+				<!--#{roleId,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="remarks != null">-->
+				<!--#{remarks,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdBy != null">-->
+				<!--#{createdBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--#{createdAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="updatedBy != null">-->
+				<!--#{updatedBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="updatedAt != null">-->
+				<!--#{updatedAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="userOperator != null">-->
+				<!--#{userOperator,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userTel != null">-->
+				<!--#{userTel,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userOffice != null">-->
+				<!--#{userOffice,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userHospital != null">-->
+				<!--#{userHospital,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userIslock != null">-->
+				<!--#{userIslock,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="city != null">-->
+				<!--#{city,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="area != null">-->
+				<!--#{area,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--#{spare4,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--#{spare5,jdbcType=VARCHAR},-->
+			<!--</if>-->
+		<!--</trim>-->
+	<!--</insert>-->
+	<!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Login">-->
+		<!--update bio_login-->
+		<!--<set>-->
+			<!--<if test="userName != null">-->
+				<!--USER_NAME = #{userName,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="password != null">-->
+				<!--PASSWORD = #{password,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userType != null">-->
+				<!--USER_TYPE = #{userType,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="roleId != null">-->
+				<!--ROLE_ID = #{roleId,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="remarks != null">-->
+				<!--REMARKS = #{remarks,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdBy != null">-->
+				<!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="updatedBy != null">-->
+				<!--UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="updatedAt != null">-->
+				<!--UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="userOperator != null">-->
+				<!--USER_OPERATOR = #{userOperator,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userTel != null">-->
+				<!--USER_TEL = #{userTel,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userOffice != null">-->
+				<!--USER_OFFICE = #{userOffice,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userHospital != null">-->
+				<!--USER_HOSPITAL = #{userHospital,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userIslock != null">-->
+				<!--USER_ISLOCK = #{userIslock,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="city != null">-->
+				<!--CITY = #{city,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="area != null">-->
+				<!--AREA = #{area,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--SPARE5 = #{spare5,jdbcType=VARCHAR},-->
+			<!--</if>-->
+		<!--</set>-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</update>-->
+	<!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Login">-->
+		<!--update bio_login-->
+		<!--set USER_NAME = #{userName,jdbcType=VARCHAR},-->
+		<!--PASSWORD = #{password,jdbcType=VARCHAR},-->
+		<!--USER_TYPE = #{userType,jdbcType=VARCHAR},-->
+		<!--ROLE_ID = #{roleId,jdbcType=VARCHAR},-->
+		<!--REMARKS = #{remarks,jdbcType=VARCHAR},-->
+		<!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+		<!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+		<!--UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},-->
+		<!--UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},-->
+		<!--USER_OPERATOR = #{userOperator,jdbcType=VARCHAR},-->
+		<!--USER_TEL = #{userTel,jdbcType=VARCHAR},-->
+		<!--USER_OFFICE = #{userOffice,jdbcType=VARCHAR},-->
+		<!--USER_HOSPITAL = #{userHospital,jdbcType=VARCHAR},-->
+		<!--USER_ISLOCK = #{userIslock,jdbcType=VARCHAR},-->
+		<!--CITY = #{city,jdbcType=VARCHAR},-->
+		<!--AREA = #{area,jdbcType=VARCHAR},-->
+		<!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+		<!--SPARE5 = #{spare5,jdbcType=VARCHAR}-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</update>-->
 	
 	<!-- 手写SQL -->
 	<!-- 根据各种条件查找登入表 -->

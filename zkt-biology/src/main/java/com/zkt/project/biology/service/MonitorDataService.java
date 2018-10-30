@@ -138,7 +138,7 @@ public class MonitorDataService {
 		int	hlimitdown = Integer.parseInt(order.getHlimitdown());
 		
 		//获取参数时间
-		String alarmInterval = systemParameterMapper.selectAll(senderid);		
+		String alarmInterval = systemParameterMapper.selectAllByMap(senderid);
 		long newAlarmInterval = ModifyData.getNewAlarmInterval(alarmInterval);//报警时间				
 		long signDate1 = new Date().getTime();//当前时间
 		

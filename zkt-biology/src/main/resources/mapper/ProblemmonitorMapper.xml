@@ -17,148 +17,148 @@
   <sql id="Base_Column_List" >
     ID, ORDER_NO, DISCRIBTION, STATUS, CREATED_AT, SEND_ERDISCRIBTION, TRANSPORT_DISCRIBTION,	SENDER_BY, SENDERAT_AT, TRANSPORT_BY, TRANSPORT_AT
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from bio_problemmonitor
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bio_problemmonitor
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.zkt.project.biology.entity.Problemmonitor" >
-    insert into bio_problemmonitor (ID, ORDER_NO, DISCRIBTION, 
-      STATUS, CREATED_AT, SENDER_DISCRIBTION, TRANSPORT_DISCRIBTION,	SENDER_BY, SENDERAT_AT, TRANSPORT_BY, TRANSPORT_AT
-      )
-    values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{discribtion,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{senderDiscribtion,jdbcType=VARCHAR}, #{transportDiscribtion,jdbcType=VARCHAR}, #{senderBy,jdbcType=VARCHAR},
-      #{senderAt,jdbcType=TIMESTAMP}, #{transportBy,jdbcType=VARCHAR}, #{transportAt,jdbcType=TIMESTAMP})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Problemmonitor" >
-    insert into bio_problemmonitor
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="orderNo != null" >
-        ORDER_NO,
-      </if>
-      <if test="discribtion != null" >
-        DISCRIBTION,
-      </if>
-      <if test="status != null" >
-        STATUS,
-      </if>
-      <if test="createdAt != null" >
-        CREATED_AT,
-      </if>    
-      <if test="senderDiscribtion != null" >
-        SENDER_DISCRIBTION,
-      </if>
-      <if test="transportDiscribtion != null" >
-        TRANSPORT_DISCRIBTION,
-      </if>
-      <if test="senderBy != null" >
-        SENDER_BY,
-      </if>
-      <if test="senderAt != null" >
-        SENDERAT_AT,
-      </if>
-      <if test="transportBy != null" >
-        TRANSPORT_BY,
-      </if>
-      <if test="transportAt != null" >
-        TRANSPORT_AT,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="orderNo != null" >
-        #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="discribtion != null" >
-        #{discribtion,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="senderDiscribtion != null" >
-        #{SENDERDISCRIBTION,jdbcType=VARCHAR},
-      </if>
-      <if test="transportDiscribtion != null" >
-        #{TRANSPORTDISCRIBTION,jdbcType=VARCHAR},
-      </if>
-      <if test="senderBy != null" >
-       	#{SENDER_BY,jdbcType=VARCHAR},
-      </if>
-      <if test="senderAt != null" >
-       	#{SENDERAT_AT,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transportBy != null" >
-      	#{TRANSPORT_BY,jdbcType=VARCHAR},
-      </if>
-      <if test="transportAt != null" >
-      	#{TRANSPORT_AT,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Problemmonitor" >
-    update bio_problemmonitor
-    <set >
-      <if test="orderNo != null" >
-        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="discribtion != null" >
-        DISCRIBTION = #{discribtion,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        STATUS = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      </if>     
-      <if test="senderDiscribtion != null" >
-        SENDER_DISCRIBTION = #{senderDiscribtion,jdbcType=VARCHAR},
-      </if>
-      <if test="transportDiscribtion != null" >
-        TRANSPORT_DISCRIBTION = #{transportDiscribtion,jdbcType=VARCHAR},
-      </if>
-      <if test="senderBy != null" >
-        SENDER_BY = #{senderBy,jdbcType=VARCHAR},
-      </if>
-      <if test="senderAt != null" >
-        SENDERAT_AT = #{senderAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="transportBy != null" >
-        TRANSPORT_BY = #{transportBy,jdbcType=VARCHAR},
-      </if>
-      <if test="transportAt != null" >
-        TRANSPORT_AT = #{transportAt,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Problemmonitor" >
-    update bio_problemmonitor
-    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      DISCRIBTION = #{discribtion,jdbcType=VARCHAR},
-      STATUS = #{status,jdbcType=VARCHAR},
-      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      SENDER_DISCRIBTION = #{senderDiscribtion,jdbcType=VARCHAR},
-      TRANSPORT_DISCRIBTION = #{transportDiscribtion,jdbcType=VARCHAR},
-      SENDER_BY = #{senderBy,jdbcType=VARCHAR},
-      SENDERAT_AT = #{senderAt,jdbcType=TIMESTAMP},
-      TRANSPORT_BY = #{transportBy,jdbcType=VARCHAR},
-      TRANSPORT_AT = #{transportAt,jdbcType=TIMESTAMP}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from bio_problemmonitor-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from bio_problemmonitor-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Problemmonitor" >-->
+    <!--insert into bio_problemmonitor (ID, ORDER_NO, DISCRIBTION, -->
+      <!--STATUS, CREATED_AT, SENDER_DISCRIBTION, TRANSPORT_DISCRIBTION,	SENDER_BY, SENDERAT_AT, TRANSPORT_BY, TRANSPORT_AT-->
+      <!--)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{discribtion,jdbcType=VARCHAR}, -->
+      <!--#{status,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{senderDiscribtion,jdbcType=VARCHAR}, #{transportDiscribtion,jdbcType=VARCHAR}, #{senderBy,jdbcType=VARCHAR},-->
+      <!--#{senderAt,jdbcType=TIMESTAMP}, #{transportBy,jdbcType=VARCHAR}, #{transportAt,jdbcType=TIMESTAMP})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Problemmonitor" >-->
+    <!--insert into bio_problemmonitor-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--ID,-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO,-->
+      <!--</if>-->
+      <!--<if test="discribtion != null" >-->
+        <!--DISCRIBTION,-->
+      <!--</if>-->
+      <!--<if test="status != null" >-->
+        <!--STATUS,-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--CREATED_AT,-->
+      <!--</if>    -->
+      <!--<if test="senderDiscribtion != null" >-->
+        <!--SENDER_DISCRIBTION,-->
+      <!--</if>-->
+      <!--<if test="transportDiscribtion != null" >-->
+        <!--TRANSPORT_DISCRIBTION,-->
+      <!--</if>-->
+      <!--<if test="senderBy != null" >-->
+        <!--SENDER_BY,-->
+      <!--</if>-->
+      <!--<if test="senderAt != null" >-->
+        <!--SENDERAT_AT,-->
+      <!--</if>-->
+      <!--<if test="transportBy != null" >-->
+        <!--TRANSPORT_BY,-->
+      <!--</if>-->
+      <!--<if test="transportAt != null" >-->
+        <!--TRANSPORT_AT,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--#{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="discribtion != null" >-->
+        <!--#{discribtion,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="status != null" >-->
+        <!--#{status,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--#{createdAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="senderDiscribtion != null" >-->
+        <!--#{SENDERDISCRIBTION,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportDiscribtion != null" >-->
+        <!--#{TRANSPORTDISCRIBTION,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderBy != null" >-->
+       	<!--#{SENDER_BY,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderAt != null" >-->
+       	<!--#{SENDERAT_AT,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="transportBy != null" >-->
+      	<!--#{TRANSPORT_BY,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportAt != null" >-->
+      	<!--#{TRANSPORT_AT,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Problemmonitor" >-->
+    <!--update bio_problemmonitor-->
+    <!--<set >-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="discribtion != null" >-->
+        <!--DISCRIBTION = #{discribtion,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="status != null" >-->
+        <!--STATUS = #{status,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+      <!--</if>     -->
+      <!--<if test="senderDiscribtion != null" >-->
+        <!--SENDER_DISCRIBTION = #{senderDiscribtion,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportDiscribtion != null" >-->
+        <!--TRANSPORT_DISCRIBTION = #{transportDiscribtion,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderBy != null" >-->
+        <!--SENDER_BY = #{senderBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderAt != null" >-->
+        <!--SENDERAT_AT = #{senderAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="transportBy != null" >-->
+        <!--TRANSPORT_BY = #{transportBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportAt != null" >-->
+        <!--TRANSPORT_AT = #{transportAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Problemmonitor" >-->
+    <!--update bio_problemmonitor-->
+    <!--set ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--DISCRIBTION = #{discribtion,jdbcType=VARCHAR},-->
+      <!--STATUS = #{status,jdbcType=VARCHAR},-->
+      <!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+      <!--SENDER_DISCRIBTION = #{senderDiscribtion,jdbcType=VARCHAR},-->
+      <!--TRANSPORT_DISCRIBTION = #{transportDiscribtion,jdbcType=VARCHAR},-->
+      <!--SENDER_BY = #{senderBy,jdbcType=VARCHAR},-->
+      <!--SENDERAT_AT = #{senderAt,jdbcType=TIMESTAMP},-->
+      <!--TRANSPORT_BY = #{transportBy,jdbcType=VARCHAR},-->
+      <!--TRANSPORT_AT = #{transportAt,jdbcType=TIMESTAMP}-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!---->
   <!-- 手写SQL -->
   <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="String" >
     select 
@@ -168,7 +168,7 @@
   </select>
   
   <!-- 待处理的运输异常 -->
-  <select id="selectAll" resultMap="BaseResultMap" parameterType="map" >
+  <select id="selectAllByMap" resultMap="BaseResultMap" parameterType="map" >
     SELECT
 		mp.ID,
 		mp.ORDER_NO,

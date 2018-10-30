@@ -21,174 +21,174 @@
 		updated_at, user_name,
 		spare2, spare3, spare4, spare5
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from bio_auth_res
-		where ID = #{id,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from bio_auth_res
-		where ID = #{id,jdbcType=VARCHAR}
-	</delete>
-	<insert id="insert" parameterType="com.zkt.project.biology.entity.AuthRes">
-		insert into bio_auth_res (id, res_code, user_id,
-		remarks, created_by, created_at,
-		updated_by, updated_at, user_name,
-		spare2, spare3, spare4,
-		spare5)
-		values (#{id,jdbcType=VARCHAR}, #{resCode,jdbcType=VARCHAR},
-		#{userId,jdbcType=VARCHAR},
-		#{remarks,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
-		#{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP},
-		#{userName,jdbcType=VARCHAR},
-		#{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR},
-		#{spare5,jdbcType=VARCHAR})
-	</insert>
-	<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.AuthRes">
-		insert into bio_auth_res
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				ID,
-			</if>
-			<if test="resCode != null">
-				RES_CODE,
-			</if>
-			<if test="userId != null">
-				USER_ID,
-			</if>
-			<if test="remarks != null">
-				REMARKS,
-			</if>
-			<if test="createdBy != null">
-				CREATED_BY,
-			</if>
-			<if test="createdAt != null">
-				CREATED_AT,
-			</if>
-			<if test="updatedBy != null">
-				UPDATED_BY,
-			</if>
-			<if test="updatedAt != null">
-				UPDATED_AT,
-			</if>
-			<if test="userName != null">
-				USER_NAME,
-			</if>
-			<if test="spare2 != null">
-				SPARE2,
-			</if>
-			<if test="spare3 != null">
-				SPARE3,
-			</if>
-			<if test="spare4 != null">
-				SPARE4,
-			</if>
-			<if test="spare5 != null">
-				SPARE5,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=VARCHAR},
-			</if>
-			<if test="resCode != null">
-				#{resCode,jdbcType=VARCHAR},
-			</if>
-			<if test="userId != null">
-				#{userId,jdbcType=VARCHAR},
-			</if>
-			<if test="remarks != null">
-				#{remarks,jdbcType=VARCHAR},
-			</if>
-			<if test="createdBy != null">
-				#{createdBy,jdbcType=VARCHAR},
-			</if>
-			<if test="createdAt != null">
-				#{createdAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="updatedBy != null">
-				#{updatedBy,jdbcType=VARCHAR},
-			</if>
-			<if test="updatedAt != null">
-				#{updatedAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="userName != null">
-				#{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="spare2 != null">
-				#{spare2,jdbcType=VARCHAR},
-			</if>
-			<if test="spare3 != null">
-				#{spare3,jdbcType=VARCHAR},
-			</if>
-			<if test="spare4 != null">
-				#{spare4,jdbcType=VARCHAR},
-			</if>
-			<if test="spare5 != null">
-				#{spare5,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.AuthRes">
-		update bio_auth_res
-		<set>
-			<if test="resCode != null">
-				RES_CODE = #{resCode,jdbcType=VARCHAR},
-			</if>
-			<if test="userId != null">
-				USER_ID = #{userId,jdbcType=VARCHAR},
-			</if>
-			<if test="remarks != null">
-				REMARKS = #{remarks,jdbcType=VARCHAR},
-			</if>
-			<if test="createdBy != null">
-				CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-			</if>
-			<if test="createdAt != null">
-				CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="updatedBy != null">
-				UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-			</if>
-			<if test="updatedAt != null">
-				UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="userName != null">
-				USER_NAME = #{userName,jdbcType=VARCHAR},
-			</if>
-			<if test="spare2 != null">
-				SPARE2 = #{spare2,jdbcType=VARCHAR},
-			</if>
-			<if test="spare3 != null">
-				SPARE3 = #{spare3,jdbcType=VARCHAR},
-			</if>
-			<if test="spare4 != null">
-				SPARE4 = #{spare4,jdbcType=VARCHAR},
-			</if>
-			<if test="spare5 != null">
-				SPARE5 = #{spare5,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where ID = #{id,jdbcType=VARCHAR}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.AuthRes">
-		update bio_auth_res
-		set RES_CODE = #{resCode,jdbcType=VARCHAR},
-		USER_ID = #{userId,jdbcType=VARCHAR},
-		REMARKS = #{remarks,jdbcType=VARCHAR},
-		CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-		CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-		UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-		UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-		USER_NAME = #{userName,jdbcType=VARCHAR},
-		SPARE2 = #{spare2,jdbcType=VARCHAR},
-		SPARE3 = #{spare3,jdbcType=VARCHAR},
-		SPARE4 = #{spare4,jdbcType=VARCHAR},
-		SPARE5 = #{spare5,jdbcType=VARCHAR}
-		where ID = #{id,jdbcType=VARCHAR}
-	</update>
+	<!--<select id="selectByPrimaryKey" resultMap="BaseResultMap"-->
+		<!--parameterType="java.lang.String">-->
+		<!--select-->
+		<!--<include refid="Base_Column_List" />-->
+		<!--from bio_auth_res-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</select>-->
+	<!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">-->
+		<!--delete from bio_auth_res-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</delete>-->
+	<!--<insert id="insert" parameterType="com.zkt.project.biology.entity.AuthRes">-->
+		<!--insert into bio_auth_res (id, res_code, user_id,-->
+		<!--remarks, created_by, created_at,-->
+		<!--updated_by, updated_at, user_name,-->
+		<!--spare2, spare3, spare4,-->
+		<!--spare5)-->
+		<!--values (#{id,jdbcType=VARCHAR}, #{resCode,jdbcType=VARCHAR},-->
+		<!--#{userId,jdbcType=VARCHAR},-->
+		<!--#{remarks,jdbcType=VARCHAR}, #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},-->
+		<!--#{updatedBy,jdbcType=VARCHAR}, #{updatedAt,jdbcType=TIMESTAMP},-->
+		<!--#{userName,jdbcType=VARCHAR},-->
+		<!--#{spare2,jdbcType=VARCHAR}, #{spare3,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR},-->
+		<!--#{spare5,jdbcType=VARCHAR})-->
+	<!--</insert>-->
+	<!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.AuthRes">-->
+		<!--insert into bio_auth_res-->
+		<!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+			<!--<if test="id != null">-->
+				<!--ID,-->
+			<!--</if>-->
+			<!--<if test="resCode != null">-->
+				<!--RES_CODE,-->
+			<!--</if>-->
+			<!--<if test="userId != null">-->
+				<!--USER_ID,-->
+			<!--</if>-->
+			<!--<if test="remarks != null">-->
+				<!--REMARKS,-->
+			<!--</if>-->
+			<!--<if test="createdBy != null">-->
+				<!--CREATED_BY,-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--CREATED_AT,-->
+			<!--</if>-->
+			<!--<if test="updatedBy != null">-->
+				<!--UPDATED_BY,-->
+			<!--</if>-->
+			<!--<if test="updatedAt != null">-->
+				<!--UPDATED_AT,-->
+			<!--</if>-->
+			<!--<if test="userName != null">-->
+				<!--USER_NAME,-->
+			<!--</if>-->
+			<!--<if test="spare2 != null">-->
+				<!--SPARE2,-->
+			<!--</if>-->
+			<!--<if test="spare3 != null">-->
+				<!--SPARE3,-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--SPARE4,-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--SPARE5,-->
+			<!--</if>-->
+		<!--</trim>-->
+		<!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+			<!--<if test="id != null">-->
+				<!--#{id,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="resCode != null">-->
+				<!--#{resCode,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userId != null">-->
+				<!--#{userId,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="remarks != null">-->
+				<!--#{remarks,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdBy != null">-->
+				<!--#{createdBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--#{createdAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="updatedBy != null">-->
+				<!--#{updatedBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="updatedAt != null">-->
+				<!--#{updatedAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="userName != null">-->
+				<!--#{userName,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare2 != null">-->
+				<!--#{spare2,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare3 != null">-->
+				<!--#{spare3,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--#{spare4,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--#{spare5,jdbcType=VARCHAR},-->
+			<!--</if>-->
+		<!--</trim>-->
+	<!--</insert>-->
+	<!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.AuthRes">-->
+		<!--update bio_auth_res-->
+		<!--<set>-->
+			<!--<if test="resCode != null">-->
+				<!--RES_CODE = #{resCode,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="userId != null">-->
+				<!--USER_ID = #{userId,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="remarks != null">-->
+				<!--REMARKS = #{remarks,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdBy != null">-->
+				<!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="updatedBy != null">-->
+				<!--UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="updatedAt != null">-->
+				<!--UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="userName != null">-->
+				<!--USER_NAME = #{userName,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare2 != null">-->
+				<!--SPARE2 = #{spare2,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare3 != null">-->
+				<!--SPARE3 = #{spare3,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--SPARE5 = #{spare5,jdbcType=VARCHAR},-->
+			<!--</if>-->
+		<!--</set>-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</update>-->
+	<!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.AuthRes">-->
+		<!--update bio_auth_res-->
+		<!--set RES_CODE = #{resCode,jdbcType=VARCHAR},-->
+		<!--USER_ID = #{userId,jdbcType=VARCHAR},-->
+		<!--REMARKS = #{remarks,jdbcType=VARCHAR},-->
+		<!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+		<!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+		<!--UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},-->
+		<!--UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},-->
+		<!--USER_NAME = #{userName,jdbcType=VARCHAR},-->
+		<!--SPARE2 = #{spare2,jdbcType=VARCHAR},-->
+		<!--SPARE3 = #{spare3,jdbcType=VARCHAR},-->
+		<!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+		<!--SPARE5 = #{spare5,jdbcType=VARCHAR}-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</update>-->
 
 	<!-- 手写SQL -->
 	<!-- <select id="selectByUserId" parameterType="long" resultType="string">

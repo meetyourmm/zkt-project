@@ -20,7 +20,7 @@ public interface SystemParameterMapper extends Mapper<SystemParameter>{
 
     int updateByPrimaryKey(SystemParameter record);
 
-	String selectAll(String hospitalid);
+	String selectAllByMap(String hospitalid);
 
 	void updateByHospitalid(HashMap<String, String> map);
     

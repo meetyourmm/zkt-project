@@ -19,163 +19,163 @@
     ID, SENDER_ID, TRANSPORT_ID, RECIVER_ID, TLIMIT_UP, TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, 
     SENDER, TRANSPORT, RECIVER, MODEL_NO
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from bio_model
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bio_model
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.zkt.project.biology.entity.Model" >
-    insert into bio_model (ID, SENDER_ID, TRANSPORT_ID, 
-      RECIVER_ID, TLIMIT_UP, TLIMIT_DOWN, 
-      HLIMIT_UP, HLIMIT_DOWN, SENDER, 
-      TRANSPORT, RECIVER, MODEL_NO)
-    values (#{id,jdbcType=VARCHAR}, #{senderid,jdbcType=VARCHAR}, #{transportid,jdbcType=VARCHAR}, 
-      #{reciverid,jdbcType=VARCHAR}, #{tlimitup,jdbcType=VARCHAR}, #{tlimitdown,jdbcType=VARCHAR}, 
-      #{hlimitup,jdbcType=VARCHAR}, #{hlimitdown,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, 
-      #{transport,jdbcType=VARCHAR}, #{reciver,jdbcType=VARCHAR}, #{modelNo,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Model" >
-    insert into bio_model
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="senderid != null" >
-        SENDER_ID,
-      </if>
-      <if test="transportid != null" >
-        TRANSPORT_ID,
-      </if>
-      <if test="reciverid != null" >
-        RECIVER_ID,
-      </if>
-      <if test="tlimitup != null" >
-        TLIMIT_UP,
-      </if>
-      <if test="tlimitdown != null" >
-        TLIMIT_DOWN,
-      </if>
-      <if test="hlimitup != null" >
-        HLIMIT_UP,
-      </if>
-      <if test="hlimitdown != null" >
-        HLIMIT_DOWN,
-      </if>
-      <if test="sender != null" >
-        SENDER,
-      </if>
-      <if test="transport != null" >
-        TRANSPORT,
-      </if>
-      <if test="reciver != null" >
-        RECIVER,
-      </if>
-      <if test="modelNo != null" >
-        MODEL_NO,
-      </if>      
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="senderid != null" >
-        #{senderid,jdbcType=VARCHAR},
-      </if>
-      <if test="transportid != null" >
-        #{transportid,jdbcType=VARCHAR},
-      </if>
-      <if test="reciverid != null" >
-        #{reciverid,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitup != null" >
-        #{tlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitdown != null" >
-        #{tlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitup != null" >
-        #{hlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitdown != null" >
-        #{hlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="sender != null" >
-        #{sender,jdbcType=VARCHAR},
-      </if>
-      <if test="transport != null" >
-        #{transport,jdbcType=VARCHAR},
-      </if>
-      <if test="reciver != null" >
-        #{reciver,jdbcType=VARCHAR},
-      </if>
-      <if test="modelNo != null" >
-        #{modelNo,jdbcType=VARCHAR},
-      </if>            
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Model" >
-    update bio_model
-    <set >
-      <if test="senderid != null" >
-        SENDER_ID = #{senderid,jdbcType=VARCHAR},
-      </if>
-      <if test="transportid != null" >
-        TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
-      </if>
-      <if test="reciverid != null" >
-        RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitup != null" >
-        TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitdown != null" >
-        TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitup != null" >
-        HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitdown != null" >
-        HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="sender != null" >
-        SENDER = #{sender,jdbcType=VARCHAR},
-      </if>
-      <if test="transport != null" >
-        TRANSPORT = #{transport,jdbcType=VARCHAR},
-      </if>
-      <if test="reciver != null" >
-        RECIVER = #{reciver,jdbcType=VARCHAR},
-      </if>
-      <if test="modelNo != null" >
-        MODEL_NO = #{modelNo,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Model" >
-    update bio_model
-    set SENDER_ID = #{senderid,jdbcType=VARCHAR},
-      TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
-      RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
-      TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
-      TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
-      HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
-      HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
-      SENDER = #{sender,jdbcType=VARCHAR},
-      TRANSPORT = #{transport,jdbcType=VARCHAR},
-      RECIVER = #{reciver,jdbcType=VARCHAR},
-      MODEL_NO = #{modelNo,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from bio_model-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from bio_model-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Model" >-->
+    <!--insert into bio_model (ID, SENDER_ID, TRANSPORT_ID, -->
+      <!--RECIVER_ID, TLIMIT_UP, TLIMIT_DOWN, -->
+      <!--HLIMIT_UP, HLIMIT_DOWN, SENDER, -->
+      <!--TRANSPORT, RECIVER, MODEL_NO)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{senderid,jdbcType=VARCHAR}, #{transportid,jdbcType=VARCHAR}, -->
+      <!--#{reciverid,jdbcType=VARCHAR}, #{tlimitup,jdbcType=VARCHAR}, #{tlimitdown,jdbcType=VARCHAR}, -->
+      <!--#{hlimitup,jdbcType=VARCHAR}, #{hlimitdown,jdbcType=VARCHAR}, #{sender,jdbcType=VARCHAR}, -->
+      <!--#{transport,jdbcType=VARCHAR}, #{reciver,jdbcType=VARCHAR}, #{modelNo,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Model" >-->
+    <!--insert into bio_model-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--ID,-->
+      <!--</if>-->
+      <!--<if test="senderid != null" >-->
+        <!--SENDER_ID,-->
+      <!--</if>-->
+      <!--<if test="transportid != null" >-->
+        <!--TRANSPORT_ID,-->
+      <!--</if>-->
+      <!--<if test="reciverid != null" >-->
+        <!--RECIVER_ID,-->
+      <!--</if>-->
+      <!--<if test="tlimitup != null" >-->
+        <!--TLIMIT_UP,-->
+      <!--</if>-->
+      <!--<if test="tlimitdown != null" >-->
+        <!--TLIMIT_DOWN,-->
+      <!--</if>-->
+      <!--<if test="hlimitup != null" >-->
+        <!--HLIMIT_UP,-->
+      <!--</if>-->
+      <!--<if test="hlimitdown != null" >-->
+        <!--HLIMIT_DOWN,-->
+      <!--</if>-->
+      <!--<if test="sender != null" >-->
+        <!--SENDER,-->
+      <!--</if>-->
+      <!--<if test="transport != null" >-->
+        <!--TRANSPORT,-->
+      <!--</if>-->
+      <!--<if test="reciver != null" >-->
+        <!--RECIVER,-->
+      <!--</if>-->
+      <!--<if test="modelNo != null" >-->
+        <!--MODEL_NO,-->
+      <!--</if>      -->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderid != null" >-->
+        <!--#{senderid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportid != null" >-->
+        <!--#{transportid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciverid != null" >-->
+        <!--#{reciverid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitup != null" >-->
+        <!--#{tlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitdown != null" >-->
+        <!--#{tlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitup != null" >-->
+        <!--#{hlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitdown != null" >-->
+        <!--#{hlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sender != null" >-->
+        <!--#{sender,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transport != null" >-->
+        <!--#{transport,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciver != null" >-->
+        <!--#{reciver,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="modelNo != null" >-->
+        <!--#{modelNo,jdbcType=VARCHAR},-->
+      <!--</if>            -->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Model" >-->
+    <!--update bio_model-->
+    <!--<set >-->
+      <!--<if test="senderid != null" >-->
+        <!--SENDER_ID = #{senderid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportid != null" >-->
+        <!--TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciverid != null" >-->
+        <!--RECIVER_ID = #{reciverid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitup != null" >-->
+        <!--TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitdown != null" >-->
+        <!--TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitup != null" >-->
+        <!--HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitdown != null" >-->
+        <!--HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sender != null" >-->
+        <!--SENDER = #{sender,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transport != null" >-->
+        <!--TRANSPORT = #{transport,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciver != null" >-->
+        <!--RECIVER = #{reciver,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="modelNo != null" >-->
+        <!--MODEL_NO = #{modelNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Model" >-->
+    <!--update bio_model-->
+    <!--set SENDER_ID = #{senderid,jdbcType=VARCHAR},-->
+      <!--TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},-->
+      <!--RECIVER_ID = #{reciverid,jdbcType=VARCHAR},-->
+      <!--TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},-->
+      <!--TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},-->
+      <!--HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},-->
+      <!--HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},-->
+      <!--SENDER = #{sender,jdbcType=VARCHAR},-->
+      <!--TRANSPORT = #{transport,jdbcType=VARCHAR},-->
+      <!--RECIVER = #{reciver,jdbcType=VARCHAR},-->
+      <!--MODEL_NO = #{modelNo,jdbcType=VARCHAR}-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
   
   <!-- 手写SQL -->
   <!-- 根据医院ID获取modelNo列表(全表参数) -->
-  <select id="selectAll" resultMap="BaseResultMap" parameterType="map">
+  <select id="selectAllByMap" resultMap="BaseResultMap" parameterType="map">
 	SELECT
 		*
 	FROM bio_model 

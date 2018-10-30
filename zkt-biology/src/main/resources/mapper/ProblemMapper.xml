@@ -19,161 +19,161 @@
     ID, ORDER_NO, DISCRIBTION, STATUS, PIC_ID, CREATED_AT, CREATED_BY, SPARE1, SPARE2, 
     SPARE3, SPARE4, SPARE5
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from bio_problem
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bio_problem
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.zkt.project.biology.entity.Problem" >
-    insert into bio_problem (ID, ORDER_NO, DISCRIBTION, 
-      STATUS, PIC_ID, CREATED_AT, 
-      CREATED_BY, SPARE1, SPARE2, 
-      SPARE3, SPARE4, SPARE5
-      )
-    values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{discribtion,jdbcType=VARCHAR}, 
-      #{status,jdbcType=VARCHAR}, #{picId,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
-      #{createdBy,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, 
-      #{spare3,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR}
-      )
-  </insert>
-  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Problem" >
-    insert into bio_problem
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="orderNo != null" >
-        ORDER_NO,
-      </if>
-      <if test="discribtion != null" >
-        DISCRIBTION,
-      </if>
-      <if test="status != null" >
-        STATUS,
-      </if>
-      <if test="picId != null" >
-        PIC_ID,
-      </if>
-      <if test="createdAt != null" >
-        CREATED_AT,
-      </if>
-      <if test="createdBy != null" >
-        CREATED_BY,
-      </if>
-      <if test="spare1 != null" >
-        SPARE1,
-      </if>
-      <if test="spare2 != null" >
-        SPARE2,
-      </if>
-      <if test="spare3 != null" >
-        SPARE3,
-      </if>
-      <if test="spare4 != null" >
-        SPARE4,
-      </if>
-      <if test="spare5 != null" >
-        SPARE5,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="orderNo != null" >
-        #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="discribtion != null" >
-        #{discribtion,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="picId != null" >
-        #{picId,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdBy != null" >
-        #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="spare1 != null" >
-        #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null" >
-        #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null" >
-        #{spare3,jdbcType=VARCHAR},
-      </if>
-      <if test="spare4 != null" >
-        #{spare4,jdbcType=VARCHAR},
-      </if>
-      <if test="spare5 != null" >
-        #{spare5,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Problem" >
-    update bio_problem
-    <set >
-      <if test="orderNo != null" >
-        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="discribtion != null" >
-        DISCRIBTION = #{discribtion,jdbcType=VARCHAR},
-      </if>
-      <if test="status != null" >
-        STATUS = #{status,jdbcType=VARCHAR},
-      </if>
-      <if test="picId != null" >
-        PIC_ID = #{picId,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="createdBy != null" >
-        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="spare1 != null" >
-        SPARE1 = #{spare1,jdbcType=VARCHAR},
-      </if>
-      <if test="spare2 != null" >
-        SPARE2 = #{spare2,jdbcType=VARCHAR},
-      </if>
-      <if test="spare3 != null" >
-        SPARE3 = #{spare3,jdbcType=VARCHAR},
-      </if>
-      <if test="spare4 != null" >
-        SPARE4 = #{spare4,jdbcType=VARCHAR},
-      </if>
-      <if test="spare5 != null" >
-        SPARE5 = #{spare5,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Problem" >
-    update bio_problem
-    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      DISCRIBTION = #{discribtion,jdbcType=VARCHAR},
-      STATUS = #{status,jdbcType=VARCHAR},
-      PIC_ID = #{picId,jdbcType=VARCHAR},
-      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      SPARE1 = #{spare1,jdbcType=VARCHAR},
-      SPARE2 = #{spare2,jdbcType=VARCHAR},
-      SPARE3 = #{spare3,jdbcType=VARCHAR},
-      SPARE4 = #{spare4,jdbcType=VARCHAR},
-      SPARE5 = #{spare5,jdbcType=VARCHAR}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from bio_problem-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from bio_problem-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Problem" >-->
+    <!--insert into bio_problem (ID, ORDER_NO, DISCRIBTION, -->
+      <!--STATUS, PIC_ID, CREATED_AT, -->
+      <!--CREATED_BY, SPARE1, SPARE2, -->
+      <!--SPARE3, SPARE4, SPARE5-->
+      <!--)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{discribtion,jdbcType=VARCHAR}, -->
+      <!--#{status,jdbcType=VARCHAR}, #{picId,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, -->
+      <!--#{createdBy,jdbcType=VARCHAR}, #{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR}, -->
+      <!--#{spare3,jdbcType=VARCHAR}, #{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR}-->
+      <!--)-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Problem" >-->
+    <!--insert into bio_problem-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--ID,-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO,-->
+      <!--</if>-->
+      <!--<if test="discribtion != null" >-->
+        <!--DISCRIBTION,-->
+      <!--</if>-->
+      <!--<if test="status != null" >-->
+        <!--STATUS,-->
+      <!--</if>-->
+      <!--<if test="picId != null" >-->
+        <!--PIC_ID,-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--CREATED_AT,-->
+      <!--</if>-->
+      <!--<if test="createdBy != null" >-->
+        <!--CREATED_BY,-->
+      <!--</if>-->
+      <!--<if test="spare1 != null" >-->
+        <!--SPARE1,-->
+      <!--</if>-->
+      <!--<if test="spare2 != null" >-->
+        <!--SPARE2,-->
+      <!--</if>-->
+      <!--<if test="spare3 != null" >-->
+        <!--SPARE3,-->
+      <!--</if>-->
+      <!--<if test="spare4 != null" >-->
+        <!--SPARE4,-->
+      <!--</if>-->
+      <!--<if test="spare5 != null" >-->
+        <!--SPARE5,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--#{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="discribtion != null" >-->
+        <!--#{discribtion,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="status != null" >-->
+        <!--#{status,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="picId != null" >-->
+        <!--#{picId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--#{createdAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="createdBy != null" >-->
+        <!--#{createdBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare1 != null" >-->
+        <!--#{spare1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare2 != null" >-->
+        <!--#{spare2,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare3 != null" >-->
+        <!--#{spare3,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare4 != null" >-->
+        <!--#{spare4,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare5 != null" >-->
+        <!--#{spare5,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Problem" >-->
+    <!--update bio_problem-->
+    <!--<set >-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="discribtion != null" >-->
+        <!--DISCRIBTION = #{discribtion,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="status != null" >-->
+        <!--STATUS = #{status,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="picId != null" >-->
+        <!--PIC_ID = #{picId,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="createdBy != null" >-->
+        <!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare1 != null" >-->
+        <!--SPARE1 = #{spare1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare2 != null" >-->
+        <!--SPARE2 = #{spare2,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare3 != null" >-->
+        <!--SPARE3 = #{spare3,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare4 != null" >-->
+        <!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="spare5 != null" >-->
+        <!--SPARE5 = #{spare5,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Problem" >-->
+    <!--update bio_problem-->
+    <!--set ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--DISCRIBTION = #{discribtion,jdbcType=VARCHAR},-->
+      <!--STATUS = #{status,jdbcType=VARCHAR},-->
+      <!--PIC_ID = #{picId,jdbcType=VARCHAR},-->
+      <!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+      <!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+      <!--SPARE1 = #{spare1,jdbcType=VARCHAR},-->
+      <!--SPARE2 = #{spare2,jdbcType=VARCHAR},-->
+      <!--SPARE3 = #{spare3,jdbcType=VARCHAR},-->
+      <!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+      <!--SPARE5 = #{spare5,jdbcType=VARCHAR}-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
   
   <!-- 手写SQL -->
   <select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="String" >

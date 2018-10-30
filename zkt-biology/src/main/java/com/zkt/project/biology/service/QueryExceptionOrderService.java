@@ -129,7 +129,7 @@ public class QueryExceptionOrderService {
 		map.put("pageSize", pageSize);
 		map.put("from", from);
 		
-		List<Problemmonitor> problemmonitorList = problemmonitorMapper.selectAll(map);
+		List<Problemmonitor> problemmonitorList = problemmonitorMapper.selectAllByMap(map);
 		Integer problemmonitorListCount = problemmonitorMapper.countAll(map);
 		//封装返回参数
 		ReturnObjectHandle returnHandle = ReturnObjectHandle.createServerHandle();

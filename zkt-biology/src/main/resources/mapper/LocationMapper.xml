@@ -18,152 +18,152 @@
 		ID, ORDER_ID, CAGE_NO, LNG, LAT, CREATED_AT, SPARE1, SPARE2, SPARE3,
 		SPARE4, SPARE5
 	</sql>
-	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
-		parameterType="java.lang.Long">
-		select
-		<include refid="Base_Column_List" />
-		from bio_location
-		where ID = #{id,jdbcType=VARCHAR}
-	</select>
-	<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-		delete from bio_location
-		where ID = #{id,jdbcType=VARCHAR}
-	</delete>
-	<insert id="insert" parameterType="com.zkt.project.biology.entity.Location">
-		insert into bio_location (ID, ORDER_ID, CAGE_NO,
-		LNG, LAT, CREATED_AT,
-		SPARE1, SPARE2, SPARE3,
-		SPARE4, SPARE5)
-		values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR},
-		#{cageno,jdbcType=VARCHAR},
-		#{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},
-		#{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR},
-		#{spare3,jdbcType=VARCHAR},
-		#{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})
-	</insert>
-	<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Location">
-		insert into bio_location
-		<trim prefix="(" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				ID,
-			</if>
-			<if test="orderId != null">
-				ORDER_ID,
-			</if>
-			<if test="cageno != null">
-				CAGE_NO,
-			</if>
-			<if test="lng != null">
-				LNG,
-			</if>
-			<if test="lat != null">
-				LAT,
-			</if>
-			<if test="createdAt != null">
-				CREATED_AT,
-			</if>
-			<if test="spare1 != null">
-				SPARE1,
-			</if>
-			<if test="spare2 != null">
-				SPARE2,
-			</if>
-			<if test="spare3 != null">
-				SPARE3,
-			</if>
-			<if test="spare4 != null">
-				SPARE4,
-			</if>
-			<if test="spare5 != null">
-				SPARE5,
-			</if>
-		</trim>
-		<trim prefix="values (" suffix=")" suffixOverrides=",">
-			<if test="id != null">
-				#{id,jdbcType=VARCHAR},
-			</if>
-			<if test="orderId != null">
-				#{orderId,jdbcType=VARCHAR},
-			</if>
-			<if test="cageno != null">
-				#{cageno,jdbcType=VARCHAR},
-			</if>
-			<if test="lng != null">
-				#{lng,jdbcType=VARCHAR},
-			</if>
-			<if test="lat != null">
-				#{lat,jdbcType=VARCHAR},
-			</if>
-			<if test="createdAt != null">
-				#{createdAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="spare1 != null">
-				#{spare1,jdbcType=VARCHAR},
-			</if>
-			<if test="spare2 != null">
-				#{spare2,jdbcType=VARCHAR},
-			</if>
-			<if test="spare3 != null">
-				#{spare3,jdbcType=VARCHAR},
-			</if>
-			<if test="spare4 != null">
-				#{spare4,jdbcType=VARCHAR},
-			</if>
-			<if test="spare5 != null">
-				#{spare5,jdbcType=VARCHAR},
-			</if>
-		</trim>
-	</insert>
-	<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Location">
-		update bio_location
-		<set>
-			<if test="orderId != null">
-				ORDER_ID = #{orderId,jdbcType=VARCHAR},
-			</if>
-			<if test="cageno != null">
-				CAGE_NO = #{cageno,jdbcType=VARCHAR},
-			</if>
-			<if test="lng != null">
-				LNG = #{lng,jdbcType=VARCHAR},
-			</if>
-			<if test="lat != null">
-				LAT = #{lat,jdbcType=VARCHAR},
-			</if>
-			<if test="createdAt != null">
-				CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-			</if>
-			<if test="spare1 != null">
-				SPARE1 = #{spare1,jdbcType=VARCHAR},
-			</if>
-			<if test="spare2 != null">
-				SPARE2 = #{spare2,jdbcType=VARCHAR},
-			</if>
-			<if test="spare3 != null">
-				SPARE3 = #{spare3,jdbcType=VARCHAR},
-			</if>
-			<if test="spare4 != null">
-				SPARE4 = #{spare4,jdbcType=VARCHAR},
-			</if>
-			<if test="spare5 != null">
-				SPARE5 = #{spare5,jdbcType=VARCHAR},
-			</if>
-		</set>
-		where ID = #{id,jdbcType=VARCHAR}
-	</update>
-	<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Location">
-		update bio_location
-		set ORDER_ID = #{orderId,jdbcType=VARCHAR},
-		CAGE_NO = #{cageno,jdbcType=VARCHAR},
-		LNG = #{lng,jdbcType=VARCHAR},
-		LAT = #{lat,jdbcType=VARCHAR},
-		CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-		SPARE1 = #{spare1,jdbcType=VARCHAR},
-		SPARE2 = #{spare2,jdbcType=VARCHAR},
-		SPARE3 = #{spare3,jdbcType=VARCHAR},
-		SPARE4 = #{spare4,jdbcType=VARCHAR},
-		SPARE5 = #{spare5,jdbcType=VARCHAR}
-		where ID = #{id,jdbcType=VARCHAR}
-	</update>
+	<!--<select id="selectByPrimaryKey" resultMap="BaseResultMap"-->
+		<!--parameterType="java.lang.Long">-->
+		<!--select-->
+		<!--<include refid="Base_Column_List" />-->
+		<!--from bio_location-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</select>-->
+	<!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long">-->
+		<!--delete from bio_location-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</delete>-->
+	<!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Location">-->
+		<!--insert into bio_location (ID, ORDER_ID, CAGE_NO,-->
+		<!--LNG, LAT, CREATED_AT,-->
+		<!--SPARE1, SPARE2, SPARE3,-->
+		<!--SPARE4, SPARE5)-->
+		<!--values (#{id,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR},-->
+		<!--#{cageno,jdbcType=VARCHAR},-->
+		<!--#{lng,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP},-->
+		<!--#{spare1,jdbcType=VARCHAR}, #{spare2,jdbcType=VARCHAR},-->
+		<!--#{spare3,jdbcType=VARCHAR},-->
+		<!--#{spare4,jdbcType=VARCHAR}, #{spare5,jdbcType=VARCHAR})-->
+	<!--</insert>-->
+	<!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Location">-->
+		<!--insert into bio_location-->
+		<!--<trim prefix="(" suffix=")" suffixOverrides=",">-->
+			<!--<if test="id != null">-->
+				<!--ID,-->
+			<!--</if>-->
+			<!--<if test="orderId != null">-->
+				<!--ORDER_ID,-->
+			<!--</if>-->
+			<!--<if test="cageno != null">-->
+				<!--CAGE_NO,-->
+			<!--</if>-->
+			<!--<if test="lng != null">-->
+				<!--LNG,-->
+			<!--</if>-->
+			<!--<if test="lat != null">-->
+				<!--LAT,-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--CREATED_AT,-->
+			<!--</if>-->
+			<!--<if test="spare1 != null">-->
+				<!--SPARE1,-->
+			<!--</if>-->
+			<!--<if test="spare2 != null">-->
+				<!--SPARE2,-->
+			<!--</if>-->
+			<!--<if test="spare3 != null">-->
+				<!--SPARE3,-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--SPARE4,-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--SPARE5,-->
+			<!--</if>-->
+		<!--</trim>-->
+		<!--<trim prefix="values (" suffix=")" suffixOverrides=",">-->
+			<!--<if test="id != null">-->
+				<!--#{id,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="orderId != null">-->
+				<!--#{orderId,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="cageno != null">-->
+				<!--#{cageno,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="lng != null">-->
+				<!--#{lng,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="lat != null">-->
+				<!--#{lat,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--#{createdAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="spare1 != null">-->
+				<!--#{spare1,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare2 != null">-->
+				<!--#{spare2,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare3 != null">-->
+				<!--#{spare3,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--#{spare4,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--#{spare5,jdbcType=VARCHAR},-->
+			<!--</if>-->
+		<!--</trim>-->
+	<!--</insert>-->
+	<!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Location">-->
+		<!--update bio_location-->
+		<!--<set>-->
+			<!--<if test="orderId != null">-->
+				<!--ORDER_ID = #{orderId,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="cageno != null">-->
+				<!--CAGE_NO = #{cageno,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="lng != null">-->
+				<!--LNG = #{lng,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="lat != null">-->
+				<!--LAT = #{lat,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="createdAt != null">-->
+				<!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+			<!--</if>-->
+			<!--<if test="spare1 != null">-->
+				<!--SPARE1 = #{spare1,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare2 != null">-->
+				<!--SPARE2 = #{spare2,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare3 != null">-->
+				<!--SPARE3 = #{spare3,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare4 != null">-->
+				<!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+			<!--</if>-->
+			<!--<if test="spare5 != null">-->
+				<!--SPARE5 = #{spare5,jdbcType=VARCHAR},-->
+			<!--</if>-->
+		<!--</set>-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</update>-->
+	<!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Location">-->
+		<!--update bio_location-->
+		<!--set ORDER_ID = #{orderId,jdbcType=VARCHAR},-->
+		<!--CAGE_NO = #{cageno,jdbcType=VARCHAR},-->
+		<!--LNG = #{lng,jdbcType=VARCHAR},-->
+		<!--LAT = #{lat,jdbcType=VARCHAR},-->
+		<!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+		<!--SPARE1 = #{spare1,jdbcType=VARCHAR},-->
+		<!--SPARE2 = #{spare2,jdbcType=VARCHAR},-->
+		<!--SPARE3 = #{spare3,jdbcType=VARCHAR},-->
+		<!--SPARE4 = #{spare4,jdbcType=VARCHAR},-->
+		<!--SPARE5 = #{spare5,jdbcType=VARCHAR}-->
+		<!--where ID = #{id,jdbcType=VARCHAR}-->
+	<!--</update>-->
 
 	<!-- 手写SQL -->
 	<select id="selectByOrderNo" resultMap="BaseResultMap" parameterType="String">

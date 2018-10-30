@@ -15,127 +15,127 @@
   <sql id="Base_Column_List" >
     id, user_id, user_name, password, operator, user_hospital, user_hospitalid, user_type, last_time
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.VARCHAR" >
-    select 
-    <include refid="Base_Column_List" />
-    from bio_wechatusers
-    where id = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.VARCHAR" >
-    delete from bio_wechatusers
-    where id = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.zkt.project.biology.entity.Wechatusers" >
-    insert into bio_wechatusers (id, user_id, user_name, password,
-      operator, user_hospital, user_hospitalid, 
-      user_type, last_time)
-    values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},
-      #{operator,jdbcType=VARCHAR}, #{userhospital,jdbcType=VARCHAR}, #{userhospitalid,jdbcType=VARCHAR}, 
-      #{usertype,jdbcType=VARCHAR}, #{lasttime,jdbcType=VARCHAR})
-  </insert>
-  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Wechatusers" >
-    insert into bio_wechatusers
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="userid != null" >
-        user_id,
-      </if>
-      <if test="username != null" >
-        user_name,
-      </if>
-      <if test="password != null" >
-        password,
-      </if>
-      <if test="operator != null" >
-        operator,
-      </if>
-      <if test="userhospital != null" >
-        user_hospital,
-      </if>
-      <if test="userhospitalid != null" >
-        user_hospitalid,
-      </if>
-      <if test="usertype != null" >
-        user_type,
-      </if>
-      <if test="lasttime != null" >
-        last_time,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="userid != null" >
-        #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="operator != null" >
-        #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="userhospital != null" >
-        #{userhospital,jdbcType=VARCHAR},
-      </if>
-      <if test="userhospitalid != null" >
-        #{userhospitalid,jdbcType=VARCHAR},
-      </if>
-      <if test="usertype != null" >
-        #{usertype,jdbcType=VARCHAR},
-      </if>
-      <if test="lasttime != null" >
-        #{lasttime,jdbcType=VARCHAR},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Wechatusers" >
-    update bio_wechatusers
-    <set >
-      <if test="userid != null" >
-        user_id = #{userid,jdbcType=VARCHAR},
-      </if>
-      <if test="username != null" >
-        user_name = #{username,jdbcType=VARCHAR},
-      </if>
-      <if test="password != null" >
-        password = #{password,jdbcType=VARCHAR},
-      </if>
-      <if test="operator != null" >
-        operator = #{operator,jdbcType=VARCHAR},
-      </if>
-      <if test="userhospital != null" >
-        user_hospital = #{userhospital,jdbcType=VARCHAR},
-      </if>
-      <if test="userhospitalid != null" >
-        user_hospitalid = #{userhospitalid,jdbcType=VARCHAR},
-      </if>
-      <if test="usertype != null" >
-        user_type = #{usertype,jdbcType=VARCHAR},
-      </if>
-      <if test="lasttime != null" >
-        last_time = #{lasttime,jdbcType=VARCHAR},
-      </if>
-    </set>
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Wechatusers" >
-    update bio_wechatusers
-    set user_id = #{userid,jdbcType=VARCHAR},
-      user_name = #{username,jdbcType=VARCHAR},
-      password = #{password,jdbcType=VARCHAR},
-      operator = #{operator,jdbcType=VARCHAR},
-      user_hospital = #{userhospital,jdbcType=VARCHAR},
-      user_hospitalid = #{userhospitalid,jdbcType=VARCHAR},
-      user_type = #{usertype,jdbcType=VARCHAR},
-      last_time = #{lasttime,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=VARCHAR}
-  </update>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.VARCHAR" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from bio_wechatusers-->
+    <!--where id = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.VARCHAR" >-->
+    <!--delete from bio_wechatusers-->
+    <!--where id = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Wechatusers" >-->
+    <!--insert into bio_wechatusers (id, user_id, user_name, password,-->
+      <!--operator, user_hospital, user_hospitalid, -->
+      <!--user_type, last_time)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{userid,jdbcType=VARCHAR}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR},-->
+      <!--#{operator,jdbcType=VARCHAR}, #{userhospital,jdbcType=VARCHAR}, #{userhospitalid,jdbcType=VARCHAR}, -->
+      <!--#{usertype,jdbcType=VARCHAR}, #{lasttime,jdbcType=VARCHAR})-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Wechatusers" >-->
+    <!--insert into bio_wechatusers-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--id,-->
+      <!--</if>-->
+      <!--<if test="userid != null" >-->
+        <!--user_id,-->
+      <!--</if>-->
+      <!--<if test="username != null" >-->
+        <!--user_name,-->
+      <!--</if>-->
+      <!--<if test="password != null" >-->
+        <!--password,-->
+      <!--</if>-->
+      <!--<if test="operator != null" >-->
+        <!--operator,-->
+      <!--</if>-->
+      <!--<if test="userhospital != null" >-->
+        <!--user_hospital,-->
+      <!--</if>-->
+      <!--<if test="userhospitalid != null" >-->
+        <!--user_hospitalid,-->
+      <!--</if>-->
+      <!--<if test="usertype != null" >-->
+        <!--user_type,-->
+      <!--</if>-->
+      <!--<if test="lasttime != null" >-->
+        <!--last_time,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="userid != null" >-->
+        <!--#{userid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="username != null" >-->
+        <!--#{username,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="password != null" >-->
+        <!--#{password,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="operator != null" >-->
+        <!--#{operator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="userhospital != null" >-->
+        <!--#{userhospital,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="userhospitalid != null" >-->
+        <!--#{userhospitalid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="usertype != null" >-->
+        <!--#{usertype,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="lasttime != null" >-->
+        <!--#{lasttime,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Wechatusers" >-->
+    <!--update bio_wechatusers-->
+    <!--<set >-->
+      <!--<if test="userid != null" >-->
+        <!--user_id = #{userid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="username != null" >-->
+        <!--user_name = #{username,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="password != null" >-->
+        <!--password = #{password,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="operator != null" >-->
+        <!--operator = #{operator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="userhospital != null" >-->
+        <!--user_hospital = #{userhospital,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="userhospitalid != null" >-->
+        <!--user_hospitalid = #{userhospitalid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="usertype != null" >-->
+        <!--user_type = #{usertype,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="lasttime != null" >-->
+        <!--last_time = #{lasttime,jdbcType=VARCHAR},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where id = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Wechatusers" >-->
+    <!--update bio_wechatusers-->
+    <!--set user_id = #{userid,jdbcType=VARCHAR},-->
+      <!--user_name = #{username,jdbcType=VARCHAR},-->
+      <!--password = #{password,jdbcType=VARCHAR},-->
+      <!--operator = #{operator,jdbcType=VARCHAR},-->
+      <!--user_hospital = #{userhospital,jdbcType=VARCHAR},-->
+      <!--user_hospitalid = #{userhospitalid,jdbcType=VARCHAR},-->
+      <!--user_type = #{usertype,jdbcType=VARCHAR},-->
+      <!--last_time = #{lasttime,jdbcType=VARCHAR}-->
+    <!--where id = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
   
   <!-- 手写SQL -->
   <select id="selectByUsername" resultMap="BaseResultMap" parameterType="String" >

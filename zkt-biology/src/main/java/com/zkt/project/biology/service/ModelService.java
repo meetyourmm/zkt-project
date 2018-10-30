@@ -46,7 +46,7 @@ public class ModelService {
 		map.put("pageSize", pageSize);
 		map.put("from", from);
 
-		List<Model> modelList = modelMapper.selectAll(map);
+		List<Model> modelList = modelMapper.selectAllByMap(map);
 		Integer modelListCount = modelMapper.countAll(map);
 
 		// 封装返回参数

@@ -27,7 +27,7 @@ public class SystemParameterService {
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String hospitalid = String.valueOf(userInfo.getUserId());
 		
-		String alarmInterval = systemParameterMapper.selectAll(hospitalid);
+		String alarmInterval = systemParameterMapper.selectAllByMap(hospitalid);
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(alarmInterval);
 		return returnHandle;
@@ -42,7 +42,7 @@ public class SystemParameterService {
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String hospitalid = String.valueOf(userInfo.getUserId());
 				
-		String sign = systemParameterMapper.selectAll(hospitalid);
+		String sign = systemParameterMapper.selectAllByMap(hospitalid);
 		if(null != sign && sign != ""){	
 			HashMap<String, String> map = new HashMap<String, String>();
 			map.put("alarmInterval", alarmInterval);

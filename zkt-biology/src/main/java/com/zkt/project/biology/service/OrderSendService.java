@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import com.zkt.project.biology.config.PropConfiguration;
 import com.zkt.project.biology.constant.SystemConstant;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
@@ -75,8 +76,8 @@ public class OrderSendService {
 	@Autowired
 	private WechatusersMapper wechatusersMapper;
 	
-	@Resource(name = "proper")
-	private Map<?, ?> proper;
+	@Autowired
+	private PropConfiguration proper;
 
 	// 下载样本Excel模板
 	public ReturnObjectHandle searchSample(JSONObject json) throws Exception {
@@ -91,7 +92,6 @@ public class OrderSendService {
 
 		List<Sample> sampleList = sampleMapper.selectExcel(map);
 		Integer sampleListCount = sampleMapper.countByExcel(map);
-
 		// 封装返回参数
 		ReturnObjectHandle returnHandle = ReturnObjectHandle.createServerHandle();
 		returnHandle.setDraw(draw);
@@ -288,7 +288,7 @@ public class OrderSendService {
 	public Sample insertExeclInfo() throws Exception {
 		
 		String base = "execl";//execl文件夹
-		String path = (String) proper.get("file.upload.base");//系统默认C盘路径		
+		String path = proper.getFileUpload();//系统默认C盘路径
 		String basePath = path + base;
 		String filePath = basePath + "/" + DateUtils.formatDate(new Date(), DateUtils.YYYY_MM_DD_EN);
 		

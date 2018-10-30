@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
+import com.zkt.project.biology.config.PropConfiguration;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -81,8 +82,8 @@ public class WeChatStartService {
 	@Autowired
 	private ModelMapper modelMapper;
 
-	@Resource(name = "proper")
-	private Map<?, ?> proper;
+	@Autowired
+	private PropConfiguration proper;
 
 	
 	public String start(HttpServletRequest request) throws Exception {

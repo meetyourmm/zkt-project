@@ -10,7 +10,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 
 @SpringBootApplication
 @EnableSwagger2
-@MapperScan(basePackages ={"com.zkt.project.admin.mapper"} )
+@MapperScan(basePackages ={"com.zkt.project.biology.mapper"} )
 @ComponentScan(basePackages = {"com.zkt.project.biology","com.zkt.common.web"})
 @EnableSoaClient
 @EnableCaching

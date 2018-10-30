@@ -56,465 +56,465 @@
     CLASSIFY, TLIMIT_UP, TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, ARRIVETIME, REMARKS, NUM, SAMPLECLASSIFY,
     SENDER, TRANSPORT, RECIVER, CITY, AREA, SIGN, SIGN1, SIGN2, SIGN3, SIGN4, SIGN5, SIGN6, ALARMTIME, ALARMTIME1, ALARMTIME2, ALARMTIME3, ALARMTIME4
   </sql>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
-    select 
-    <include refid="Base_Column_List" />
-    from bio_order
-    where ID = #{id,jdbcType=VARCHAR}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
-    delete from bio_order
-    where ID = #{id,jdbcType=VARCHAR}
-  </delete>
-  <insert id="insert" parameterType="com.zkt.project.biology.entity.Order" >
-    insert into bio_order (ID, ORDER_NO, SENDER_ID, 
-      TRANSPORT_ID, RECIVER_ID, ORDER_STATUS, 
-      IS_PROBLEM, PROBLEM_CAUSE, IS_FINISH, 
-      CREATED_BY, CREATED_AT, UPDATED_BY, 
-      UPDATED_AT, PACK_OPERATOR, TRANSPORT_OPERATOR, 
-      RECEIVE_OPERATOR, SEND_TIME, RECEIVE_TIME, 
-      CAGE_NO, CAR_NO,
-      TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, 
-      ARRIVETIME, REMARKS, NUM, SAMPLECLASSIFY,
-      SENDER, TRANSPORT, RECIVER, CITY, AREA, SIGN, SIGN1, SIGN2, SIGN3, SIGN4, SIGN5, SIGN6, ALARMTIME, ALARMTIME1, ALARMTIME2, ALARMTIME3, ALARMTIME4)
-    values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{senderid,jdbcType=VARCHAR}, 
-      #{transportid,jdbcType=VARCHAR}, #{reciverid,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, 
-      #{isProblem,jdbcType=VARCHAR}, #{problemCause,jdbcType=VARCHAR}, #{isFinish,jdbcType=VARCHAR}, 
-      #{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, 
-      #{updatedAt,jdbcType=TIMESTAMP}, #{packOperator,jdbcType=VARCHAR}, #{transportOperator,jdbcType=VARCHAR}, 
-      #{receiveOperator,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, 
-      #{cageno,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, 
-	  #{classify,jdbcType=VARCHAR}, #{tlimitup,jdbcType=VARCHAR}, 
-      #{tlimitdown,jdbcType=VARCHAR}, #{hlimitup,jdbcType=VARCHAR}, #{hlimitdown,jdbcType=VARCHAR}, 
-      #{arrivetime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{sampleclassify,jdbcType=VARCHAR},
-      #{sender,jdbcType=VARCHAR}, #{transport,jdbcType=VARCHAR}, #{reciver,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR},
-      #{sign1,jdbcType=VARCHAR}, #{sign2,jdbcType=VARCHAR}, #{sign3,jdbcType=VARCHAR}, #{sign4,jdbcType=VARCHAR}, #{sign5,jdbcType=VARCHAR}, #{sign6,jdbcType=VARCHAR}, 
-      #{alarmtime,jdbcType=TIMESTAMP},#{alarmtime1,jdbcType=TIMESTAMP},#{alarmtime2,jdbcType=TIMESTAMP},#{alarmtime3,jdbcType=TIMESTAMP},#{alarmtime4,jdbcType=TIMESTAMP}
-  </insert>
-  <insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Order" >
-    insert into bio_order
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        ID,
-      </if>
-      <if test="orderNo != null" >
-        ORDER_NO,
-      </if>
-      <if test="senderid != null" >
-        SENDER_ID,
-      </if>
-      <if test="transportid != null" >
-        TRANSPORT_ID,
-      </if>
-      <if test="reciverid != null" >
-        RECIVER_ID,
-      </if>
-      <if test="orderStatus != null" >
-        ORDER_STATUS,
-      </if>
-      <if test="isProblem != null" >
-        IS_PROBLEM,
-      </if>
-      <if test="problemCause != null" >
-        PROBLEM_CAUSE,
-      </if>
-      <if test="isFinish != null" >
-        IS_FINISH,
-      </if>
-      <if test="createdBy != null" >
-        CREATED_BY,
-      </if>
-      <if test="createdAt != null" >
-        CREATED_AT,
-      </if>
-      <if test="updatedBy != null" >
-        UPDATED_BY,
-      </if>
-      <if test="updatedAt != null" >
-        UPDATED_AT,
-      </if>
-      <if test="packOperator != null" >
-        PACK_OPERATOR,
-      </if>
-      <if test="transportOperator != null" >
-        TRANSPORT_OPERATOR,
-      </if>
-      <if test="receiveOperator != null" >
-        RECEIVE_OPERATOR,
-      </if>
-      <if test="sendtime != null" >
-        SEND_TIME,
-      </if>
-      <if test="receivetime != null" >
-        RECEIVE_TIME,
-      </if>
-      <if test="cageno != null" >
-        CAGE_NO,
-      </if>
-      <if test="carNo != null" >
-        CAR_NO,
-      </if>
-      <if test="classify != null" >
-        CLASSIFY,
-      </if>
-      <if test="tlimitup != null" >
-        TLIMIT_UP,
-      </if>
-      <if test="tlimitdown != null" >
-        TLIMIT_DOWN,
-      </if>
-      <if test="hlimitup != null" >
-        HLIMIT_UP,
-      </if>
-      <if test="hlimitdown != null" >
-        HLIMIT_DOWN,
-      </if>
-      <if test="arrivetime != null" >
-        ARRIVETIME,
-      </if>
-      <if test="remarks != null" >
-        REMARKS,
-      </if>
-      <if test="num != null" >
-        NUM,
-      </if>
-      <if test="sampleclassify != null" >
-        SAMPLECLASSIFY,
-      </if>
-      <if test="sender != null" >
-        SENDER,
-      </if>
-      <if test="transport != null" >
-        TRANSPORT,
-      </if>
-      <if test="reciver != null" >
-        RECIVER,
-      </if>    
-      <if test="city != null" >
-        CITY,
-      </if>
-      <if test="area != null" >
-        AREA,
-      </if>
-      <if test="sign != null" >
-        SIGN,
-      </if>
-      <if test="sign1 != null" >
-        SIGN1,
-      </if>
-      <if test="sign2 != null" >
-        SIGN2,
-      </if>
-      <if test="sign3 != null" >
-        SIGN3,
-      </if>
-      <if test="sign4 != null" >
-        SIGN4,
-      </if>
-      <if test="sign5 != null" >
-        SIGN5,
-      </if>
-      <if test="sign6 != null" >
-        SIGN6,
-      </if>     
-      <if test="alarmtime != null" >
-        ALARMTIME,
-      </if>
-      <if test="alarmtime1 != null" >
-        ALARMTIME1,
-      </if>
-      <if test="alarmtime2 != null" >
-        ALARMTIME2,
-      </if>
-      <if test="alarmtime3 != null" >
-        ALARMTIME3,
-      </if>
-      <if test="alarmtime4 != null" >
-        ALARMTIME4,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=VARCHAR},
-      </if>
-      <if test="orderNo != null" >
-        #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="senderid != null" >
-        #{senderid,jdbcType=VARCHAR},
-      </if>
-      <if test="transportid != null" >
-        #{transportid,jdbcType=VARCHAR},
-      </if>
-      <if test="reciverid != null" >
-        #{reciverid,jdbcType=VARCHAR},
-      </if>
-      <if test="orderStatus != null" >
-        #{orderStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="isProblem != null" >
-        #{isProblem,jdbcType=VARCHAR},
-      </if>
-      <if test="problemCause != null" >
-        #{problemCause,jdbcType=VARCHAR},
-      </if>
-      <if test="isFinish != null" >
-        #{isFinish,jdbcType=VARCHAR},
-      </if>
-      <if test="createdBy != null" >
-        #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedBy != null" >
-        #{updatedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null" >
-        #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="packOperator != null" >
-        #{packOperator,jdbcType=VARCHAR},
-      </if>
-      <if test="transportOperator != null" >
-        #{transportOperator,jdbcType=VARCHAR},
-      </if>
-      <if test="receiveOperator != null" >
-        #{receiveOperator,jdbcType=VARCHAR},
-      </if>
-      <if test="sendtime != null" >
-        #{sendtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="receivetime != null" >
-        #{receivetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cageno != null" >
-        #{cageno,jdbcType=VARCHAR},
-      </if>
-      <if test="carNo != null" >
-        #{carNo,jdbcType=VARCHAR},
-      </if>     
-      <if test="classify != null" >
-        #{classify,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitup != null" >
-        #{tlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitdown != null" >
-        #{tlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitup != null" >
-        #{hlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitdown != null" >
-        #{hlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="arrivetime != null" >
-        #{arrivetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remarks != null" >
-        #{remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="num != null" >
-        #{num,jdbcType=VARCHAR},
-      </if>     
-      <if test="sampleclassify != null" >
-        #{sampleclassify,jdbcType=VARCHAR},
-      </if>
-      <if test="sender != null" >
-        #{sender,jdbcType=VARCHAR},
-      </if>
-      <if test="transport != null" >
-        #{transport,jdbcType=VARCHAR},
-      </if>
-      <if test="reciver != null" >
-        #{reciver,jdbcType=VARCHAR},
-      </if>      
-      <if test="city != null" >
-        #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="area != null" >
-        #{area,jdbcType=VARCHAR},
-      </if>
-      <if test="sign != null" >
-        #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="sign1 != null" >
-        #{sign1,jdbcType=VARCHAR},
-      </if>
-      <if test="sign2 != null" >
-        #{sign2,jdbcType=VARCHAR},
-      </if>
-      <if test="sign3 != null" >
-        #{sign3,jdbcType=VARCHAR},
-      </if>
-      <if test="sign4 != null" >
-        #{sign4,jdbcType=VARCHAR},
-      </if>
-      <if test="sign5 != null" >
-        #{sign5,jdbcType=VARCHAR},
-      </if>
-      <if test="sign6 != null" >
-        #{sign6,jdbcType=VARCHAR},
-      </if>     
-      <if test="alarmtime != null" >
-        #{alarmtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime1 != null" >
-        #{alarmtime1,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime2 != null" >
-        #{alarmtime2,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime3 != null" >
-        #{alarmtime3,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime4 != null" >
-        #{alarmtime4,jdbcType=TIMESTAMP},
-      </if>
-    </trim>
-  </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Order" >
-    update bio_order
-    <set >
-      <if test="orderNo != null" >
-        ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      </if>
-      <if test="senderid != null" >
-        SENDER_ID = #{senderid,jdbcType=VARCHAR},
-      </if>
-      <if test="transportid != null" >
-        TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
-      </if>
-      <if test="reciverid != null" >
-        RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
-      </if>
-      <if test="orderStatus != null" >
-        ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
-      </if>
-      <if test="isProblem != null" >
-        IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},
-      </if>
-      <if test="problemCause != null" >
-        PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},
-      </if>
-      <if test="isFinish != null" >
-        IS_FINISH = #{isFinish,jdbcType=VARCHAR},
-      </if>
-      <if test="createdBy != null" >
-        CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      </if>
-      <if test="createdAt != null" >
-        CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="updatedBy != null" >
-        UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-      </if>
-      <if test="updatedAt != null" >
-        UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-      </if>
-      <if test="packOperator != null" >
-        PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},
-      </if>
-      <if test="transportOperator != null" >
-        TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},
-      </if>
-      <if test="receiveOperator != null" >
-        RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},
-      </if>
-      <if test="sendtime != null" >
-        SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="receivetime != null" >
-        RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="cageno != null" >
-        CAGE_NO = #{cageno,jdbcType=VARCHAR},
-      </if>
-      <if test="carNo != null" >
-        CAR_NO = #{carNo,jdbcType=VARCHAR},
-      </if>      
-      <if test="classify != null" >
-        CLASSIFY = #{classify,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitup != null" >
-        TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="tlimitdown != null" >
-        TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitup != null" >
-        HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
-      </if>
-      <if test="hlimitdown != null" >
-        HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
-      </if>
-      <if test="arrivetime != null" >
-        ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="remarks != null" >
-        REMARKS = #{remarks,jdbcType=VARCHAR},
-      </if>
-      <if test="num != null" >
-        NUM = #{num,jdbcType=VARCHAR},
-      </if>      
-      <if test="sampleclassify != null" >
-        SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},
-      </if>
-      <if test="sender != null" >
-        SENDER = #{sender,jdbcType=VARCHAR},
-      </if>
-      <if test="transport != null" >
-        TRANSPORT = #{transport,jdbcType=VARCHAR},
-      </if>
-      <if test="reciver != null" >
-        RECIVER = #{reciver,jdbcType=VARCHAR},
-      </if>     
-      <if test="city != null" >
-        CITY = #{city,jdbcType=VARCHAR},
-      </if>
-      <if test="area != null" >
-        AREA = #{area,jdbcType=VARCHAR},
-      </if>
-      <if test="sign != null" >
-       SIGN  = #{sign,jdbcType=VARCHAR},
-      </if>
-      <if test="sign1 != null" >
-       SIGN1  = #{sign1,jdbcType=VARCHAR},
-      </if>
-      <if test="sign2 != null" >
-       SIGN2  = #{sign2,jdbcType=VARCHAR},
-      </if>
-      <if test="sign3 != null" >
-       SIGN3  = #{sign3,jdbcType=VARCHAR},
-      </if>
-      <if test="sign4 != null" >
-       SIGN4  = #{sign4,jdbcType=VARCHAR},
-      </if>
-      <if test="sign5 != null" >
-       SIGN5  = #{sign5,jdbcType=VARCHAR},
-      </if>
-      <if test="sign6 != null" >
-       SIGN6  = #{sign6,jdbcType=VARCHAR},
-      </if>     
-      <if test="alarmtime != null" >
-       ALARMTIME  = #{alarmtime,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime1 != null" >
-       ALARMTIME1  = #{alarmtime1,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime2 != null" >
-       ALARMTIME2  = #{alarmtime2,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime3 != null" >
-       ALARMTIME3  = #{alarmtime3,jdbcType=TIMESTAMP},
-      </if>
-      <if test="alarmtime4 != null" >
-       ALARMTIME4  = #{alarmtime4,jdbcType=TIMESTAMP},
-      </if>
-    </set>
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
+  <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >-->
+    <!--select -->
+    <!--<include refid="Base_Column_List" />-->
+    <!--from bio_order-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</select>-->
+  <!--<delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >-->
+    <!--delete from bio_order-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</delete>-->
+  <!--<insert id="insert" parameterType="com.zkt.project.biology.entity.Order" >-->
+    <!--insert into bio_order (ID, ORDER_NO, SENDER_ID, -->
+      <!--TRANSPORT_ID, RECIVER_ID, ORDER_STATUS, -->
+      <!--IS_PROBLEM, PROBLEM_CAUSE, IS_FINISH, -->
+      <!--CREATED_BY, CREATED_AT, UPDATED_BY, -->
+      <!--UPDATED_AT, PACK_OPERATOR, TRANSPORT_OPERATOR, -->
+      <!--RECEIVE_OPERATOR, SEND_TIME, RECEIVE_TIME, -->
+      <!--CAGE_NO, CAR_NO,-->
+      <!--TLIMIT_DOWN, HLIMIT_UP, HLIMIT_DOWN, -->
+      <!--ARRIVETIME, REMARKS, NUM, SAMPLECLASSIFY,-->
+      <!--SENDER, TRANSPORT, RECIVER, CITY, AREA, SIGN, SIGN1, SIGN2, SIGN3, SIGN4, SIGN5, SIGN6, ALARMTIME, ALARMTIME1, ALARMTIME2, ALARMTIME3, ALARMTIME4)-->
+    <!--values (#{id,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{senderid,jdbcType=VARCHAR}, -->
+      <!--#{transportid,jdbcType=VARCHAR}, #{reciverid,jdbcType=VARCHAR}, #{orderStatus,jdbcType=VARCHAR}, -->
+      <!--#{isProblem,jdbcType=VARCHAR}, #{problemCause,jdbcType=VARCHAR}, #{isFinish,jdbcType=VARCHAR}, -->
+      <!--#{createdBy,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, #{updatedBy,jdbcType=VARCHAR}, -->
+      <!--#{updatedAt,jdbcType=TIMESTAMP}, #{packOperator,jdbcType=VARCHAR}, #{transportOperator,jdbcType=VARCHAR}, -->
+      <!--#{receiveOperator,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{receivetime,jdbcType=TIMESTAMP}, -->
+      <!--#{cageno,jdbcType=VARCHAR}, #{carNo,jdbcType=VARCHAR}, -->
+	  <!--#{classify,jdbcType=VARCHAR}, #{tlimitup,jdbcType=VARCHAR}, -->
+      <!--#{tlimitdown,jdbcType=VARCHAR}, #{hlimitup,jdbcType=VARCHAR}, #{hlimitdown,jdbcType=VARCHAR}, -->
+      <!--#{arrivetime,jdbcType=TIMESTAMP}, #{remarks,jdbcType=VARCHAR}, #{num,jdbcType=VARCHAR}, #{sampleclassify,jdbcType=VARCHAR},-->
+      <!--#{sender,jdbcType=VARCHAR}, #{transport,jdbcType=VARCHAR}, #{reciver,jdbcType=VARCHAR}, #{city,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, #{sign,jdbcType=VARCHAR},-->
+      <!--#{sign1,jdbcType=VARCHAR}, #{sign2,jdbcType=VARCHAR}, #{sign3,jdbcType=VARCHAR}, #{sign4,jdbcType=VARCHAR}, #{sign5,jdbcType=VARCHAR}, #{sign6,jdbcType=VARCHAR}, -->
+      <!--#{alarmtime,jdbcType=TIMESTAMP},#{alarmtime1,jdbcType=TIMESTAMP},#{alarmtime2,jdbcType=TIMESTAMP},#{alarmtime3,jdbcType=TIMESTAMP},#{alarmtime4,jdbcType=TIMESTAMP}-->
+  <!--</insert>-->
+  <!--<insert id="insertSelective" parameterType="com.zkt.project.biology.entity.Order" >-->
+    <!--insert into bio_order-->
+    <!--<trim prefix="(" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--ID,-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO,-->
+      <!--</if>-->
+      <!--<if test="senderid != null" >-->
+        <!--SENDER_ID,-->
+      <!--</if>-->
+      <!--<if test="transportid != null" >-->
+        <!--TRANSPORT_ID,-->
+      <!--</if>-->
+      <!--<if test="reciverid != null" >-->
+        <!--RECIVER_ID,-->
+      <!--</if>-->
+      <!--<if test="orderStatus != null" >-->
+        <!--ORDER_STATUS,-->
+      <!--</if>-->
+      <!--<if test="isProblem != null" >-->
+        <!--IS_PROBLEM,-->
+      <!--</if>-->
+      <!--<if test="problemCause != null" >-->
+        <!--PROBLEM_CAUSE,-->
+      <!--</if>-->
+      <!--<if test="isFinish != null" >-->
+        <!--IS_FINISH,-->
+      <!--</if>-->
+      <!--<if test="createdBy != null" >-->
+        <!--CREATED_BY,-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--CREATED_AT,-->
+      <!--</if>-->
+      <!--<if test="updatedBy != null" >-->
+        <!--UPDATED_BY,-->
+      <!--</if>-->
+      <!--<if test="updatedAt != null" >-->
+        <!--UPDATED_AT,-->
+      <!--</if>-->
+      <!--<if test="packOperator != null" >-->
+        <!--PACK_OPERATOR,-->
+      <!--</if>-->
+      <!--<if test="transportOperator != null" >-->
+        <!--TRANSPORT_OPERATOR,-->
+      <!--</if>-->
+      <!--<if test="receiveOperator != null" >-->
+        <!--RECEIVE_OPERATOR,-->
+      <!--</if>-->
+      <!--<if test="sendtime != null" >-->
+        <!--SEND_TIME,-->
+      <!--</if>-->
+      <!--<if test="receivetime != null" >-->
+        <!--RECEIVE_TIME,-->
+      <!--</if>-->
+      <!--<if test="cageno != null" >-->
+        <!--CAGE_NO,-->
+      <!--</if>-->
+      <!--<if test="carNo != null" >-->
+        <!--CAR_NO,-->
+      <!--</if>-->
+      <!--<if test="classify != null" >-->
+        <!--CLASSIFY,-->
+      <!--</if>-->
+      <!--<if test="tlimitup != null" >-->
+        <!--TLIMIT_UP,-->
+      <!--</if>-->
+      <!--<if test="tlimitdown != null" >-->
+        <!--TLIMIT_DOWN,-->
+      <!--</if>-->
+      <!--<if test="hlimitup != null" >-->
+        <!--HLIMIT_UP,-->
+      <!--</if>-->
+      <!--<if test="hlimitdown != null" >-->
+        <!--HLIMIT_DOWN,-->
+      <!--</if>-->
+      <!--<if test="arrivetime != null" >-->
+        <!--ARRIVETIME,-->
+      <!--</if>-->
+      <!--<if test="remarks != null" >-->
+        <!--REMARKS,-->
+      <!--</if>-->
+      <!--<if test="num != null" >-->
+        <!--NUM,-->
+      <!--</if>-->
+      <!--<if test="sampleclassify != null" >-->
+        <!--SAMPLECLASSIFY,-->
+      <!--</if>-->
+      <!--<if test="sender != null" >-->
+        <!--SENDER,-->
+      <!--</if>-->
+      <!--<if test="transport != null" >-->
+        <!--TRANSPORT,-->
+      <!--</if>-->
+      <!--<if test="reciver != null" >-->
+        <!--RECIVER,-->
+      <!--</if>    -->
+      <!--<if test="city != null" >-->
+        <!--CITY,-->
+      <!--</if>-->
+      <!--<if test="area != null" >-->
+        <!--AREA,-->
+      <!--</if>-->
+      <!--<if test="sign != null" >-->
+        <!--SIGN,-->
+      <!--</if>-->
+      <!--<if test="sign1 != null" >-->
+        <!--SIGN1,-->
+      <!--</if>-->
+      <!--<if test="sign2 != null" >-->
+        <!--SIGN2,-->
+      <!--</if>-->
+      <!--<if test="sign3 != null" >-->
+        <!--SIGN3,-->
+      <!--</if>-->
+      <!--<if test="sign4 != null" >-->
+        <!--SIGN4,-->
+      <!--</if>-->
+      <!--<if test="sign5 != null" >-->
+        <!--SIGN5,-->
+      <!--</if>-->
+      <!--<if test="sign6 != null" >-->
+        <!--SIGN6,-->
+      <!--</if>     -->
+      <!--<if test="alarmtime != null" >-->
+        <!--ALARMTIME,-->
+      <!--</if>-->
+      <!--<if test="alarmtime1 != null" >-->
+        <!--ALARMTIME1,-->
+      <!--</if>-->
+      <!--<if test="alarmtime2 != null" >-->
+        <!--ALARMTIME2,-->
+      <!--</if>-->
+      <!--<if test="alarmtime3 != null" >-->
+        <!--ALARMTIME3,-->
+      <!--</if>-->
+      <!--<if test="alarmtime4 != null" >-->
+        <!--ALARMTIME4,-->
+      <!--</if>-->
+    <!--</trim>-->
+    <!--<trim prefix="values (" suffix=")" suffixOverrides="," >-->
+      <!--<if test="id != null" >-->
+        <!--#{id,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="orderNo != null" >-->
+        <!--#{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderid != null" >-->
+        <!--#{senderid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportid != null" >-->
+        <!--#{transportid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciverid != null" >-->
+        <!--#{reciverid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="orderStatus != null" >-->
+        <!--#{orderStatus,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="isProblem != null" >-->
+        <!--#{isProblem,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="problemCause != null" >-->
+        <!--#{problemCause,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="isFinish != null" >-->
+        <!--#{isFinish,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdBy != null" >-->
+        <!--#{createdBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--#{createdAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="updatedBy != null" >-->
+        <!--#{updatedBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="updatedAt != null" >-->
+        <!--#{updatedAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="packOperator != null" >-->
+        <!--#{packOperator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportOperator != null" >-->
+        <!--#{transportOperator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="receiveOperator != null" >-->
+        <!--#{receiveOperator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sendtime != null" >-->
+        <!--#{sendtime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="receivetime != null" >-->
+        <!--#{receivetime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="cageno != null" >-->
+        <!--#{cageno,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="carNo != null" >-->
+        <!--#{carNo,jdbcType=VARCHAR},-->
+      <!--</if>     -->
+      <!--<if test="classify != null" >-->
+        <!--#{classify,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitup != null" >-->
+        <!--#{tlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitdown != null" >-->
+        <!--#{tlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitup != null" >-->
+        <!--#{hlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitdown != null" >-->
+        <!--#{hlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="arrivetime != null" >-->
+        <!--#{arrivetime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="remarks != null" >-->
+        <!--#{remarks,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="num != null" >-->
+        <!--#{num,jdbcType=VARCHAR},-->
+      <!--</if>     -->
+      <!--<if test="sampleclassify != null" >-->
+        <!--#{sampleclassify,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sender != null" >-->
+        <!--#{sender,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transport != null" >-->
+        <!--#{transport,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciver != null" >-->
+        <!--#{reciver,jdbcType=VARCHAR},-->
+      <!--</if>      -->
+      <!--<if test="city != null" >-->
+        <!--#{city,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="area != null" >-->
+        <!--#{area,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign != null" >-->
+        <!--#{sign,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign1 != null" >-->
+        <!--#{sign1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign2 != null" >-->
+        <!--#{sign2,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign3 != null" >-->
+        <!--#{sign3,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign4 != null" >-->
+        <!--#{sign4,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign5 != null" >-->
+        <!--#{sign5,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign6 != null" >-->
+        <!--#{sign6,jdbcType=VARCHAR},-->
+      <!--</if>     -->
+      <!--<if test="alarmtime != null" >-->
+        <!--#{alarmtime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime1 != null" >-->
+        <!--#{alarmtime1,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime2 != null" >-->
+        <!--#{alarmtime2,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime3 != null" >-->
+        <!--#{alarmtime3,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime4 != null" >-->
+        <!--#{alarmtime4,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+    <!--</trim>-->
+  <!--</insert>-->
+  <!--<update id="updateByPrimaryKeySelective" parameterType="com.zkt.project.biology.entity.Order" >-->
+    <!--update bio_order-->
+    <!--<set >-->
+      <!--<if test="orderNo != null" >-->
+        <!--ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="senderid != null" >-->
+        <!--SENDER_ID = #{senderid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportid != null" >-->
+        <!--TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciverid != null" >-->
+        <!--RECIVER_ID = #{reciverid,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="orderStatus != null" >-->
+        <!--ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="isProblem != null" >-->
+        <!--IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="problemCause != null" >-->
+        <!--PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="isFinish != null" >-->
+        <!--IS_FINISH = #{isFinish,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdBy != null" >-->
+        <!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="createdAt != null" >-->
+        <!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="updatedBy != null" >-->
+        <!--UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="updatedAt != null" >-->
+        <!--UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="packOperator != null" >-->
+        <!--PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transportOperator != null" >-->
+        <!--TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="receiveOperator != null" >-->
+        <!--RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sendtime != null" >-->
+        <!--SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="receivetime != null" >-->
+        <!--RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="cageno != null" >-->
+        <!--CAGE_NO = #{cageno,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="carNo != null" >-->
+        <!--CAR_NO = #{carNo,jdbcType=VARCHAR},-->
+      <!--</if>      -->
+      <!--<if test="classify != null" >-->
+        <!--CLASSIFY = #{classify,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitup != null" >-->
+        <!--TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="tlimitdown != null" >-->
+        <!--TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitup != null" >-->
+        <!--HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="hlimitdown != null" >-->
+        <!--HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="arrivetime != null" >-->
+        <!--ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="remarks != null" >-->
+        <!--REMARKS = #{remarks,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="num != null" >-->
+        <!--NUM = #{num,jdbcType=VARCHAR},-->
+      <!--</if>      -->
+      <!--<if test="sampleclassify != null" >-->
+        <!--SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sender != null" >-->
+        <!--SENDER = #{sender,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="transport != null" >-->
+        <!--TRANSPORT = #{transport,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="reciver != null" >-->
+        <!--RECIVER = #{reciver,jdbcType=VARCHAR},-->
+      <!--</if>     -->
+      <!--<if test="city != null" >-->
+        <!--CITY = #{city,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="area != null" >-->
+        <!--AREA = #{area,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign != null" >-->
+       <!--SIGN  = #{sign,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign1 != null" >-->
+       <!--SIGN1  = #{sign1,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign2 != null" >-->
+       <!--SIGN2  = #{sign2,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign3 != null" >-->
+       <!--SIGN3  = #{sign3,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign4 != null" >-->
+       <!--SIGN4  = #{sign4,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign5 != null" >-->
+       <!--SIGN5  = #{sign5,jdbcType=VARCHAR},-->
+      <!--</if>-->
+      <!--<if test="sign6 != null" >-->
+       <!--SIGN6  = #{sign6,jdbcType=VARCHAR},-->
+      <!--</if>     -->
+      <!--<if test="alarmtime != null" >-->
+       <!--ALARMTIME  = #{alarmtime,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime1 != null" >-->
+       <!--ALARMTIME1  = #{alarmtime1,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime2 != null" >-->
+       <!--ALARMTIME2  = #{alarmtime2,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime3 != null" >-->
+       <!--ALARMTIME3  = #{alarmtime3,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+      <!--<if test="alarmtime4 != null" >-->
+       <!--ALARMTIME4  = #{alarmtime4,jdbcType=TIMESTAMP},-->
+      <!--</if>-->
+    <!--</set>-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
   <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.zkt.project.biology.entity.Order" >
     update bio_order
     set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
@@ -564,56 +564,56 @@
       ALARMTIME4 = #{alarmtime4,jdbcType=TIMESTAMP}
     where ID = #{id,jdbcType=VARCHAR}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Order" >
-    update bio_order
-    set ORDER_NO = #{orderNo,jdbcType=VARCHAR},
-      SENDER_ID = #{senderid,jdbcType=VARCHAR},
-      TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},
-      RECIVER_ID = #{reciverid,jdbcType=VARCHAR},
-      ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},
-      IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},
-      PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},
-      IS_FINISH = #{isFinish,jdbcType=VARCHAR},
-      CREATED_BY = #{createdBy,jdbcType=VARCHAR},
-      CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},
-      UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},
-      UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},
-      PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},
-      TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},
-      RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},
-      SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},
-      RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},
-      CAGE_NO = #{cageno,jdbcType=VARCHAR},
-      CAR_NO = #{carNo,jdbcType=VARCHAR},
-      CLASSIFY = #{classify,jdbcType=VARCHAR},
-      TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},
-      TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},
-      HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},
-      HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},
-      ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},
-      REMARKS = #{remarks,jdbcType=VARCHAR},
-      NUM = #{num,jdbcType=VARCHAR},
-      SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},
-      SENDER = #{sender,jdbcType=VARCHAR},
-      TRANSPORT = #{transport,jdbcType=VARCHAR},
-      RECIVER = #{reciver,jdbcType=VARCHAR},     
-      CITY = #{city,jdbcType=VARCHAR},
-      AREA = #{area,jdbcType=VARCHAR},
-      SIGN = #{sign,jdbcType=VARCHAR},
-      SIGN1 = #{sign1,jdbcType=VARCHAR},
-      SIGN2 = #{sign2,jdbcType=VARCHAR},
-      SIGN3 = #{sign3,jdbcType=VARCHAR},
-      SIGN4 = #{sign4,jdbcType=VARCHAR},
-      SIGN5 = #{sign5,jdbcType=VARCHAR},
-      SIGN6 = #{sign6,jdbcType=VARCHAR},      
-      ALARMTIME = #{alarmtime,jdbcType=TIMESTAMP},
-      ALARMTIME1 = #{alarmtime1,jdbcType=TIMESTAMP},
-      ALARMTIME2 = #{alarmtime2,jdbcType=TIMESTAMP},
-      ALARMTIME3 = #{alarmtime3,jdbcType=TIMESTAMP},
-      ALARMTIME4 = #{alarmtime4,jdbcType=TIMESTAMP}
-    where ID = #{id,jdbcType=VARCHAR}
-  </update>
-  
+  <!--<update id="updateByPrimaryKey" parameterType="com.zkt.project.biology.entity.Order" >-->
+    <!--update bio_order-->
+    <!--set ORDER_NO = #{orderNo,jdbcType=VARCHAR},-->
+      <!--SENDER_ID = #{senderid,jdbcType=VARCHAR},-->
+      <!--TRANSPORT_ID = #{transportid,jdbcType=VARCHAR},-->
+      <!--RECIVER_ID = #{reciverid,jdbcType=VARCHAR},-->
+      <!--ORDER_STATUS = #{orderStatus,jdbcType=VARCHAR},-->
+      <!--IS_PROBLEM = #{isProblem,jdbcType=VARCHAR},-->
+      <!--PROBLEM_CAUSE = #{problemCause,jdbcType=VARCHAR},-->
+      <!--IS_FINISH = #{isFinish,jdbcType=VARCHAR},-->
+      <!--CREATED_BY = #{createdBy,jdbcType=VARCHAR},-->
+      <!--CREATED_AT = #{createdAt,jdbcType=TIMESTAMP},-->
+      <!--UPDATED_BY = #{updatedBy,jdbcType=VARCHAR},-->
+      <!--UPDATED_AT = #{updatedAt,jdbcType=TIMESTAMP},-->
+      <!--PACK_OPERATOR = #{packOperator,jdbcType=VARCHAR},-->
+      <!--TRANSPORT_OPERATOR = #{transportOperator,jdbcType=VARCHAR},-->
+      <!--RECEIVE_OPERATOR = #{receiveOperator,jdbcType=VARCHAR},-->
+      <!--SEND_TIME = #{sendtime,jdbcType=TIMESTAMP},-->
+      <!--RECEIVE_TIME = #{receivetime,jdbcType=TIMESTAMP},-->
+      <!--CAGE_NO = #{cageno,jdbcType=VARCHAR},-->
+      <!--CAR_NO = #{carNo,jdbcType=VARCHAR},-->
+      <!--CLASSIFY = #{classify,jdbcType=VARCHAR},-->
+      <!--TLIMIT_UP = #{tlimitup,jdbcType=VARCHAR},-->
+      <!--TLIMIT_DOWN = #{tlimitdown,jdbcType=VARCHAR},-->
+      <!--HLIMIT_UP = #{hlimitup,jdbcType=VARCHAR},-->
+      <!--HLIMIT_DOWN = #{hlimitdown,jdbcType=VARCHAR},-->
+      <!--ARRIVETIME = #{arrivetime,jdbcType=TIMESTAMP},-->
+      <!--REMARKS = #{remarks,jdbcType=VARCHAR},-->
+      <!--NUM = #{num,jdbcType=VARCHAR},-->
+      <!--SAMPLECLASSIFY = #{sampleclassify,jdbcType=VARCHAR},-->
+      <!--SENDER = #{sender,jdbcType=VARCHAR},-->
+      <!--TRANSPORT = #{transport,jdbcType=VARCHAR},-->
+      <!--RECIVER = #{reciver,jdbcType=VARCHAR},     -->
+      <!--CITY = #{city,jdbcType=VARCHAR},-->
+      <!--AREA = #{area,jdbcType=VARCHAR},-->
+      <!--SIGN = #{sign,jdbcType=VARCHAR},-->
+      <!--SIGN1 = #{sign1,jdbcType=VARCHAR},-->
+      <!--SIGN2 = #{sign2,jdbcType=VARCHAR},-->
+      <!--SIGN3 = #{sign3,jdbcType=VARCHAR},-->
+      <!--SIGN4 = #{sign4,jdbcType=VARCHAR},-->
+      <!--SIGN5 = #{sign5,jdbcType=VARCHAR},-->
+      <!--SIGN6 = #{sign6,jdbcType=VARCHAR},      -->
+      <!--ALARMTIME = #{alarmtime,jdbcType=TIMESTAMP},-->
+      <!--ALARMTIME1 = #{alarmtime1,jdbcType=TIMESTAMP},-->
+      <!--ALARMTIME2 = #{alarmtime2,jdbcType=TIMESTAMP},-->
+      <!--ALARMTIME3 = #{alarmtime3,jdbcType=TIMESTAMP},-->
+      <!--ALARMTIME4 = #{alarmtime4,jdbcType=TIMESTAMP}-->
+    <!--where ID = #{id,jdbcType=VARCHAR}-->
+  <!--</update>-->
+  <!---->
   
   
   <!-- 手写SQL -->

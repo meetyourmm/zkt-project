@@ -8,17 +8,17 @@ import tk.mybatis.mapper.common.Mapper;
 
 public interface AuthResMapper extends Mapper<AuthRes>{
 
-	int deleteByPrimaryKey(String id);
+//	int deleteByPrimaryKey(String id);
 
-	int insert(AuthRes record);
+//	int insert(AuthRes record);
 
-	int insertSelective(AuthRes record);
+//	int insertSelective(AuthRes record);
 
-	AuthRes selectByPrimaryKey(String id);
+//	AuthRes selectByPrimaryKey(String id);
 
-	int updateByPrimaryKeySelective(AuthRes record);
+//	int updateByPrimaryKeySelective(AuthRes record);
 
-	int updateByPrimaryKey(AuthRes record);
+//	int updateByPrimaryKey(AuthRes record);
 
 	List<String> selectByUserName(String userName);
 

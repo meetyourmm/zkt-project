@@ -23,7 +23,7 @@ public interface ProblemmonitorMapper extends Mapper<Problemmonitor>{
 
 	List<Problemmonitor> selectByOrderNo(String orderNo);
 
-	List<Problemmonitor> selectAll(Map<String, Object> map);
+	List<Problemmonitor> selectAllByMap(Map<String, Object> map);
 
 	Integer countAll(Map<String, Object> map);
 

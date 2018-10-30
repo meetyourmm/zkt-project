@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -52,7 +53,7 @@ public class OrderUpdateService {
 	
 	//查询可修改订单
 	
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -84,14 +85,14 @@ public class OrderUpdateService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	
 	
 	//订单详情
 	
-	public String detail(JSONObject json) {
+	public ReturnSimpleHandle detail(JSONObject json) {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -163,14 +164,14 @@ public class OrderUpdateService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	
 	
 	//修改订单
 	
-	public String editOrder(JSONObject json) throws Exception {
+	public ReturnSimpleHandle editOrder(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -209,7 +210,7 @@ public class OrderUpdateService {
 		//修改时相同订单号的可以修改
 		Order isExistence = orderMapper.selectByCageno(cageno);
 		if(null != isExistence && !orderNo.equals(isExistence.getOrderNo())){
-			return ReturnSimpleHandle.createServerError("此箱体已绑定了订单并开始使用，请重新选择箱体!", "-1", null, null);			
+			return ReturnSimpleHandle.createServerError("此箱体已绑定了订单并开始使用，请重新选择箱体!",  SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		// 保存订单
@@ -314,7 +315,7 @@ public class OrderUpdateService {
 		}*/
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 }

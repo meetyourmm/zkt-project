@@ -17,9 +17,8 @@ package com.zkt.project.admin.service;
 import com.zkt.common.core.constant.EnumUtil;
 import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.project.admin.entity.SysMenu;
-import com.zkt.project.admin.entity.SysUser;
 import com.zkt.project.admin.mapper.MenuMapper;
-import com.zkt.project.admin.vo.MenuTree;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
@@ -48,7 +47,10 @@ public class MenuService {
      */
     @Cacheable(value="permission",key="'menus'")
     public List<SysMenu> selectListAll() {
-        return menuMapper.selectAll();
+        Example example = new Example(SysMenu.class);
+        example.createCriteria().andEqualTo("status", EnumUtil.DataStatus.ENABLE);
+        example.setOrderByClause("order_num asc");
+        return menuMapper.selectByExample(example);
     }
 
     /**
@@ -67,6 +69,7 @@ public class MenuService {
         if (!StringUtils.isEmpty(title)) {
             example.createCriteria().andLike("title", "%" + title + "%");
         }
+        example.setOrderByClause("order_num asc");
         return menuMapper.selectByExample(example);
     }
 
@@ -95,8 +98,24 @@ public class MenuService {
 
     @CacheEvict(value="permission",allEntries=true)
     public void deleteMenu(String menuId){
-        SysMenu menu = menuMapper.selectByPrimaryKey(menuId);
-        menu.setStatus(EnumUtil.DataStatus.DELETE.getStatus());
-        menuMapper.updateByPrimaryKeySelective(menu);
+//        SysMenu menu = menuMapper.selectByPrimaryKey(menuId);
+//        menu.setStatus(EnumUtil.DataStatus.DELETE.getStatus());
+        menuMapper.deleteByPrimaryKey(menuId);
+    }
+
+
+    public Boolean validateCode(String code) {
+        return menuMapper.checkByCode(code)==0?false:true;
+    }
+
+    public List<SysMenu> getMenuElementList(String parentId, String name) {
+        Example example = new Example(SysMenu.class);
+        Example.Criteria criteria =  example.createCriteria();
+        criteria.andEqualTo("parentId",parentId).andEqualTo("type",EnumUtil.MenuType.BUTTON.getType());
+        if (!StringUtils.isEmpty(name)) {
+            criteria.andLike("title", "%" + name + "%");
+        }
+        example.setOrderByClause("order_num asc");
+        return menuMapper.selectByExample(example);
     }
 }

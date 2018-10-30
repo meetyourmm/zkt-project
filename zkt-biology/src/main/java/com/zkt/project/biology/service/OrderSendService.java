@@ -11,6 +11,7 @@ import java.util.UUID;
 
 import javax.annotation.Resource;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -78,7 +79,7 @@ public class OrderSendService {
 	private Map<?, ?> proper;
 
 	// 下载样本Excel模板
-	public String searchSample(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchSample(JSONObject json) throws Exception {
 
 		Integer draw = Integer.parseInt("10");
 		Integer from = Integer.parseInt("0");
@@ -99,7 +100,7 @@ public class OrderSendService {
 		returnHandle.setDataMaxCount(sampleListCount);
 		returnHandle.setDataMaxPage(
 				sampleListCount % pageSize == 0 ? sampleListCount / pageSize : sampleListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 查询不含下单医院的医院名称ID集合
@@ -127,7 +128,7 @@ public class OrderSendService {
 	}
 
 	// 保存订单
-	public String saveOrder(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveOrder(JSONObject json){
 		
 		UserInfo userInfo = null;// RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -160,7 +161,7 @@ public class OrderSendService {
 		//解决办法，在写入订单时，先判断是否有相同编号的箱体绑定的订单处于未完成状态，即状态不是完成和异常状态，如果存在这样的订单就不再写入
 		Order isExistence = orderMapper.selectByCageno(cageno);
 		if(null != isExistence){
-			return ReturnSimpleHandle.createServerError("此箱体已绑定了订单并开始使用，请重新选择箱体!", "-1", null, null);			
+			return ReturnSimpleHandle.createServerError("此箱体已绑定了订单并开始使用，请重新选择箱体!", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 			
 		// 建立订单号
@@ -259,7 +260,7 @@ public class OrderSendService {
 		}
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 批量保存样本信息
@@ -343,14 +344,20 @@ public class OrderSendService {
 		String filePath = json.getString("excel");
 		
 		FileInputStream inputStream = new FileInputStream(filePath);
-		
-		Workbook workbook = new XSSFWorkbook(inputStream);
-		Sheet sheet = workbook.getSheetAt(0);
-		
-		String sign1 = UUID.randomUUID().toString();
-		String sampleclassify = "";
-		Sample samples = new Sample();
-		
+
+		Sheet sheet;
+		String sign1;
+		String sampleclassify;
+		Sample samples;
+		int rowNum;
+		try (Workbook workbook = new XSSFWorkbook(inputStream)) {
+			sheet = workbook.getSheetAt(0);
+		}
+
+		sign1 = UUID.randomUUID().toString();
+		sampleclassify = "";
+		samples = new Sample();
+
 		for (Iterator<Row> iterator = sheet.iterator(); iterator.hasNext();) {
 			
 			Row row = (Row) iterator.next();
@@ -368,8 +375,8 @@ public class OrderSendService {
 			samples.setSign(sign1);//特征码
 			sampleMapper.insertSelective(samples);			
 		}
-		
-		int rowNum = sheet.getLastRowNum();//获得总行数
+
+		rowNum = sheet.getLastRowNum();
 		result.put("sampleclassify1", sampleclassify);
 		result.put("counter1", rowNum);
 		result.put("sign1", sign1);

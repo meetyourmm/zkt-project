@@ -43,7 +43,7 @@ public class ReportTransportSelfService {
 
 	// 查询本公司发货报表
 	
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = userInfo.getUserId();
@@ -76,12 +76,12 @@ public class ReportTransportSelfService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 全部订单详情
 	
-	public String detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -190,7 +190,7 @@ public class ReportTransportSelfService {
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 }

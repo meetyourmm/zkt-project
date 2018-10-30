@@ -14,9 +14,13 @@ public class ReturnSimpleHandle implements Serializable {
 	private static final long serialVersionUID = 5750308905528388534L;
 
 	private String message;
-	private Boolean isSuccess;
+	private Boolean success;
 	private Object data;
-	private String code;
+	private Integer status = 200;
+
+	public static long getSerialVersionUID() {
+		return serialVersionUID;
+	}
 
 	public String getMessage() {
 		return message;
@@ -26,12 +30,12 @@ public class ReturnSimpleHandle implements Serializable {
 		this.message = message;
 	}
 
-	public Boolean getIsSuccess() {
-		return isSuccess;
+	public Boolean getSuccess() {
+		return success;
 	}
 
-	public void setIsSuccess(Boolean isSuccess) {
-		this.isSuccess = isSuccess;
+	public void setSuccess(Boolean success) {
+		this.success = success;
 	}
 
 	public Object getData() {
@@ -42,12 +46,12 @@ public class ReturnSimpleHandle implements Serializable {
 		this.data = data;
 	}
 
-	public String getCode() {
-		return code;
+	public Integer getStatus() {
+		return status;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setStatus(Integer status) {
+		this.status = status;
 	}
 
 	/**
@@ -58,8 +62,8 @@ public class ReturnSimpleHandle implements Serializable {
 	public static ReturnSimpleHandle createServerHandle() {
 		ReturnSimpleHandle handle = new ReturnSimpleHandle();
 		handle.setMessage(SystemConstant.MESSAGE_SERVER_Z00);
-		handle.setIsSuccess(true);
-		handle.setCode(SystemConstant.MESSAGE_SERVER_CODE_Z00);
+		handle.setSuccess(true);
+		handle.setStatus(SystemConstant.MESSAGE_SERVER_CODE_Z00);
 		return handle;
 	}
 
@@ -68,7 +72,7 @@ public class ReturnSimpleHandle implements Serializable {
 	 * 
 	 * @return
 	 */
-	public static String createServerError(Log log,Exception e) {
+	public static ReturnSimpleHandle createServerError(Log log,Exception e) {
 		if (log != null && e != null) {
 			StringWriter sw = new StringWriter();
 			e.printStackTrace(new PrintWriter(sw, true));
@@ -76,11 +80,10 @@ public class ReturnSimpleHandle implements Serializable {
 		}
 		ReturnSimpleHandle handle = new ReturnSimpleHandle();
 		handle.setMessage(SystemConstant.ERROR_MESSAGE_SERVER_F01);
-		handle.setIsSuccess(false);
-		handle.setCode(SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01);
+		handle.setSuccess(false);
+		handle.setStatus(SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01);
 		handle.setData(new Object());
-		String string = JSONObject.fromObject(handle).toString();
-		return string;
+		return handle;
 	}
 
 	/**
@@ -88,17 +91,16 @@ public class ReturnSimpleHandle implements Serializable {
 	 * 
 	 * @return
 	 */
-	public static String createServerError(String message, String code,Log log,Exception e) {
+	public static ReturnSimpleHandle createServerError(String message, Integer code,Log log,Exception e) {
 		if (log != null && e != null) {
 			log.error(e.getMessage());
 		}
 		ReturnSimpleHandle handle = new ReturnSimpleHandle();
-		handle.setIsSuccess(false);
-		handle.setCode(code);
+		handle.setSuccess(false);
+		handle.setStatus(code);
 		handle.setMessage(message);
 		handle.setData(new Object());
-		String string = JSONObject.fromObject(handle).toString();
-		return string;
+		return handle;
 	}
 	
 }

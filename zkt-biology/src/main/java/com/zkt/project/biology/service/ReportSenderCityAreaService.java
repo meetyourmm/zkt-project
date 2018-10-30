@@ -41,7 +41,7 @@ public class ReportSenderCityAreaService {
 	private LoginMapper loginMapper;
 
 	// 查询各市区医院报表
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 
 		String sender = json.getString("sender");//医院名称
 		String city = json.getString("city");//市
@@ -77,11 +77,11 @@ public class ReportSenderCityAreaService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 全部订单详情
-	public String detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -190,7 +190,7 @@ public class ReportSenderCityAreaService {
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 }

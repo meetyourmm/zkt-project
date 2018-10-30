@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -27,7 +28,7 @@ public class ModelService {
 	private ModelMapper modelMapper;
 
 	// 获取modelNo列表(全表参数)
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = userInfo.getUserId();
@@ -56,7 +57,7 @@ public class ModelService {
 		returnHandle.setDataMaxCount(modelListCount);
 		returnHandle.setDataMaxPage(
 				modelListCount % pageSize == 0 ? modelListCount / pageSize : modelListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 获取modelNo列表
@@ -82,7 +83,7 @@ public class ModelService {
 	}
 
 	// 保存订单模板
-	public String saveModel(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveModel(JSONObject json) throws Exception {
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());
@@ -101,7 +102,7 @@ public class ModelService {
 
 		List<Model> oldModel = modelMapper.selectModel(map);
 		if (oldModel != null && oldModel.size() > 0) {
-			return ReturnSimpleHandle.createServerError("模板名称不能重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("模板名称不能重复", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 
 		Model model = new Model();
@@ -119,11 +120,11 @@ public class ModelService {
 		modelMapper.insertSelective(model);
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 修改订单模板
-	public String updateModel(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateModel(JSONObject json) throws Exception {
 
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userId = String.valueOf(userInfo.getUserId());
@@ -153,7 +154,7 @@ public class ModelService {
 		modelMapper.updateByPrimaryKeySelective(model);
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 单个删除

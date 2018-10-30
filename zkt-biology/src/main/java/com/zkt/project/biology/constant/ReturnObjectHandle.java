@@ -52,8 +52,8 @@ public class ReturnObjectHandle extends ReturnSimpleHandle implements Serializab
 	public static ReturnObjectHandle createHandle() {
 		ReturnObjectHandle handle = new ReturnObjectHandle();
 		handle.setMessage(SystemConstant.MESSAGE_SERVER_Z00);
-		handle.setIsSuccess(true);
-		handle.setCode(SystemConstant.MESSAGE_SERVER_CODE_Z00);
+		handle.setSuccess(true);
+		handle.setStatus(SystemConstant.MESSAGE_SERVER_CODE_Z00);
 		return handle;
 	}
 	
@@ -72,9 +72,9 @@ public class ReturnObjectHandle extends ReturnSimpleHandle implements Serializab
 	public ReturnSimpleHandle convertSimple() {
 		JSONObject json = (JSONObject) getData();
 		ReturnSimpleHandle retobj = new ReturnSimpleHandle();
-		retobj.setCode(json.getString("code"));
+		retobj.setSuccess(json.getBoolean("success"));
 		retobj.setData(json.get("data"));
-		retobj.setIsSuccess(json.getBoolean("isSuccess"));
+		retobj.setStatus(json.getInt("status"));
 		retobj.setMessage(json.getString("message"));
 		return retobj;
 	}

@@ -3,6 +3,7 @@ package com.zkt.project.biology.rest;
 import com.alibaba.fastjson.JSONObject;
 import com.zkt.common.core.util.ConverterUtil;
 import com.zkt.common.web.response.ApiResponse;
+import com.zkt.project.biology.constant.ReturnSimpleHandle;
 import com.zkt.project.biology.entity.Order;
 import com.zkt.project.biology.service.OrderSendService;
 import io.swagger.annotations.Api;
@@ -31,8 +32,7 @@ public class OrderApiController {
      */
     @PostMapping(value = "/getCreateOrderInfo")
     @ApiOperation(value = "创建订单", tags = "创建订单")
-    public ApiResponse getCreateOrderInfo(@RequestBody @ApiParam(name = "订单对象", value = "传入json格式", required = true) String order) {
-        orderSendService.saveOrder(JSONObject.parse(order));
-        return new ApiResponse();
+    public ReturnSimpleHandle getCreateOrderInfo(@RequestBody @ApiParam(name = "订单对象", value = "传入json格式", required = true) Order order) {
+        return orderSendService.saveOrder(ConverterUtil.bean2JsonObject(order));
     }
 }

@@ -63,7 +63,7 @@ public class QueryExceptionOrderService {
 	
 	//查询接收异常订单
 	
-	public String search(JSONObject json) throws Exception {
+	public ReturnObjectHandle search(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -100,12 +100,12 @@ public class QueryExceptionOrderService {
 		returnHandle.setDataMaxCount(orderListCount);
 		returnHandle.setDataMaxPage(
 				orderListCount % pageSize == 0 ? orderListCount / pageSize : orderListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	//查询运输异常订单
 	
-	public String searchProblemmonitor(JSONObject json) throws Exception {
+	public ReturnObjectHandle searchProblemmonitor(JSONObject json) throws Exception {
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
 		String userID = String.valueOf(userInfo.getUserId());// 锁定权限
@@ -139,12 +139,12 @@ public class QueryExceptionOrderService {
 		returnHandle.setDataMaxCount(problemmonitorListCount);
 		returnHandle.setDataMaxPage(
 				problemmonitorListCount % pageSize == 0 ? problemmonitorListCount / pageSize : problemmonitorListCount / pageSize + 1);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	//接收异常订单详情
 	
-	public String detail(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detail(JSONObject json) throws Exception {
 		
 		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
@@ -317,12 +317,12 @@ public class QueryExceptionOrderService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 	
 	//运输异常订单详情
 	
-	public String detailProblemmonitor(JSONObject json) throws Exception {
+	public ReturnSimpleHandle detailProblemmonitor(JSONObject json) throws Exception {
 		String id = json.getString("id");
 		
 		Problemmonitor problemmonitor = problemmonitorMapper.selectByPrimaryKey(Long.parseLong(id));
@@ -466,12 +466,12 @@ public class QueryExceptionOrderService {
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(result);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 		
 	//提交接收异常订单回复
 	
-	public String saveDiscribtion(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveDiscribtion(JSONObject json) throws Exception {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
@@ -534,11 +534,11 @@ public class QueryExceptionOrderService {
 		}
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 		
 	//提交运输异常订单回复
-	public String saveDiscribtion1(JSONObject json) throws Exception {
+	public ReturnSimpleHandle saveDiscribtion1(JSONObject json) throws Exception {
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userName = userInfo.getUserName();
 		String userType = userInfo.getUserType();
@@ -589,7 +589,7 @@ public class QueryExceptionOrderService {
 		}
 		
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 		
 }

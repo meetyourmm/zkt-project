@@ -16,6 +16,7 @@ package com.zkt.project.admin.mapper;
 
 import com.zkt.project.admin.entity.SysMenu;
 import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
 
 import java.util.List;
@@ -34,5 +35,8 @@ public interface MenuMapper extends Mapper<SysMenu> {
      * @return
      */
     public List<SysMenu> selectAuthorityMenuByUserId (@Param("userId") String userId);
+
+    @Select("select count(1) from sys_menu where code = #{code}")
+    int checkByCode(@Param("code")String code);
 
 }

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.zkt.project.biology.constant.SystemConstant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,7 @@ public class LoginService {
 	private ProblemmonitorMapper problemmonitorMapper;
 	
 	// 登入查询
-	public String login(String userName, String password) {
+	public ReturnSimpleHandle login(String userName, String password) {
 
 		String jsonString = "";
 
@@ -51,23 +52,23 @@ public class LoginService {
 		
 		// 账户是否存在
 		if(null == login){
-			return ReturnSimpleHandle.createServerError("用户名或者密码错误", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("用户名或者密码错误", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		// 医院员工 运输方员工 医院白卡账号 不能登入系统
 		if (login.getUserType().equals(Constant.USER_TYPE_EMPLOY)
 				|| login.getUserType().equals(Constant.USER_TYPE_TRANSPORTEMPLOY)
 				|| login.getUserType().equals(Constant.USER_TYPE_HOSPITALWHITE)) {
-			return ReturnSimpleHandle.createServerError("您的账号无权访问", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("您的账号无权访问", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 				
 		// 判断账号启用状态
 		if (Constant.IS_USED_N.equals(login.getUserIslock())) {
-			return ReturnSimpleHandle.createServerError("您的账号已被停用", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("您的账号已被停用", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		// 判断账号删除状态
 		if (Constant.IS_USED_D.equals(login.getUserIslock())) {
-			return ReturnSimpleHandle.createServerError("您的账号已被删除", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("您的账号已被删除", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 		
 		UserInfo userInfo = new UserInfo();
@@ -85,12 +86,11 @@ public class LoginService {
 //		RedisContent.flushUserInfo(userInfo);
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		jsonString = JSONObject.fromObject(returnHandle).toString();
-		return jsonString;
+		return returnHandle;
 	}
 
 	// 修改密码
-	public String updatepwd(JSONObject json) {
+	public ReturnSimpleHandle updatepwd(JSONObject json) {
 
 		String userName = json.getString("userName");// 用户名
 		String oldpwd = json.getString("oldpwd");// 老密码
@@ -105,24 +105,24 @@ public class LoginService {
 			login.setPassword(MD5Utils.string2MD5(newpwd));
 			loginMapper.updateByPrimaryKeySelective(login);
 			ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-			return JSONObject.fromObject(returnHandle).toString();
+			return returnHandle;
 		} else {// 用户名或者密码错误
-			return ReturnSimpleHandle.createServerError("用户名或者密码错误", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("用户名或者密码错误", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 	}
 
 	// 查询左侧菜单权限
-	public String searchEmployMenus(JSONObject json) throws Exception {
+	public ReturnSimpleHandle searchEmployMenus(JSONObject json) throws Exception {
 
 		// 查询左侧菜单权限
 		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	// 首页修改个人信息
-	public String updateServer1(JSONObject json) throws Exception {
+	public ReturnSimpleHandle updateServer1(JSONObject json) throws Exception {
 
 		long id = json.getLong("id");// ID唯一
 		String userName = json.getString("userName");
@@ -161,15 +161,15 @@ public class LoginService {
 				userInfo.setUser(logins);
 //				RedisContent.flushUserInfo(userInfo);
 			}
-			return ReturnSimpleHandle.createServerError("账号重复", "-1", null, null);
+			return ReturnSimpleHandle.createServerError("账号重复", SystemConstant.ERROR_MESSAGE_SERVER_CODE_F01, null, null);
 		}
 
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
-		return JSONObject.fromObject(returnHandle).toString();
+		return returnHandle;
 	}
 
 	//显示待办任务数量
-	public String getNewMsgsNum() {
+	public ReturnSimpleHandle getNewMsgsNum() {
 		
 		UserInfo userInfo = null;//RedisContent.getUserInfo();
 		String userType = userInfo.getUserType();
@@ -238,11 +238,11 @@ public class LoginService {
 		json.put("userType", userType);//区别用户类型显示不同待办任务
 		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
 		handle.setData(json);		
-		return JSONObject.fromObject(handle).toString();
+		return handle;
 	}
 	
 	//右下角弹出框
-	public String getWeather() {
+	public ReturnSimpleHandle getWeather() {
 		
 		JSONObject json = new JSONObject();
 		
@@ -270,7 +270,7 @@ public class LoginService {
 		
 		ReturnSimpleHandle handle = ReturnSimpleHandle.createServerHandle();
 		handle.setData(json);		
-		return JSONObject.fromObject(handle).toString();
+		return handle;
 		
 	}
 

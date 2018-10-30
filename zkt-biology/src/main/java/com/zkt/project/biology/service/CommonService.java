@@ -26,7 +26,7 @@ public class CommonService {
 	}
 	
 	// 锁住这个方法
-	public synchronized SerialNumber create12TimeSeque(String prefix) throws Exception {
+	public synchronized SerialNumber create12TimeSeque(String prefix) {
 		SerialNumber serialNumber = new SerialNumber();
 		serialNumber.setC_prefix(prefix);//D170421
 		long time = System.currentTimeMillis();//1492742455951 

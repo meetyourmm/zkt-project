@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -30,6 +31,7 @@ import com.zkt.project.biology.utils.SystemContent;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
@@ -56,8 +58,26 @@ public class ReportSenderAreaController {
 	 */
 	@PostMapping(value = "/search")
 	@ApiOperation(value="查询全部订单",tags = "查询全部订单")
-	public ReturnObjectHandle search() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnObjectHandle search(@ApiParam(name="sender",value="医院名称") String sender,
+			@ApiParam(name="area",value="区") String area,
+			@ApiParam(name="startDate",value="开始时间") String startDate,
+			@ApiParam(name="endDate",value="结束时间") String endDate,
+			@ApiParam(name="orderStatus",value="订单状态") String orderStatus,
+			@ApiParam(name="isProblem",value="异常 0：是异常件 1：不是异常件") String isProblem,
+			@ApiParam(name="draw",value="返回参数") String draw,
+			@ApiParam(name="start",value="偏移量") String start,
+			@ApiParam(name="pageCount",value="页宽") String pageCount) {
+		Map map = new HashMap();
+		map.put("transport",sender);
+		map.put("area",area);
+		map.put("startDate",startDate);
+		map.put("endDate",endDate);
+		map.put("orderStatus",orderStatus);
+		map.put("isProblem",isProblem);
+		map.put("draw",draw);
+		map.put("start",start);
+		map.put("pageCount",pageCount);
+		JSONObject json = JSONObject.fromObject( map );
 		return reportSenderAreaService.search(json);
 	}
 
@@ -68,8 +88,10 @@ public class ReportSenderAreaController {
 	 */
 	@PostMapping(value = "/detail")
 	@ApiOperation(value="全部订单详情",tags = "全部订单详情")
-	public ReturnSimpleHandle detail() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle detail(@ApiParam(name="orderNo",value="订单编号",required=true) String orderNo) {
+		Map map = new HashMap();
+		map.put("orderNo",orderNo);
+		JSONObject json = JSONObject.fromObject( map );
 		return reportSenderAreaService.detail(json);
 	}
 
@@ -79,17 +101,35 @@ public class ReportSenderAreaController {
 	 * @return
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	@RequestMapping(value = "/export", method = RequestMethod.POST)
-	public void exportpass() {
+	@PostMapping(value = "/export")
+	@ApiOperation(value="导出订单表",tags = "导出订单表")
+	public void exportpass(@ApiParam(name="sender",value="医院名称") String sender,
+			@ApiParam(name="area",value="区") String area,
+			@ApiParam(name="startDate",value="开始时间") String startDate,
+			@ApiParam(name="endDate",value="结束时间") String endDate,
+			@ApiParam(name="orderStatus",value="订单状态") String orderStatus,
+			@ApiParam(name="isProblem",value="异常 0：是异常件 1：不是异常件") String isProblem,
+			@ApiParam(name="draw",value="返回参数") String draw,
+			@ApiParam(name="start",value="偏移量") String start,
+			@ApiParam(name="pageCount",value="页宽") String pageCount) {
 
 		String FILE_NAME = "";
 
 		try {
 			FILE_NAME = "订单表";
-			JSONObject json = ContainerContent.clientWebReceive();
-			JSONObject infoList = json.getJSONObject("infoList");
-			infoList.put("isExport", 'Y');
-			ReturnObjectHandle handle = reportSenderAreaService.search(infoList);
+			Map paramMap = new HashMap();
+			paramMap.put("transport",sender);
+			paramMap.put("area",area);
+			paramMap.put("startDate",startDate);
+			paramMap.put("endDate",endDate);
+			paramMap.put("orderStatus",orderStatus);
+			paramMap.put("isProblem",isProblem);
+			paramMap.put("draw",draw);
+			paramMap.put("start",start);
+			paramMap.put("pageCount",pageCount);
+			paramMap.put("isExport", 'Y');
+			JSONObject json = JSONObject.fromObject( paramMap );
+			ReturnObjectHandle handle = reportSenderAreaService.search(json);
 
 			JSONObject resultJson = JSONObject.fromObject(handle);
 			JSONArray jsonList = resultJson.getJSONArray("data");

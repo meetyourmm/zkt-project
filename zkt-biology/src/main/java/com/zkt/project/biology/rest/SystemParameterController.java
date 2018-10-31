@@ -1,5 +1,8 @@
 package com.zkt.project.biology.rest;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +17,7 @@ import com.zkt.project.biology.utils.ContainerContent;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import net.sf.json.JSONObject;
 
 /**
@@ -47,8 +51,10 @@ public class SystemParameterController {
 	 */
 	@PostMapping(value = "/saveAlarmInterval")
 	@ApiOperation(value="设置报警间隔",tags = "设置报警间隔")
-	public ReturnSimpleHandle saveAlarmInterval() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle saveAlarmInterval(@ApiParam(name="alarmInterval",value="警报时间间隔",required=true) String alarmInterval) {
+		Map map = new HashMap();
+		map.put("alarmInterval",alarmInterval);
+		JSONObject json = JSONObject.fromObject( map );
 		return systemParameterService.saveAlarmInterval(json);
 	}
 	

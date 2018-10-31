@@ -1,5 +1,6 @@
 package com.zkt.project.biology.rest;
 
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,9 @@ import com.zkt.project.biology.utils.ContainerContent;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 箱体管理
@@ -37,8 +41,14 @@ public class CageController {
 	 */
 	@PostMapping(value = "/search")
 	@ApiOperation(value="查询箱体",tags = "查询箱体")
-	public ReturnObjectHandle search() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnObjectHandle search(
+			@ApiParam(name="cageno",value="箱体编号") String cageno,
+			@ApiParam(name="state",value="状态") String state
+	) {
+		Map map = new HashMap();
+		map.put("cageno",cageno);
+		map.put("state",state);
+		JSONObject json = JSONObject.fromObject( map );
 		return cageService.search(json);
 	}
 	
@@ -48,8 +58,10 @@ public class CageController {
 	 */
 	@PostMapping(value = "/saveServer")
 	@ApiOperation(value="保存箱体",tags = "保存箱体")
-	public ReturnSimpleHandle saveServer() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle saveServer(@ApiParam(name="cageno",value="箱体编号") String cageno) {
+		Map map = new HashMap();
+		map.put("cageno",cageno);
+		JSONObject json = JSONObject.fromObject( map );
 		return cageService.saveServer(json);
 	}
 	
@@ -59,8 +71,10 @@ public class CageController {
 	 */
 	@PostMapping(value = "/delete")
 	@ApiOperation(value="删除箱体",tags = "删除箱体")
-	public ReturnSimpleHandle delete() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle delete(@ApiParam(name="id",value="id") String id) {
+		Map map = new HashMap();
+		map.put("id",id);
+		JSONObject json = JSONObject.fromObject( map );
 		return cageService.delete(json);
 	}
 	

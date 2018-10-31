@@ -1,5 +1,6 @@
 package com.zkt.project.biology.rest;
 
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ import com.zkt.project.biology.utils.ContainerContent;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录、获取缓存信息、修改密码、登出
@@ -83,8 +87,16 @@ public class LoginApiController {
 	 */
 	@PostMapping(value = "/modifpwd")
 	@ApiOperation(value="修改密码",tags = "修改密码")
-	public ReturnSimpleHandle modifpwd() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle modifpwd(
+			@ApiParam(name="userName",value="用户名") String userName,
+			@ApiParam(name="oldpwd",value="老密码") String oldpwd,
+			@ApiParam(name="newpwd",value="新密码") String newpwd
+	) {
+		Map map =new HashMap();
+		map.put("userName",userName);
+		map.put("oldpwd",oldpwd);
+		map.put("newpwd",newpwd);
+		JSONObject json = JSONObject.fromObject( map );
 		return loginService.updatepwd(json);
 	}
 
@@ -110,8 +122,14 @@ public class LoginApiController {
 	 */
 	@PostMapping(value = "/updateServer")
 	@ApiOperation(value="修改个人信息",tags = "修改个人信息")
-	public ReturnSimpleHandle updateServer() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle updateServer(
+			@ApiParam(name="id",value="id") String id,
+			@ApiParam(name="userName",value="用户名") String userName
+	) {
+		Map map =new HashMap();
+		map.put("id",id);
+		map.put("userName",userName);
+		JSONObject json = JSONObject.fromObject( map );
 		return loginService.updateServer1(json);
 	}
 }

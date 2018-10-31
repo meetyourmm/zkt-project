@@ -6,11 +6,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URLEncoder;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,8 +54,20 @@ public class AuditCityController {
 	 */
 	@PostMapping(value = "/search")
 	@ApiOperation(value="查看市级仲裁件",tags = "查看市级仲裁件")
-	public ReturnObjectHandle search() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnObjectHandle search(@ApiParam(name="orderNo",value="订单号") String orderNo,
+									 @ApiParam(name="cageno",value="箱体编号") String cageno,
+									 @ApiParam(name="classify",value="下单分类") String classify,
+									 @ApiParam(name="draw",value="") String draw ,
+									 @ApiParam(name="start",value="起始页") String start,
+									 @ApiParam(name="pageCount",value="分页大小") String pageCount) {
+		Map map = new HashMap();
+		map.put("orderNo",orderNo);
+		map.put("cageno",cageno);
+		map.put("classify",classify);
+		map.put("draw",draw);
+		map.put("start",start);
+		map.put("pageCount",pageCount);
+		JSONObject json = JSONObject.fromObject( map );
 		return auditCityService.search(json);
 	}
 
@@ -68,9 +78,8 @@ public class AuditCityController {
 	 */
 	@PostMapping(value = "/detail")
 	@ApiOperation(value="查看市级仲裁件详情",tags = "查看市级仲裁件详情")
-	public ReturnSimpleHandle detail() {
-		JSONObject json = ContainerContent.clientWebReceive();
-		return auditCityService.detail(json);
+	public ReturnSimpleHandle detail(@ApiParam(name="orderNo",value="订单号",required=true) String orderNo) {
+		return auditCityService.detail(orderNo);
 	}
 
 	/**
@@ -80,8 +89,12 @@ public class AuditCityController {
 	 */
 	@PostMapping(value = "/over")
 	@ApiOperation(value="审核终了",tags = "审核终了")
-	public ReturnSimpleHandle over() {
-		JSONObject json = ContainerContent.clientWebReceive();
+	public ReturnSimpleHandle over(@ApiParam(name="orderNo",value="订单号") String orderNo,
+								   @ApiParam(name="comments",value="市级审核意见") String comments) {
+		Map map = new HashMap();
+		map.put("orderNo",orderNo);
+		map.put("commentsShi",comments);
+		JSONObject json = JSONObject.fromObject( map );
 		auditCityService.updateOver(json);
 		return ReturnSimpleHandle.createServerHandle();
 	}
@@ -93,13 +106,13 @@ public class AuditCityController {
 	 */
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/export", method = RequestMethod.POST)
-	public void exportpass() {
+	public void exportpass(@ApiParam(name="infoList",value="订单表json数据") Map infoListMap) {
 
 		String FILE_NAME = "";
 
 		try {
 			FILE_NAME = "订单表";
-			JSONObject json = ContainerContent.clientWebReceive();
+			JSONObject json = JSONObject.fromObject(infoListMap);
 			JSONObject infoList = json.getJSONObject("infoList");
 			infoList.put("isExport", 'Y');
 			ReturnObjectHandle handle = auditCityService.search(infoList);

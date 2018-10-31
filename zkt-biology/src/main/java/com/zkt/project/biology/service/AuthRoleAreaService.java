@@ -193,8 +193,8 @@ public class AuthRoleAreaService {
 	}
 
 	// 查询左侧菜单权限
-	public ReturnSimpleHandle searchEmployMenus(JSONObject json) {
-		List<String> menus = authResMapper.selectByUserName(json.getString("userName"));
+	public ReturnSimpleHandle searchEmployMenus(String userName) {
+		List<String> menus = authResMapper.selectByUserName(userName);
 		ReturnSimpleHandle returnHandle = ReturnSimpleHandle.createServerHandle();
 		returnHandle.setData(menus);
 		return returnHandle;

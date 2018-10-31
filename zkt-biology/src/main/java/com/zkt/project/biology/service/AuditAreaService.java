@@ -230,9 +230,8 @@ public class AuditAreaService {
 		
 	// 区级待审核单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json){
+	public ReturnSimpleHandle detail(String orderNo){
 		
-		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
 		// 订单状态
 		String orderStatus = "";
@@ -420,9 +419,8 @@ public class AuditAreaService {
 	
 	// 区级已审核单详情
 	
-	public ReturnSimpleHandle audited(JSONObject json){
+	public ReturnSimpleHandle audited(String orderNo){
 		
-		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
 		// 订单状态
 		String orderStatus = "";

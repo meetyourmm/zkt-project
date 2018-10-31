@@ -104,9 +104,8 @@ public class AuditCityService {
 
 	// 审核单详情
 	
-	public ReturnSimpleHandle detail(JSONObject json){
+	public ReturnSimpleHandle detail(String orderNo){
 		
-		String orderNo = json.getString("orderNo");
 		Order order = orderMapper.selectByOrderNo(orderNo);
 		// 订单状态
 		String orderStatus = "";

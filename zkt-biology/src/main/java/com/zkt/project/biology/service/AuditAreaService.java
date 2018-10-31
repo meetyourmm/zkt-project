@@ -79,9 +79,7 @@ public class AuditAreaService {
 	
 	//获取订单对应的温湿度
 	
-	public ReturnSimpleHandle getProcess(JSONObject json) {
-		
-		String orderNo = json.getString("orderNo");
+	public ReturnSimpleHandle getProcess(String orderNo) {
 		
 		JSONObject jsonData = new JSONObject();
 		JSONArray humiditys = new JSONArray();
@@ -116,9 +114,7 @@ public class AuditAreaService {
 	
 	//获取对应订单的运动轨迹
 	
-	public ReturnSimpleHandle getTrajectory(JSONObject json) {
-		
-		String orderNo = json.getString("orderNo");
+	public ReturnSimpleHandle getTrajectory(String orderNo) {
 		
 		JSONObject jsonData = new JSONObject();
 		JSONArray lngXs = new JSONArray();

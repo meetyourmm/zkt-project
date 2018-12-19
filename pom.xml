@@ -10,8 +10,8 @@
 		<module>zkt-common</module>
 		<module>zkt-admin</module>
         <module>zkt-generator</module>
-        <module>zkt-biology</module>
-    </modules>
+		<module>zkt-aliyun</module>
+	</modules>
 	<packaging>pom</packaging>
 
 	<name>zkt-project</name>

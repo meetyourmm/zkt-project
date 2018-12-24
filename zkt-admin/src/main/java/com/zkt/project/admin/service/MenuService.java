@@ -111,7 +111,7 @@ public class MenuService {
     public List<SysMenu> getMenuElementList(String parentId, String name) {
         Example example = new Example(SysMenu.class);
         Example.Criteria criteria =  example.createCriteria();
-        criteria.andEqualTo("parentId",parentId).andEqualTo("type",EnumUtil.MenuType.BUTTON.getType());
+        criteria.andEqualTo("parentId",parentId).andNotEqualTo("type",EnumUtil.MenuType.MENU.getType());
         if (!StringUtils.isEmpty(name)) {
             criteria.andLike("title", "%" + name + "%");
         }

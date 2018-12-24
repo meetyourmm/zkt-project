@@ -18,7 +18,7 @@ import com.zkt.common.core.constant.EnumUtil;
 import com.zkt.common.core.entity.TreeNode;
 
 /**
- * 菜单树
+ * 菜单树/部门数
  *
  * @author liwei
  * @create 2018/10/16 0016

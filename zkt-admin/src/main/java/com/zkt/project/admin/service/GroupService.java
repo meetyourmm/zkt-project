@@ -15,10 +15,18 @@
 package com.zkt.project.admin.service;
 
 import com.zkt.common.core.constant.CommonConstant;
+import com.zkt.common.core.constant.EnumUtil;
+import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.project.admin.entity.SysGroup;
+import com.zkt.project.admin.entity.SysMenu;
 import com.zkt.project.admin.mapper.GroupMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import tk.mybatis.mapper.entity.Example;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * 权限组或部门service
@@ -35,13 +43,45 @@ public class GroupService {
      * 保存组织结构
      * @param group
      */
-    public void insertGroup(SysGroup group){
+    public void addGroup(SysGroup group){
         if(group.getParentId().equals(CommonConstant.ROOT_NODE)){
             group.setPath("/"+group.getCode());
         }else{
             SysGroup parent = groupMapper.selectByPrimaryKey(group.getParentId());
             group.setPath(parent.getPath() + "/" + group.getCode());
         }
+        String operatorUserId = UserContextHandler.getUserID();
+        group.setCreateTime(new Date());
+        group.setCreateUser(operatorUserId);
+        group.setUpdateTime(new Date());
+        group.setUpdateUser(operatorUserId);
         groupMapper.insertSelective(group);
+    }
+    public SysGroup getGroupById(String groupId){
+        return groupMapper.selectByPrimaryKey(groupId);
+    }
+    public void updateGroup(SysGroup group) {
+        String operatorUserId = UserContextHandler.getUserID();
+        group.setUpdateTime(new Date());
+        group.setUpdateUser(operatorUserId);
+        groupMapper.updateByPrimaryKeySelective(group);
+    }
+    public List<SysGroup> getDeaprtTreeByTitle(String name,String type) {
+        Example example = new Example(SysGroup.class);
+        Example.Criteria crt = example.createCriteria();
+        if (!StringUtils.isEmpty(name)) {
+            crt.andLike("name", "%" + name + "%");
+        }
+        crt.andEqualTo("groupType", type);
+        example.setOrderByClause("order_num asc");
+        return groupMapper.selectByExample(example);
+    }
+
+    public void deleteGroup(String id) {
+        groupMapper.deleteByPrimaryKey(id);
+    }
+
+    public Object validateCode(String code) {
+        return groupMapper.checkByCode(code)==0?false:true;
     }
 }

@@ -82,10 +82,10 @@ public class EnumUtil {
                 return "button";
             }
         },
-        LINK {
+        URI {
             @Override
             public String getType() {
-                return "link";
+                return "uri";
             }
         };
         public abstract String getType();

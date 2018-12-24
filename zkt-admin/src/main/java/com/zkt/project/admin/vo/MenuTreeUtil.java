@@ -15,6 +15,7 @@
 package com.zkt.project.admin.vo;
 
 import com.zkt.common.core.util.TreeUtil;
+import com.zkt.project.admin.entity.SysGroup;
 import com.zkt.project.admin.entity.SysMenu;
 import org.springframework.beans.BeanUtils;
 
@@ -40,6 +41,19 @@ public class MenuTreeUtil {
             BeanUtils.copyProperties(menu, node);
             node.setLabel(menu.getTitle());
             node.setAuthority(menu.getCode());
+            trees.add(node);
+        }
+        return TreeUtil.bulid(trees,root) ;
+    }
+
+    public static List<MenuTree> getGroupTree(List<SysGroup> groups, String root) {
+        List<MenuTree> trees = new ArrayList<MenuTree>();
+        MenuTree node = null;
+        for (SysGroup group : groups) {
+            node = new MenuTree();
+            BeanUtils.copyProperties(group, node);
+            node.setLabel(group.getName());
+            node.setAuthority(group.getCode());
             trees.add(node);
         }
         return TreeUtil.bulid(trees,root) ;

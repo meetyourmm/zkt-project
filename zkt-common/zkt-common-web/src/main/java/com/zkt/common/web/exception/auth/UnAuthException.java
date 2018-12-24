@@ -1,6 +1,6 @@
 /*
  * Copyright(C), 2015-2018, Beifeng
- * FileName: GroupMapper
+ * FileName: NoAuthException
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -12,19 +12,20 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.zkt.project.admin.mapper;
+package com.zkt.common.web.exception.auth;
 
-import com.zkt.project.admin.entity.SysGroup;
-import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
-import tk.mybatis.mapper.common.Mapper;
+import com.zkt.common.core.exception.BaseException;
+import com.zkt.common.web.constant.ResponseConstant;
 
 /**
+ * 无权限访问错误
+ *
  * @author liwei
- * @create 2018/10/17 0017
+ * @create 2018/12/19 0019
  */
-public interface GroupMapper extends Mapper<SysGroup> {
+public class UnAuthException extends BaseException {
 
-    @Select("select count(1) from sys_group where code = #{code}")
-    int checkByCode(@Param("code")String code);
+    public UnAuthException(String message) {
+        super(message, ResponseConstant.EX_UNAUTH_CODE);
+    }
 }

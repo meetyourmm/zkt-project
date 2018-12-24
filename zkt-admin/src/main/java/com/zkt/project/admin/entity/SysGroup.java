@@ -50,6 +50,9 @@ public class SysGroup implements Serializable{
     @Column(name = "group_type")
     private String groupType ;//组类型1:role 、2:depart
 
+    @Column(name = "order_num")
+    private Integer orderNum;//排序
+
     private String description;//描述
 
     @Column(name = "create_time")
@@ -159,5 +162,13 @@ public class SysGroup implements Serializable{
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public Integer getOrderNum() {
+        return orderNum;
+    }
+
+    public void setOrderNum(Integer orderNum) {
+        this.orderNum = orderNum;
     }
 }

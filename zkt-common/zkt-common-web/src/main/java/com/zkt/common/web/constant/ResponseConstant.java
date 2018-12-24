@@ -25,6 +25,7 @@ public class ResponseConstant {
     //返回代码
     public static final Integer EX_TOKEN_INVALID_CODE = 40101;// 用户token异常code
     public static final Integer EX_USER_INVALID_CODE = 40001;// 用户名异常code
+    public static final Integer EX_UNAUTH_CODE = 40401;//无权限访问
     public static final Integer EX_COMMON_CODE = 500;
     public static final Integer SUCCESS_CODE = 200;
 
@@ -40,4 +41,5 @@ public class ResponseConstant {
     public static final String EX_TOKEN_NULL_MSG = "token不能为空";
     public static final String EX_TOKEN_ERROR_MSG = "token验证错误";
     public static final String EX_TOKEN_EXPIRE_MSG = "token过期";
+    public static final String EX_UNAUTH_MSG = "请求资源无权限";
 }

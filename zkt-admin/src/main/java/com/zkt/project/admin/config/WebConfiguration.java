@@ -3,6 +3,7 @@ package com.zkt.project.admin.config;
 
 import com.zkt.common.web.handler.ApiExceptionHandler;
 import com.zkt.common.web.interceptor.UserAuthRestInterceptor;
+import com.zkt.project.admin.interceptor.AuthInterceptor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
@@ -28,12 +29,19 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(getUserAuthRestInterceptor()).
                 addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*")
                 ;
+        //registry.addInterceptor(getAuthInterceptor()).addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*");
     }
 
     @Bean
     UserAuthRestInterceptor getUserAuthRestInterceptor() {
         return new UserAuthRestInterceptor();
     }
+
+    @Bean
+    AuthInterceptor getAuthInterceptor(){
+        return new AuthInterceptor();
+    }
+
 
     /**
      * 需要用户认证判断的路径

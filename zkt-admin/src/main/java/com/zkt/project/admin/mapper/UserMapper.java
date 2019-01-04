@@ -33,4 +33,12 @@ public interface UserMapper extends Mapper<SysUser> {
      List<Map> getUserPage(@Param("name")String name);
 
      int checkByUserName(@Param("userName")String userName);
+
+     /**
+      * 获取组下面的用户
+      * @param groupId
+      * @param name
+      * @return
+      */
+     List<Map> getGroupUserPage(@Param("groupId")String groupId, @Param("name")String name);
 }

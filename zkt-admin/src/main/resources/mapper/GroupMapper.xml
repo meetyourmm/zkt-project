@@ -17,5 +17,4 @@
         <result column="update_time" jdbcType="DATE" property="updateTime"/>
         <result column="update_user" jdbcType="VARCHAR" property="updateUser"/>
     </resultMap>
-
 </mapper>

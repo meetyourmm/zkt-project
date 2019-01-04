@@ -14,23 +14,20 @@
  */
 package com.zkt.project.admin.mapper;
 
-import com.zkt.project.admin.entity.SysGroup;
+import com.zkt.project.admin.entity.SysGroupUser;
 import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import tk.mybatis.mapper.common.Mapper;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author liwei
  * @create 2018/10/17 0017
  */
-public interface GroupMapper extends Mapper<SysGroup> {
+public interface GroupUserMapper extends Mapper<SysGroupUser> {
 
-    @Select("select count(1) from sys_group where code = #{code}")
-    int checkByCode(@Param("code")String code);
+    @Delete("delete from sys_group_user where user_id in (#{ids}) and group_id = #{groupId}")
+    void deleteGroupUsers(@Param("ids")String ids, @Param("groupId")String groupId);
 
+    @Delete("delete from sys_group_user where group_id = #{groupId}")
+    void deleteGroupAllUsers(@Param("groupId")String groupId);
 }

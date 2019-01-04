@@ -32,12 +32,22 @@
         left join sys_user b on v.update_user = b.id
         where 1=1 and v.status!='3' and v.is_admin = '1'
         <if test="name != null and name != ''">
-            and v.user_name like '%${name}%' or v.nick_name like'%${name}%' or v.real_name like '%${name}%'
+            and (v.user_name like '%${name}%' or v.nick_name like'%${name}%' or v.real_name like '%${name}%')
         </if>
         order by update_time desc,create_time desc
     </select>
 
     <select id="checkByUserName" resultType="INTEGER">
         select count(1) from sys_user where user_name = #{userName}
+    </select>
+
+    <select id="getGroupUserPage" resultMap="BaseUserInfoMap">
+        select v.id,v.user_name,v.email,v.mobile,v.telphone,v.user_type,v.real_name,v.age,v.birthday,v.gender,
+        v.nick_name,v.avatar,v.is_com,v.is_admin from sys_group_user a
+        LEFT JOIN sys_user v on a.user_id = v.id where a.group_id =  #{groupId} and v.status!='3' and v.is_admin = '1'
+        <if test="name != null and name != ''">
+            and (v.user_name like '%${name}%' or v.nick_name like'%${name}%' or v.real_name like '%${name}%')
+        </if>
+        order by v.update_time desc,v.create_time desc
     </select>
 </mapper>

@@ -14,19 +14,27 @@
  */
 package com.zkt.project.admin.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zkt.common.core.constant.CommonConstant;
 import com.zkt.common.core.constant.EnumUtil;
 import com.zkt.common.core.context.UserContextHandler;
+import com.zkt.common.web.response.ApiResponse;
 import com.zkt.project.admin.entity.SysGroup;
+import com.zkt.project.admin.entity.SysGroupUser;
 import com.zkt.project.admin.entity.SysMenu;
 import com.zkt.project.admin.mapper.GroupMapper;
+import com.zkt.project.admin.mapper.GroupUserMapper;
+import com.zkt.project.admin.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import tk.mybatis.mapper.entity.Example;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
 
 /**
  * 权限组或部门service
@@ -39,6 +47,11 @@ public class GroupService {
     @Autowired
     private GroupMapper groupMapper;
 
+    @Autowired
+    private GroupUserMapper groupUserMapper;
+
+    @Autowired
+    private UserMapper userMapper;
     /**
      * 保存组织结构
      * @param group
@@ -83,5 +96,29 @@ public class GroupService {
 
     public Object validateCode(String code) {
         return groupMapper.checkByCode(code)==0?false:true;
+    }
+
+    public PageInfo<Map> getGroupUserPage(int pageStart, int pageSize, String groupId, String name) {
+        PageHelper.startPage(pageStart,pageSize);
+
+        List<Map> list = userMapper.getGroupUserPage(groupId,name);
+        return new PageInfo<>(list);
+    }
+
+    public void deleteGroupUsers(String ids,String groupId) {
+        groupUserMapper.deleteGroupUsers(ids,groupId);
+    }
+
+    @Transactional
+    public void addGroupUsers(String ids, String groupId) {
+        String [] idList = ids.split(",");
+        for(String id :idList){
+            SysGroupUser guser = new SysGroupUser();
+            guser.setGroupId(groupId);
+            guser.setUserId(id);
+            if(groupUserMapper.selectOne(guser)== null){
+                groupUserMapper.insertSelective(guser);
+            }
+        }
     }
 }

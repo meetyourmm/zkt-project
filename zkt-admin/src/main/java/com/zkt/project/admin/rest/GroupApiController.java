@@ -14,6 +14,7 @@
  */
 package com.zkt.project.admin.rest;
 
+import com.github.pagehelper.PageInfo;
 import com.zkt.common.core.constant.CommonConstant;
 import com.zkt.common.web.response.ApiResponse;
 import com.zkt.project.admin.entity.SysGroup;
@@ -26,6 +27,8 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 /**
  * 部门与组controller
@@ -85,10 +88,29 @@ public class GroupApiController {
         return new ApiResponse(groupService.validateCode(code));
     }
 
-    @GetMapping(value = "/getGroupUserList")
+    @GetMapping(value = "/getGroupUsers")
     @ApiOperation(value="获取部门或者权限组下所有用户",tags = "获取部门或者权限组下所有用户")
-    public ApiResponse getGroupUserList(@ApiParam(name="parentId",value="菜单id",required=true) String parentId, @ApiParam(name="name",value="资源名称") String name){
-//        return new ApiResponse(menuService.getMenuElementList(parentId,name));
-        return null;
+    public ApiResponse getGroupUserList(@ApiParam(name="page",value="起始位置",required=true) Integer page,
+                                        @ApiParam(name="limit",value="分页大小",required=true) Integer limit,
+                                        @ApiParam(name="groupId",value="组id",required=true) String groupId,
+                                        @ApiParam(name="name",value="用户账号或者姓名") String name){
+        PageInfo<Map> list = groupService.getGroupUserPage(page,limit,groupId,name);
+        return new ApiResponse(list);
+    }
+
+    @PostMapping(value = "/delGroupUsers")
+    @ApiOperation(value="删除组下用户",tags = "删除组下用户")
+    public ApiResponse delGroupUsers(@ApiParam(name="ids",value="用户ids,多个用户逗号隔开",required=true) String ids,
+                                     @ApiParam(name="groupId",value="组id",required=true) String groupId){
+        groupService.deleteGroupUsers(ids,groupId);
+        return new ApiResponse();
+    }
+
+    @PostMapping(value = "/addGroupUsers")
+    @ApiOperation(value="添加组下用户",tags = "添加组下用户")
+    public ApiResponse addGroupUsers(@ApiParam(name="ids",value="用户ids,多个用户逗号隔开",required=true) String ids,
+                                     @ApiParam(name="groupId",value="组id",required=true) String groupId){
+        groupService.addGroupUsers(ids,groupId);
+        return new ApiResponse();
     }
 }

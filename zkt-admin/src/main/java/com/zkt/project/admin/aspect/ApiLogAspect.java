@@ -59,11 +59,13 @@ public class ApiLogAspect {
             String name = joinPoint.getSignature().getName();
             String uri = request.getRequestURI();
             String remoteAddr = StringUtil.getIpAddr(request);
+            String params = request.getQueryString();
             String userId = UserContextHandler.getUserID();
 
             SysApiLog optLog = new SysApiLog();
             optLog.setName(name);
             optLog.setUri(uri);
+            optLog.setParams(params);
             optLog.setCreateHost(remoteAddr);
             optLog.setCreateUser(userId);
             optLog.setCreateTime(new Date());

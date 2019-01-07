@@ -37,6 +37,7 @@ public class SysApiLog {
 
     private String name;
     private String uri;
+    private String params;
 
     @Column(name = "create_time")
     private Date createTime;//创建时间
@@ -111,5 +112,13 @@ public class SysApiLog {
 
     public void setResult(String result) {
         this.result = result;
+    }
+
+    public String getParams() {
+        return params;
+    }
+
+    public void setParams(String params) {
+        this.params = params;
     }
 }

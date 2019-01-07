@@ -39,4 +39,5 @@ public interface MenuMapper extends Mapper<SysMenu> {
     @Select("select count(1) from sys_menu where code = #{code}")
     int checkByCode(@Param("code")String code);
 
+    int checkCountUserAuth(@Param("uri")String uri,@Param("userId")String userId);
 }

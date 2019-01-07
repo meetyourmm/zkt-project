@@ -118,4 +118,8 @@ public class MenuService {
         example.setOrderByClause("order_num asc");
         return menuMapper.selectByExample(example);
     }
+
+    public Boolean checkPermission(String uri, String userId) {
+        return menuMapper.checkCountUserAuth(uri,userId) == 0;
+    }
 }

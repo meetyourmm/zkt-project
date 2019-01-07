@@ -66,6 +66,7 @@ public class RedisConfig extends CachingConfigurerSupport {
     public CacheManager cacheManager(RedisConnectionFactory redisConnectionFactory) {
         RedisCacheConfiguration redisCacheConfiguration = RedisCacheConfiguration.defaultCacheConfig();
 //                .entryTtl(Duration.ofHours(1)); // 设置缓存有效期1小时
+        redisCacheConfiguration.entryTtl(Duration.ofHours(1));
         return RedisCacheManager
                 .builder(RedisCacheWriter.nonLockingRedisCacheWriter(redisConnectionFactory))
                 .cacheDefaults(redisCacheConfiguration).build();

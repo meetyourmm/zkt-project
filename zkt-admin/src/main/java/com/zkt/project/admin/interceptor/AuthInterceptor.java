@@ -14,12 +14,18 @@
  */
 package com.zkt.project.admin.interceptor;
 
+import com.zkt.common.core.constant.CommonConstant;
+import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.common.web.annotation.IgnoreUserToken;
 import com.zkt.common.web.constant.ResponseConstant;
 import com.zkt.common.web.exception.auth.UnAuthException;
 import com.zkt.common.web.interceptor.UserAuthRestInterceptor;
+import com.zkt.project.admin.entity.SysUser;
+import com.zkt.project.admin.service.MenuService;
+import com.zkt.project.admin.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.method.HandlerMethod;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 
@@ -34,6 +40,13 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 
+    @Autowired
+    private MenuService menuService;
+
+    @Autowired
+    private UserService userService;
+
+    private final String IS_ADMIN = "2";
     private Logger logger = LoggerFactory.getLogger(UserAuthRestInterceptor.class);
 
     @Override
@@ -48,7 +61,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (annotation != null) {
             return super.preHandle(request, response, handler);
         }
-        if(checkPermission(requestUri)){
+        String userId = UserContextHandler.getUserID();
+        if(checkPermission(requestUri,userId)){
             throw new UnAuthException(ResponseConstant.EX_UNAUTH_MSG);
         }
         return super.preHandle(request, response, handler);
@@ -59,7 +73,16 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
      * @param uri
      * @return
      */
-    private Boolean checkPermission(String uri){
-        return true;
+    private Boolean checkPermission(String uri,String userId){
+        SysUser user = userService.getUserById(userId);
+        if(IS_ADMIN.equals(user.getIsAdmin())){//超级管理员跳过
+            return false;
+        }
+        return menuService.checkPermission(uri,userId);
+    }
+
+    @Override
+    public void afterCompletion(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) throws Exception {
+        super.afterCompletion(request, response, handler, ex);
     }
 }

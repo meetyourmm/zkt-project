@@ -29,7 +29,7 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(getUserAuthRestInterceptor()).
                 addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*")
                 ;
-        //registry.addInterceptor(getAuthInterceptor()).addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*");
+        registry.addInterceptor(getAuthInterceptor()).addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*");
     }
 
     @Bean

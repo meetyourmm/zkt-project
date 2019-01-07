@@ -27,7 +27,8 @@ public class CommonConstant {
     public static final String ROOT_NODE = "-1";//所有顶级父级id
 
     public static final String CONTEXT_KEY_USER_ID = "currentUserId";
-    public static final String CONTEXT_KEY_USERNAME = "currentUserName";
+    public static final String CONTEXT_KEY_USER_NAME = "currentUserName";
+    public static final String CONTEXT_KEY_USER_TYPE= "currentUserType";
     public static final String CONTEXT_KEY_USER_TOKEN = "currentUserToken";
     public static final String JWT_KEY_USER_ID = "userId";
     public static final String JWT_KEY_USER_NAME = "userName";

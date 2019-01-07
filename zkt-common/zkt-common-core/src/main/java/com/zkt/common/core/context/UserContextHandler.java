@@ -54,10 +54,14 @@ public class UserContextHandler {
     }
 
     public static String getUserName(){
-        Object value = get(CommonConstant.CONTEXT_KEY_USERNAME);
+        Object value = get(CommonConstant.CONTEXT_KEY_USER_NAME);
         return StringUtil.getObjectValue(value);
     }
 
+    public static String getUserType(){
+        Object value = get(CommonConstant.CONTEXT_KEY_USER_TYPE);
+        return StringUtil.getObjectValue(value);
+    }
 
     public static String getToken(){
         Object value = get(CommonConstant.CONTEXT_KEY_USER_TOKEN);
@@ -70,7 +74,11 @@ public class UserContextHandler {
     }
 
     public static void setUsername(String username){
-        set(CommonConstant.CONTEXT_KEY_USERNAME,username);
+        set(CommonConstant.CONTEXT_KEY_USER_NAME,username);
+    }
+
+    public static void setUserType(String userType){
+        set(CommonConstant.CONTEXT_KEY_USER_TYPE,userType);
     }
 
     public static void remove(){

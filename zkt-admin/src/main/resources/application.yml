@@ -6,9 +6,9 @@ spring:
   cache:
       type: redis
   redis:
-      database: 7
-      host: ${REDIS_HOST:106.14.95.202}
-      port: ${REDIS_PORT:9582}
+      database: 2
+      host: ${REDIS_HOST:127.0.0.1}
+      port: ${REDIS_PORT:56379}
       timeout: 1s
       password:
       jedis:

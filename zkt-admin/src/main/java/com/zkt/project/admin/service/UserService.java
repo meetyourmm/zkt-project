@@ -24,6 +24,7 @@ import com.zkt.common.web.exception.auth.UserInvalidException;
 import com.zkt.project.admin.entity.SysUser;
 import com.zkt.project.admin.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -64,6 +65,7 @@ public class UserService {
 
     }
 
+    @Cacheable(value="userInfo",key="#userId")
     public SysUser getUserById(String userId){
         SysUser user = userMapper.selectByPrimaryKey(userId);
         if(user == null){

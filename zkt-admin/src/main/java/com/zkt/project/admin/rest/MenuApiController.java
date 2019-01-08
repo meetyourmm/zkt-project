@@ -63,6 +63,17 @@ public class MenuApiController {
     }
 
     /**
+     * 获取组权限
+     * @param groupId
+     * @return
+     */
+    @PostMapping(value = "/getGroupAuth")
+    @ApiOperation(value="获取菜单信息",tags = "获取菜单信息")
+    public ApiResponse getGroupAuth(@ApiParam(name="groupId",value="组id",required=true) String groupId){
+        return new ApiResponse(menuService.getGroupAuth(groupId));
+    }
+
+    /**
      * 根据查询获取根节点树
      * @return
      */
@@ -109,5 +120,19 @@ public class MenuApiController {
     @ApiOperation(value="获取菜单下所有资源",tags = "获取菜单下所有资源")
     public ApiResponse getMenuElementList(@ApiParam(name="parentId",value="菜单id",required=true) String parentId, @ApiParam(name="name",value="资源名称") String name){
         return new ApiResponse(menuService.getMenuElementList(parentId,name));
+    }
+
+    /**
+     *保存组权限
+     * @param groupId
+     * @param ids
+     * @return
+     */
+    @PostMapping(value = "/saveAuthTree")
+    @ApiOperation(value="获取菜单信息",tags = "获取菜单信息")
+    public ApiResponse saveAuthTree(@ApiParam(name="groupId",value="组id",required=true) String groupId,
+                                    @ApiParam(name="ids",value="资源id，逗号隔开",required=true) String ids){
+        menuService.saveAuthTree(groupId,ids);
+        return new ApiResponse();
     }
 }

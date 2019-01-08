@@ -31,4 +31,9 @@
         select count(1) from sys_group_authority  a LEFT JOIN sys_menu b on a.menu_id = b.id
      where b.status = '1' and b.uri=#{uri}  and a.group_id in(select group_id from sys_group_user where user_id = #{userId})
     </select>
+
+    <select id="getGroupAuth" resultMap="BaseResultMap">
+        select b.* from sys_group_authority a LEFT JOIN sys_menu b on a.menu_id = b.id
+        where a.group_id = #{groupId} and b.status = '1' ORDER BY b.order_num
+    </select>
 </mapper>

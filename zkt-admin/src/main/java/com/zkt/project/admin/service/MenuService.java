@@ -122,4 +122,16 @@ public class MenuService {
     public Boolean checkPermission(String uri, String userId) {
         return menuMapper.checkCountUserAuth(uri,userId) == 0;
     }
+
+    public List<SysMenu> getGroupAuth(String groupId) {
+        return menuMapper.getGroupAuth(groupId);
+    }
+
+    @Transactional
+    public void saveAuthTree(String groupId, String ids) {
+        menuMapper.deleteGroupAuth(groupId);
+        for(String menuId:ids.split(",")){
+            menuMapper.insertGroupAuth(groupId,menuId);
+        }
+    }
 }

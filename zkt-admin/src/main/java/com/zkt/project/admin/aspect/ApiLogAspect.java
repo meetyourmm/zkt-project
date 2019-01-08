@@ -7,6 +7,7 @@ import com.zkt.common.core.util.StringUtil;
 import com.zkt.common.web.constant.ResponseConstant;
 import com.zkt.project.admin.entity.SysApiLog;
 import com.zkt.project.admin.service.ApiLogService;
+import com.zkt.project.admin.service.MenuService;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
 import org.slf4j.Logger;
@@ -42,6 +43,9 @@ public class ApiLogAspect {
     @Autowired
     private ApiLogService apiLogService;
 
+    @Autowired
+    private MenuService menuService;
+
     /*
      * 切面定义
      */
@@ -56,8 +60,9 @@ public class ApiLogAspect {
             // 接收到请求，记录请求内容
             ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder.getRequestAttributes();
             HttpServletRequest request = attributes.getRequest();
-            String name = joinPoint.getSignature().getName();
+
             String uri = request.getRequestURI();
+            String name = menuService.getMenuByUri(uri);
             String remoteAddr = StringUtil.getIpAddr(request);
             String params = request.getQueryString();
             String userId = UserContextHandler.getUserID();

@@ -34,7 +34,6 @@ import java.util.Date;
 @Table(name = "sys_group_user")
 public class SysGroupUser{
     @Id
-    @KeySql(genId = UUIdGenId.class)
     @Column(name="id")
     private String id;
 

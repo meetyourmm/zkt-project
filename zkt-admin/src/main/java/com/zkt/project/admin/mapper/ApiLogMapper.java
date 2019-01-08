@@ -15,11 +15,20 @@
 package com.zkt.project.admin.mapper;
 
 import com.zkt.project.admin.entity.SysApiLog;
+import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Param;
 import tk.mybatis.mapper.common.Mapper;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author liwei
  * @create 2018/10/17 0017
  */
 public interface ApiLogMapper extends Mapper<SysApiLog> {
+    List<Map> getLogList(@Param("name")String name, @Param("startDate")String startDate, @Param("endDate")String endDate);
+
+    @Delete("truncate table sys_api_log")
+    void removeAll();
 }

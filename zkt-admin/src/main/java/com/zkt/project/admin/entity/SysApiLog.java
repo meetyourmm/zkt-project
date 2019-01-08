@@ -20,6 +20,7 @@ import tk.mybatis.mapper.annotation.KeySql;
 import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import java.util.Date;
 
 /**
@@ -47,6 +48,9 @@ public class SysApiLog {
 
     @Column(name = "create_host")
     private String createHost;//访问主机
+
+    @Transient
+    private String createUserName;//创建人用户名
 
     private Integer state;//返回状态吗
     private String result;//返回结果s
@@ -120,5 +124,13 @@ public class SysApiLog {
 
     public void setParams(String params) {
         this.params = params;
+    }
+
+    public String getCreateUserName() {
+        return createUserName;
+    }
+
+    public void setCreateUserName(String createUserName) {
+        this.createUserName = createUserName;
     }
 }

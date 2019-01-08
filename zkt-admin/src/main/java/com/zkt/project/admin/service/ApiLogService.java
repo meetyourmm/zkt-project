@@ -14,10 +14,15 @@
  */
 package com.zkt.project.admin.service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.zkt.project.admin.entity.SysApiLog;
 import com.zkt.project.admin.mapper.ApiLogMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author liwei
@@ -31,5 +36,16 @@ public class ApiLogService {
 
     public void saveLog(SysApiLog log){
         apiLogMapper.insertSelective(log);
+    }
+
+    public PageInfo<Map> getLogListPage(Integer page, Integer limit, String name, String startDate, String endDate) {
+        PageHelper.startPage(page,limit);
+
+        List<Map> list = apiLogMapper.getLogList(name,startDate,endDate);
+        return new PageInfo<>(list);
+    }
+
+    public void removeAll() {
+        apiLogMapper.removeAll();
     }
 }

@@ -134,4 +134,19 @@ public class MenuService {
             menuMapper.insertGroupAuth(groupId,menuId);
         }
     }
+
+    /**
+     * 根据uri获取菜单信息
+     *
+     * @param uri
+     * @return
+     */
+    @Cacheable(value="permission::uri",key="#uri")
+    public String getMenuByUri(String uri) {
+        Example example = new Example(SysMenu.class);
+        Example.Criteria criteria =  example.createCriteria();
+        criteria.andEqualTo("uri",uri);
+        List<SysMenu> list = menuMapper.selectByExample(example);
+        return list.size()>0?list.get(0).getDescription():"";
+    }
 }

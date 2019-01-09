@@ -29,7 +29,9 @@ public class WebConfiguration implements WebMvcConfigurer {
         registry.addInterceptor(getUserAuthRestInterceptor()).
                 addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*")
                 ;
-        registry.addInterceptor(getAuthInterceptor()).addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*");
+        //大部分系统不需要再去检验用户的接口权限 已经做了用户验证和菜单权限控制了
+        //如果你需要，则要求在菜单管理中 将所有资源的请求纳入管理，并分配权限。下行可以注释
+        //registry.addInterceptor(getAuthInterceptor()).addPathPatterns(getIncludePathPatterns()).excludePathPatterns("/auth/*");
     }
 
     @Bean

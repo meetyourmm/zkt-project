@@ -68,7 +68,7 @@ public class MenuApiController {
      * @return
      */
     @PostMapping(value = "/getGroupAuth")
-    @ApiOperation(value="获取菜单信息",tags = "获取菜单信息")
+    @ApiOperation(value="获取组权限",tags = "获取组权限")
     public ApiResponse getGroupAuth(@ApiParam(name="groupId",value="组id",required=true) String groupId){
         return new ApiResponse(menuService.getGroupAuth(groupId));
     }

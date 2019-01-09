@@ -19,6 +19,7 @@ import com.github.pagehelper.PageInfo;
 import com.zkt.common.core.constant.CommonConstant;
 import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.common.core.util.JwtHelper;
+import com.zkt.common.web.annotation.IgnoreUserToken;
 import com.zkt.common.web.constant.ResponseConstant;
 import com.zkt.common.web.exception.auth.UserTokenException;
 import com.zkt.common.web.jwt.AccessToken;

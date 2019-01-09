@@ -44,7 +44,6 @@ public class ApiLogController {
 
     @PostMapping(value = "/page")
     @ApiOperation(value="获取接口列表",tags = "获取接口列表")
-
     public ApiResponse getApiLogPage(@ApiParam(name="page",value="起始位置",required=true) Integer page,
                                      @ApiParam(name="limit",value="分页大小",required=true) Integer limit,
                                      @ApiParam(name="name",value="操作账号") String name,

@@ -28,21 +28,25 @@ import com.zkt.project.admin.service.UserService;
 import com.zkt.project.admin.vo.FrontUser;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
-import io.swagger.annotations.Api;
-import io.swagger.annotations.ApiImplicitParam;
-import io.swagger.annotations.ApiImplicitParams;
-import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.*;
+import net.sf.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 登录接口
@@ -61,6 +65,71 @@ public class LoginApiController {
 
     @Autowired
     private UserService userService;
+
+    @PostMapping(value = "/register")
+    @ApiOperation(value="用户注册",tags = "用户注册")
+    public ApiResponse register(@RequestBody @ApiParam(name="用户对象",value="传入json格式",required=true) SysUser user,
+                                @ApiParam(name="openId",value="微信openId",required=true) String openId) {
+        String clientId = "098f6bcd4621d373cade4e832627b4f6";
+
+        //用户注册
+        user = userService.registerUser(user);
+        //拼装accessToken
+        String accessToken = JwtHelper.createJWT(openId, String.valueOf(user.getId()),
+                "", audienceEntity.getClientId(), audienceEntity.getName(),
+                audienceEntity.getExpiresSecond() * 1000L, audienceEntity.getBase64Secret());
+        String token =  CommonConstant.TOKEN_PRE +" "+accessToken;
+        return new ApiResponse(token);
+    }
+
+    @PostMapping(value = "/wxLogin")
+    @ApiOperation(value="微信登录",tags = "微信登录")
+    public ApiResponse getWxToken(@ApiParam(name="openId",value="微信openId",required=true) String openId) {
+        String clientId = "098f6bcd4621d373cade4e832627b4f6";
+        //验证用户名密码
+        SysUser user = userService.wxLogin(openId);
+        //拼装accessToken
+        String accessToken = JwtHelper.createJWT(openId, String.valueOf(user.getId()),
+                "", audienceEntity.getClientId(), audienceEntity.getName(),
+                audienceEntity.getExpiresSecond() * 1000L, audienceEntity.getBase64Secret());
+        String token =  CommonConstant.TOKEN_PRE +" "+accessToken;
+        return new ApiResponse(token);
+    }
+
+    @PostMapping(value = "/wxAuth")
+    @ApiOperation(value="微信授权",tags = "微信登录")
+    @ApiImplicitParams({
+            @ApiImplicitParam(paramType = "query",name="appid",value="appid",required = true,dataType = "String"),
+            @ApiImplicitParam(paramType = "query",name="secret",value="密钥",required = true,dataType = "String"),
+            @ApiImplicitParam(paramType = "query",name="js_code",value="js_code",required = true,dataType = "String")
+    })
+    public ApiResponse wxAuth(HttpServletRequest request) throws Exception {
+        JSONObject result = new JSONObject();
+
+        String appid = request.getParameter("appid");
+        String secret = request.getParameter("secret");
+        String js_code = request.getParameter("js_code");
+        String url = "https://api.weixin.qq.com/sns/jscode2session?appid="+appid+
+                "&secret="+secret+"&js_code="+ js_code +"&grant_type=authorization_code";
+
+        RestTemplate restTemplate = new RestTemplate();
+        //进行网络请求,访问url接口
+        ResponseEntity<String> responseEntity = restTemplate.exchange(url, HttpMethod.GET, null, String.class);
+        //根据返回值进行后续操作
+        if(responseEntity != null && responseEntity.getStatusCode() == HttpStatus.OK)
+        {
+            String sessionData = responseEntity.getBody();
+            System.out.println(sessionData);
+            JSONObject json = JSONObject.fromObject(sessionData);
+            String openid = json.getString("openid");
+            String access_token = json.getString("access_token");
+            Map resultMap = new HashMap();
+            resultMap.put("openid",openid);
+            resultMap.put("access_token",access_token);
+            return new ApiResponse(resultMap);
+        }
+        return new ApiResponse();
+    }
 
     @PostMapping(value = "/login")
     @ApiOperation(value="用户登录",tags = "用户登录")

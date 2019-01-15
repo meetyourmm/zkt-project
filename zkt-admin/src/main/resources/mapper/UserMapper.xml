@@ -50,4 +50,30 @@
         </if>
         order by v.update_time desc,v.create_time desc
     </select>
+
+    <select id="checkUniqueUser" resultType="INTEGER">
+        select count(1) from sys_user
+        <where>
+            1=1
+            <if test="userName != null and userName != ''">
+                and user_name = #{userName}
+            </if>
+            <if test="email != null and email != ''">
+                OR email = #{email}
+            </if>
+            <if test="mobile != null and mobile != ''">
+                OR mobile = #{mobile}
+            </if>
+            <if test="qqOpenId != null and qqOpenId != ''">
+                OR qq_open_id = #{qqOpenId}
+            </if>
+            <if test="weChatOpenId != null and weChatOpenId != ''">
+                OR we_chat_open_id = #{weChatOpenId}
+            </if>
+            <if test="weiBoOpenId != null and weiBoOpenId != ''">
+                OR wei_bo_open_id = #{weiBoOpenId}
+            </if>
+        </where>
+    </select>
+
 </mapper>

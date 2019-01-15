@@ -42,7 +42,13 @@
         select * from sys_dictionary
         <where>
             1=1
-            and id !=  #{parentId} and status = '1' and ctype= #{ctype}
+            <if test="parentId == null or parentId == ''">
+                and parent_id !=  '-1'
+            </if>
+            <if test="parentId != null and parentId != ''">
+                and id !=  #{parentId}
+            </if>
+              and status = '1' and ctype= #{ctype}
             order by order_num
         </where>
     </select>

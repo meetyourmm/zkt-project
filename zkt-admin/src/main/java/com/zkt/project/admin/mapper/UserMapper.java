@@ -41,4 +41,6 @@ public interface UserMapper extends Mapper<SysUser> {
       * @return
       */
      List<Map> getGroupUserPage(@Param("groupId")String groupId, @Param("name")String name);
+
+     int checkUniqueUser(SysUser user);
 }

@@ -50,7 +50,7 @@ public class DictionaryApiController {
 
     @PostMapping(value = "/getDictChildren")
     @ApiOperation(value="获取字典所有子集",tags = "获取字典所有子集")
-    public ApiResponse getDictChildren(@ApiParam(name="parentId",value="父节点id",required = true) String parentId,
+    public ApiResponse getDictChildren(@ApiParam(name="parentId",value="父节点id") String parentId,
                                        @ApiParam(name="ctype",value="所属类型编码",required = true) String ctype){
         return new ApiResponse(dictionaryService.getDictChildren(parentId,ctype));
     }

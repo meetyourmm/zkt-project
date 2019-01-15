@@ -110,4 +110,23 @@ public class UserService {
         return userMapper.checkByUserName(userName)==0?false:true;
 
     }
+
+    public SysUser wxLogin(String openId) {
+        SysUser info = new SysUser();
+        info.setWeChatOpenId(openId);
+        SysUser user = userMapper.selectOne(info);
+        if(user == null){
+            throw new UserInvalidException(ResponseConstant.EX_USER_NON_MSG);
+        }
+        return user;
+    }
+
+    public SysUser registerUser(SysUser user) {
+        if(userMapper.checkUniqueUser(user) == 0){
+            userMapper.insertSelective(user);
+        }else{
+            throw new UserInvalidException(ResponseConstant.EX_USER_EXIST_MSG);
+        }
+        return user;
+    }
 }

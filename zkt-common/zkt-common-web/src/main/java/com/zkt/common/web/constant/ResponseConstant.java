@@ -35,6 +35,7 @@ public class ResponseConstant {
 
     public static final String EX_USER_PASS_INVALID_MSG = "用户名或密码错误";
     public static final String EX_USER_NON_MSG = "用户不存在";
+    public static final String EX_USER_EXIST_MSG = "该信息已被注册";
 
     public static final String EX_SQL_MSG = "SQL语句执行出错";
 

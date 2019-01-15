@@ -111,16 +111,11 @@ public class UserService {
 
     }
 
-    public SysUser wxLogin(String openId) {
+    public SysUser getUserByOpenId(String openId){
         SysUser info = new SysUser();
         info.setWeChatOpenId(openId);
-        SysUser user = userMapper.selectOne(info);
-        if(user == null){
-            throw new UserInvalidException(ResponseConstant.EX_USER_NON_MSG);
-        }
-        return user;
+        return userMapper.selectOne(info);
     }
-
     public SysUser registerUser(SysUser user) {
         if(userMapper.checkUniqueUser(user) == 0){
             userMapper.insertSelective(user);

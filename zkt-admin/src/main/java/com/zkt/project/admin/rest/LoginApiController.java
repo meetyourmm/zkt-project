@@ -19,6 +19,7 @@ import com.zkt.common.core.constant.EnumUtil;
 import com.zkt.common.core.context.UserContextHandler;
 import com.zkt.common.core.util.JwtHelper;
 import com.zkt.common.web.constant.ResponseConstant;
+import com.zkt.common.web.exception.auth.UserInvalidException;
 import com.zkt.common.web.exception.auth.UserTokenException;
 import com.zkt.common.web.jwt.AccessToken;
 import com.zkt.common.web.jwt.Audience;
@@ -87,7 +88,10 @@ public class LoginApiController {
     public ApiResponse getWxToken(@ApiParam(name="openId",value="微信openId",required=true) String openId) {
         String clientId = "098f6bcd4621d373cade4e832627b4f6";
         //验证用户名密码
-        SysUser user = userService.wxLogin(openId);
+        SysUser user = userService.getUserByOpenId(openId);
+        if(user == null){
+            throw new UserInvalidException(ResponseConstant.EX_USER_NON_MSG);
+        }
         //拼装accessToken
         String accessToken = JwtHelper.createJWT(openId, String.valueOf(user.getId()),
                 "", audienceEntity.getClientId(), audienceEntity.getName(),
@@ -123,9 +127,16 @@ public class LoginApiController {
             JSONObject json = JSONObject.fromObject(sessionData);
             String openid = json.getString("openid");
             String access_token = json.getString("access_token");
+
             Map resultMap = new HashMap();
             resultMap.put("openid",openid);
             resultMap.put("access_token",access_token);
+            SysUser user = userService.getUserByOpenId(openid);
+            if(user == null){
+                resultMap.put("isRegister",false);
+            }else{
+                resultMap.put("isRegister",true);
+            }
             return new ApiResponse(resultMap);
         }
         return new ApiResponse();

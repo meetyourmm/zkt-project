@@ -1,12 +1,12 @@
 server:
-    port: 8008
+    port: 8080
 spring:
   application:
       name: zkt-admin
   cache:
       type: redis
   redis:
-      database: 2
+      database: 1
       host: ${REDIS_HOST:127.0.0.1}
       port: ${REDIS_PORT:56379}
       timeout: 1s

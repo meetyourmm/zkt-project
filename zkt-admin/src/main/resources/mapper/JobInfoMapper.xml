@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zkt.project.admin.mapper.JobInfoMapper">
+    <resultMap id="BaseResultMap" type="com.zkt.project.admin.entity.JobInfo">
+        <id column="id" jdbcType="VARCHAR" property="id" />
+        <result column="url" jdbcType="VARCHAR" property="url" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="link" jdbcType="VARCHAR" property="link" />
+        <result column="salary" jdbcType="VARCHAR" property="salary" />
+        <result column="salary_dic" jdbcType="VARCHAR" property="salaryDic" />
+        <result column="work_place" jdbcType="VARCHAR" property="workPlace" />
+        <result column="public_date" jdbcType="DATE" property="publicDate" />
+        <result column="nature" jdbcType="VARCHAR" property="nature" />
+        <result column="nature_dic" jdbcType="VARCHAR" property="natureDic" />
+        <result column="experience" jdbcType="VARCHAR" property="experience" />
+        <result column="experience_dic" jdbcType="VARCHAR" property="experienceDic" />
+        <result column="low_education" jdbcType="VARCHAR" property="lowEducation" />
+        <result column="low_education_dic" jdbcType="VARCHAR" property="lowEducationDic" />
+        <result column="head_count" jdbcType="VARCHAR" property="headCount" />
+        <result column="category" jdbcType="VARCHAR" property="category" />
+        <result column="category_dic" jdbcType="VARCHAR" property="categoryDic" />
+        <result column="description" jdbcType="VARCHAR" property="description" />
+        <result column="from_recruit_site" jdbcType="VARCHAR" property="fromRecruitSite" />
+        <result column="from_recruit_site_dic" jdbcType="VARCHAR" property="fromRecruitSiteDic" />
+        <result column="company_id" jdbcType="VARCHAR" property="companyId" />
+    </resultMap>
+
+    <select id="getCompanyJobList" resultMap="BaseResultMap">
+        select * from wx_job_info
+        <where>
+            1=1 and company_id = #{companyId}
+            <if test="key != null and key != ''">
+                and (title like '%${key}%' OR category like '%${key}%')
+            </if>
+        </where>
+    </select>
+
+</mapper>

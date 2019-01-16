@@ -59,19 +59,19 @@
                 and user_name = #{userName}
             </if>
             <if test="email != null and email != ''">
-                OR email = #{email}
+                and email = #{email}
             </if>
             <if test="mobile != null and mobile != ''">
-                OR mobile = #{mobile}
+                and mobile = #{mobile}
             </if>
             <if test="qqOpenId != null and qqOpenId != ''">
-                OR qq_open_id = #{qqOpenId}
+                and qq_open_id = #{qqOpenId}
             </if>
             <if test="weChatOpenId != null and weChatOpenId != ''">
-                OR we_chat_open_id = #{weChatOpenId}
+                and we_chat_open_id = #{weChatOpenId}
             </if>
             <if test="weiBoOpenId != null and weiBoOpenId != ''">
-                OR wei_bo_open_id = #{weiBoOpenId}
+                and wei_bo_open_id = #{weiBoOpenId}
             </if>
         </where>
     </select>

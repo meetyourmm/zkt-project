@@ -69,10 +69,10 @@ public class LoginApiController {
 
     @PostMapping(value = "/register")
     @ApiOperation(value="用户注册",tags = "用户注册")
-    public ApiResponse register(@RequestBody @ApiParam(name="用户对象",value="传入json格式",required=true) SysUser user,
+    public ApiResponse register(@ApiParam(name="用户对象",value="传入json字符串格式",required=true) String userObject,
                                 @ApiParam(name="openId",value="微信openId",required=true) String openId) {
-        String clientId = "098f6bcd4621d373cade4e832627b4f6";
-
+        JSONObject obj = new JSONObject().fromObject(userObject);
+        SysUser user = (SysUser)JSONObject.toBean(obj,SysUser.class);
         //用户注册
         user = userService.registerUser(user);
         //拼装accessToken
@@ -102,17 +102,12 @@ public class LoginApiController {
 
     @PostMapping(value = "/wxAuth")
     @ApiOperation(value="微信授权",tags = "微信登录")
-    @ApiImplicitParams({
-            @ApiImplicitParam(paramType = "query",name="appid",value="appid",required = true,dataType = "String"),
-            @ApiImplicitParam(paramType = "query",name="secret",value="密钥",required = true,dataType = "String"),
-            @ApiImplicitParam(paramType = "query",name="js_code",value="js_code",required = true,dataType = "String")
-    })
-    public ApiResponse wxAuth(HttpServletRequest request) throws Exception {
-        JSONObject result = new JSONObject();
-
-        String appid = request.getParameter("appid");
-        String secret = request.getParameter("secret");
-        String js_code = request.getParameter("js_code");
+    public ApiResponse wxAuth(@ApiParam(name="appid",value="appid",required=true) String appid,
+                              @ApiParam(name="secret",value="密钥",required=true) String secret,
+                              @ApiParam(name="js_code",value="js_code",required=true) String js_code) throws Exception {
+//        String appid = request.getParameter("appid");
+//        String secret = request.getParameter("secret");
+//        String js_code = request.getParameter("js_code");
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid="+appid+
                 "&secret="+secret+"&js_code="+ js_code +"&grant_type=authorization_code";
 
@@ -126,11 +121,11 @@ public class LoginApiController {
             System.out.println(sessionData);
             JSONObject json = JSONObject.fromObject(sessionData);
             String openid = json.getString("openid");
-            String access_token = json.getString("access_token");
+            String session_key = json.getString("session_key");
 
             Map resultMap = new HashMap();
             resultMap.put("openid",openid);
-            resultMap.put("access_token",access_token);
+            resultMap.put("session_key",session_key);
             SysUser user = userService.getUserByOpenId(openid);
             if(user == null){
                 resultMap.put("isRegister",false);

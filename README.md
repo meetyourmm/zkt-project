@@ -1,8 +1,8 @@
 ## zkt-project
 企业应用系统开发脚手架 基于微服务spring cloud项目拆分出来的单soa组件 适合作为公司做单应用项目的架构 可同时支持web端、移动端，可与微服务无缝对接。 
 # 技术要点
-  纯rest接口(基于jwtoken做用户认证) :swagger、spring boot 2.0.3
-  vue前端（https://github.com/meetyourmm/zkt-admin-ui）
+  - [rest接口] (基于jwtoken做用户认证) :swagger、spring boot 2.0.3
+  - [vue前端]（https://github.com/meetyourmm/zkt-admin-ui）
   <p align="center">
   <img width="900" src="http://plgc58szh.bkt.clouddn.com/%E5%BE%AE%E4%BF%A1%E5%9B%BE%E7%89%87_20190117091920.png">
   </p>
